@@ -1,0 +1,60 @@
+D016         	COLPF0	=	CTIA+22
+D017         	COLPF1	=	CTIA+23
+D018         	COLPF2	=	CTIA+24
+D019         	COLPF3	=	CTIA+25
+D01A         	COLBK	=	CTIA+26
+D01B         	PRIOR	=	CTIA+27
+D01C         	VDELAY	=	CTIA+28
+D01D         	GRACTL	=	CTIA+29
+D01E         	HITCLR	=	CTIA+30
+D01F         	CONSOL	=	CTIA+31
+D000         	M0PF	=	CTIA+0
+D001         	M1PF	=	CTIA+1
+D002         	M2PF	=	CTIA+2
+D003         	M3PF	=	CTIA+3
+D004         	P0PF	=	CTIA+4
+D005         	P1PF	=	CTIA+5
+D006         	P2PF	=	CTIA+6
+D007         	P3PF	=	CTIA+7
+D008         	M0PL	=	CTIA+8
+D009         	M1PL	=	CTIA+9
+D00A         	M2PL	=	CTIA+10
+D00B         	M3PL	=	CTIA+11
+D00C         	P0PL	=	CTIA+12
+D00D         	P1PL	=	CTIA+13
+D00E         	P2PL	=	CTIA+14
+D00F         	P3PL	=	CTIA+15
+D010         	TRIG0	=	CTIA+16
+D011         	TRIG1	=	CTIA+17
+D012         	TRIG2	=	CTIA+18
+D013         	TRIG3	=	CTIA+19
+             	;
+D400         	ANTIC	=	$D400
+D400         	DMACTL	=	ANTIC+0
+D401         	CHACTL	=	ANTIC+1
+D402         	DLISTL	=	ANTIC+2
+D403         	DLISTH	=	ANTIC+3
+D404         	HSCROL	=	ANTIC+4
+D405         	VSCROL	=	ANTIC+5
+D407         	PMBASE	=	ANTIC+7
+D409         	CHBASE	=	ANTIC+9
+D40A         	WSYNC	=	ANTIC+10
+D40B         	VCOUNT	=	ANTIC+11
+D40C         	PENH	=	ANTIC+12
+D40D         	PENV	=	ANTIC+13
+D40E         	NMIEN	=	ANTIC+14
+D40F         	NMIRES	=	ANTIC+15
+D40F         	NMIST	=	ANTIC+15
+D300         	PIA	=	$D300
+D300         	PORTA	=	PIA+0
+D301         	PORTB	=	PIA+1
+D302         	PACTL	=	PIA+2
+D303         	PBCTL	=	PIA+3
+             	;
+             	;		OPERATING SYSTEM
+             	;
+0216         	VIMIRQ	=	$0216		; IMMEDITATE IRQ LOCATION
+0222         	VVBLKI	=	$0222		; IMMEDIATE VERT BLANK NMI VECTOR
+0200         	VDSLST	=	$0200		; DISPLAY LIST NMI VECTOR
+E000         	ALPHA	=	$E000
+             	;
