@@ -1,0 +1,60 @@
+             		*=*+1
+             	;	*************************************************************
+             	;	***************  MESSAGE RAM  ****************************
+00CF         	MESTIM			; MESSAGE TIMEOUT
+             		*=*+1
+00D0         	DISFLG			; DISPLAY TYPE FLAG 0=FRONT,1=BACK,80=GALCHT
+             		*=*+1		; 40=SECTOR SCAN
+00D1         	SENPTR			; SENTENCE POINTER
+             		*=*+1
+             	;	*************************************************************
+             	;	***************  AUDIO RAM  ******************************
+00D2         	NOTSEQ		; NOTE POINTER
+             		*=*+1
+00D3         	REPSEQ			; HOW MANY TIMES TO REPEAT
+             		*=*+1
+00D4         	NDURAT			; DURAT OF NOTE
+             		*=*+1
+00D5         	SDURAT			; DURAT OF SPACE
+             		*=*+1
+00D6         	NPRIOR			; PRIOR OF NOE TYPE
+             		*=*+1
+00D7         	REPPTR			; WHERE TO REPEAT IN NOTETB
+             		*=*+1
+00D8         	NDURTM			; NOTE TIMER
+             		*=*+1
+00D9         	NOTVOL			; NOTE VOLUME
+             		*=*+1
+00DA         	PHOREP			; REPEAT NOTE FOR PHOTON
+             		*=*+1
+00DB         	AUDEXP			; EXPLOS SERVICE TIMER
+             		*=*+1
+00DC         	ATYPE2		; RAM FO AUDC2
+             		*=*+1
+00DD         	ATYPE3			; RAM FOR AUDC3
+             		*=*+1
+00DE         	AFREQ1			; RAM FO AUDF1
+             		*=*+1
+00DF         	AFREQ2			; RAM FOR AUDF2
+             		*=*+1
+00E0         	AUDADD			; HOW MUCH TO ADD
+             		*=*+1
+00E1         	AUDTIM		; AUDIO TIMEOUT  0=ALL DONE
+             		*=*+1
+00E2         	EXPDEL			; EXPLOS DELAY
+             		*=*+1
+00E3         	BIGEXP			; SHIELDS DOWN EXPLOS
+             		*=*+1
+             	;	***********************************************************
+             	;	***************  OBJECT RAM  ******************************
+00E4         	GRAPH		; GRAPHIC FOR OBJO-4
+             		*=*+5
+00E9         	STFLAG		; 0=OBJECT NOT ON (DEFINED IN THINK, OR PHOTON)
+             		*=*+5
+             	;	**************************************************************
+             	;	******************  COLOR RAM  ****************************
+00EE         	COLRAM		; PLAYER AND PLAYFIELD COLOR RAM
+             		*=*+14
+             	;	**********************************************************
+00FC         	PHASE4
+             	;
