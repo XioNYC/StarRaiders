@@ -1,60 +1,60 @@
-	;
-		.TITLE 'STAR RAIDERS.   VERSION 25.1  STARDATE-26-JUL-79'
-	;	
-	;	        GAME COMPLETE 17-JUN-79
-	;
-	;	        NOTES
-	;	RAM	0-1FFF
-	;	ROM	A0000-BFFF
-	;	SPILL OVER ROM	 9800-9FFF
-	;	E4770            ; PROG START
-	;
-	;	ALPHA CHARACTERS  IN DMA ASCII
-	;
-	;	*CAPS = ASCII EOR $20
-	;	NUMBERS = ASCII
-	;
-	;	40 CHAR = $CC00
-	;	20 CHAR (*CAPS, NUMBERS), = $CC00
-	;	20 CHAR (CAPS, LOWR CASE), = $CE00
-	;
-	;
-	;
-	;	UNIVERSE LOOKS LIKE 	SIGN	HI BYTE	LOW BYTE
-	;	-INFINITY	=	00	00	00
-	;	        0	=	01	00	00
-	;	+INFINITY	=	01	FF	FF
-	;	       -1	=	00	FF	FF
-	;
-	;
-	;
-	;	KEYCODE IS ORED WITH $C0
-	;
-	;
-	;
-	;
-	;
-	;	STRRAM MEMORY DEFINED	STRRAM+		TYPE	NOTES
-	;	                     	     0		OBJ0	ZYLON
-	;	                     	     1		OBJ1	ZYLON
-	;	                     	     2		OBJ2	PHOTON
-	;	                     	     3		OBJ3	PHOTON
-	;	                     	     4		MISSILE	PHOTON
-	;	                     	     5-N	PLAY.	STARS
-	;	                     	  N+1-M 	PLAY.	EXPLOS STARS
-	;
-	;
-	;
-	;
-		*=$0062
-	;	******************  POWER UP CLEARED RAM  ****************
-0062	MISDIF		; MISSION DIFFICULTY
-		*=*+1
-0063	RESET		; ONE SHOT CONSOL KEY
-		*=*+1
-0064	ATRACT		; GAME OVER FLAF =FF, ATRACT MODE
-		*=*+1
-0065	REPMSG			; REPEAT MESSAGE BYTE
-		*=*+1
-0066	TIMOUT		; ATRACT MODE TIMEOUT REG
-		*=*+1
+             	;
+             		.TITLE 'STAR RAIDERS.	VERSION 25.1	STARDATE-26-JUL-79'
+             	;	
+             	;	        GAME COMPLETE 17-JUN-79
+             	;
+             	;	        NOTES
+             	;	RAM	0-1FFF
+             	;	ROM	A0000-BFFF
+             	;	SPILL OVER ROM	 9800-9FFF
+             	;	E4770            ; PROG START
+             	;
+             	;	ALPHA CHARACTERS  IN DMA ASCII
+             	;
+             	;	*CAPS = ASCII EOR $20
+             	;	NUMBERS = ASCII
+             	;
+             	;	40 CHAR = $CC00
+             	;	20 CHAR (*CAPS, NUMBERS), = $CC00
+             	;	20 CHAR (CAPS, LOWR CASE), = $CE00
+             	;
+             	;
+             	;
+             	;	UNIVERSE LOOKS LIKE 	SIGN	HI BYTE		LOW BYTE
+             	;	-INFINITY	=	00	00		00
+             	;	        0	=	01	00		00
+             	;	+INFINITY	=	01	FF		FF
+             	;	       -1	=	00	FF		FF
+             	;
+             	;
+             	;
+             	;	KEYCODE IS ORED WITH $C0
+             	;
+             	;
+             	;
+             	;
+             	;
+             	;	STRRAM MEMORY DEFINED	STRRAM+		TYPE	NOTES
+             	;	                     	     0		OBJ0	ZYLON
+             	;	                     	     1		OBJ1	ZYLON
+             	;	                     	     2		OBJ2	PHOTON
+             	;	                     	     3		OBJ3	PHOTON
+             	;	                     	     4		MISSILE	PHOTON
+             	;	                     	     5-N	PLAY.	STARS
+             	;	                     	  N+1-M 	PLAY.	EXPLOS STARS
+             	;
+             	;
+             	;
+             	;
+             		*=$0062
+             	;	******************  POWER UP CLEARED RAM  ****************
+0062         	MISDIF		; MISSION DIFFICULTY
+             		*=*+1
+0063         	RESET		; ONE SHOT CONSOL KEY
+             		*=*+1
+0064         	ATRACT		; GAME OVER FLAF =FF, ATRACT MODE
+             		*=*+1
+0065         	REPMSG			; REPEAT MESSAGE BYTE
+             		*=*+1
+0066         	TIMOUT		; ATRACT MODE TIMEOUT REG
+             		*=*+1
