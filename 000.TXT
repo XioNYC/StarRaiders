@@ -11,13 +11,13 @@ Here's the quick-and-dirty version of what you need to know:
 
 	- Format
 
-	Lines appear to be in the format "AAAA BB CC DD	ETC".  Note there is a tab between the address and operands ("AAAA BB CC DD") and the actual line of code ("ETC").  If any part is missing or not applicable, pad its absence with spaces.  There is no line wrapping.
+	Lines appear to be in the format "AAAA BB CC DD	ETC".  Note there is a tab between the address and operands ("AAAA BB CC DD") and the actual line of code ("ETC").  If any part is missing or not applicable, pad its absence with spaces.
 
 	Based on the printouts I've seen so far, there are 8 spaces per tab.  If you can tell where tabs belong based on how the text aligns, great; if you can't, don't guess and just use spaces instead.
 
 	There is no line wrapping.  Whether you're CR, LF, or CRLF, keep it consistent.
 
-	Ignore the header.  Yes, each page starts with "STAR RAIDERS.   VERSION 25.1  STARDATE-26-JUL-79", but we don't need it in each and every file.
+	Ignore the header.  Yes, each page starts with "STAR RAIDERS.   VERSION 25.1  STARDATE 26-JUL-79", but we don't need it in each and every file.
 
 	- Each file is a page
 
@@ -37,10 +37,10 @@ Here's the quick-and-dirty version of what you need to know:
 
 	GitHub's job is to handle the "who did what when" stuff.  When the project's complete, it'll do your contribution/bragging for you. :-)
 
-	- Scrutinze twice, type once.
+	- Scrutinize twice, type once.
 
 	Getting it right the first time spares everyone the headache of having to type things over twice.  The more typos you make, the less likely your services will be wanted.
 
 That pretty much covers everything.  You're trusted from the get-go to do the right thing.  That is a privilege, and privileges last as long as you are responsibile.
 
-Welcome!
+Welcome, have fun, and LIST "C: often!
