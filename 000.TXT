@@ -29,7 +29,7 @@ Here's the quick-and-dirty version of what you need to know:
 
 	If you do come across any marks that a printer couldn't've made, flag the file and move on.
 
-	Don't fix typos, don't change upper/lower case, and don't sign your work (I consider it vandalism).
+	Don't fix typos, don't change upper/lower case, don't collapse spaces, and don't sign your work (I consider that vandalism).
 
 	- All's fair game
 
