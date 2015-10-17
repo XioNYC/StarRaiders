@@ -1,0 +1,59 @@
+	;	*******************************************************
+0067	PAGE0
+0067	PRGCST		; WAIT FOR VBLANK= 00{
+		*=*+1
+		**********************  TEMP REG RAM  **********************
+0068	PNTR			; 2 BYTE MISC.  TEMPORARY REG POINTER
+		*=*+2
+006A	TEMP			; TEMPORARY REGISTER
+		*=*+1
+006B	TEMP1			; TEMP REG
+		*=*+1
+006C	TEMP2
+		*=*+1
+006D	TEMP3
+		*=*+1
+006E	TEMP4
+		*=*+1
+006F	NTEMP			; NMI TEMP REQ
+		*=*+1
+
+	;	*************************************************************
+	;	********************  SHIP SPEED RAM  ***********************
+0070	SPEED			; SPEED O CURISER
+		*=*+1
+0071	WARP			; SPEED DESIRED AS OPPOSED TO SPEED , THE PRESENT SPEED
+		*=*+1
+	;	************************************************************
+	;	*******************  TIMERS RAM  ***************************
+0072	TIMERX		; USED FO STAR INTENSITY
+		*=*+1
+0073	ETIMER			; EXPLOSION TIMEOUT
+		*=*+1
+0074	SECOND			; SECOND TIMEOUT
+		*=*+1
+0075	BSEQTM		; STARBASE SEQUENCER
+		*=*+1
+0076	BINTIM		; BINARY TIMER
+		*=*+1
+0077	BINNMI		; BINARY TIMER IN NMI
+		*=*+1
+0078	JMPTIM		; TIME TO JUMP RAM LOC
+		*=*+1
+	;	************************************************************
+	;	********************  STAR POINTER RAM  ********************
+0079	NSTARS	; LAST BYTE OF STAR RAM TO STORE, EITHER RMLAST OR STLAST
+		*=*+1
+007A	CNSTAR		; LAST BYTE OF STAR RAM TO CLEAR
+		*=*+1
+007B	BASFLG		; STARBASE FLAG
+		*=*+1
+007C	TRKFLG		; AUTOTRACKING = FF
+		*=*+1
+007D	SHENER		; SHIELD ENERGY 0 OR 8
+		*=*+1
+007E	ATENER		; ATTACK COMPUTER ENERGY
+		*=*+1
+007F	ENFLAG		; LS BYTE OF ENERGY , TELLS WHEN TO DEC ENERGY
+		*=*+1
+0080	WPENER			; WARP ENRGY DEPENDS ON WARP
