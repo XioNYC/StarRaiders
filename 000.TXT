@@ -4,12 +4,7 @@ If you're reading this, it's probably because you already know what's going on a
 
 Here's the quick-and-dirty version of what you need to know:
 
-	- ASCII
-
 	If there's a non-ATASCII character, flag the file or make a note of it.  If you don't know what ATASCII is, don't offer to help - get help.
-
-
-	- Format
 
 	Lines appear to be in the format "AAAA BB CC DD	ETC".  Note there is a tab between the address and operands ("AAAA BB CC DD") and the actual line of code ("ETC").  If any part is missing or not applicable, pad its absence with spaces.
 
@@ -19,27 +14,17 @@ Here's the quick-and-dirty version of what you need to know:
 
 	Ignore the header.  Yes, each page starts with "STAR RAIDERS.   VERSION 25.1  STARDATE 26-JUL-79", but we don't need it in each and every file.
 
-	- Each file is a page
+	Each physical page has a corresponding text file.  The only exception to this is 000.txt (what you're reading right now, dummy!).
 
-	The only exception to this is 000.txt (what you're reading right now, dummy!).
-
-	- Be faithful to the original
-
-	This project isn't about revisionism or improving existing code - it's about preserving existing code, warts and all.  The gist is "if it's was printed by a printer, it belongs in the text files."
-
-	If you do come across any marks that a printer couldn't've made, flag the file and move on.
+	Be faithful to the original.  This project isn't about revisionism or improving existing code - it's about preserving existing code, warts and all.  If it's was printed by the printer, it belongs in the text file.  If you do come across any marks that a printer couldn't've made, flag the file and move on.
 
 	Don't fix typos, don't change upper/lower case, don't collapse spaces, and don't sign your work (I consider that vandalism).
 
-	- All's fair game
-
-	Go through the list of typed-in pages.  If there's a number missing from the series, start it; if it's there and it's not your work, don't redo it.  No "page claim" will be honored; don't say you're going to do it - do it!
+	Go through the list of typed-in pages.  If there's a number missing from the series, upload a text file and start it; if there's a blank file and it's not your work, don't touch it.  Just remember: if say you're going to do it, do it!
 
 	GitHub's job is to handle the "who did what when" stuff.  When the project's complete, it'll do your contribution/bragging for you. :-)
 
-	- Scrutinize twice, type once.
-
-	Getting it right the first time spares everyone the headache of having to type things over twice.  The more typos you make, the less likely your services will be wanted.
+	Scrutinize twice, type once.  Getting it right the first time spares everyone the headache of having to type things over twice.  The more typos you make, the less likely your services will be wanted.
 
 That pretty much covers everything.  You're trusted from the get-go to do the right thing.  That is a privilege, and privileges last as long as you are responsibile.
 
