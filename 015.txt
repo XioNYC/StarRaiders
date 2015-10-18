@@ -1,18 +1,60 @@
-```` `` `` ``	;			CONFIGURE PIA
-```` `` `` ``	;
-A1A1 A9 04 ``		LDA	#$04
-A1A3 8D 02 D3		STA	PACTL		; TURN ON JOYSTICK
-```` `` `` ``	;
-```` `` `` ``	;
-```` `` `` ``	;
-```` `` `` ``	;
-```` `` `` ``	;		CONFIGURE CTIA
-```` `` `` ``	;
-A1A6 A9 11 ``		LDA	#$11
-A1A8 8D 1B D0		STA	PRIOR
-```` `` `` ``	;
-A1AB A9 03 ``		LDA	#$03
-A1AD 8D 1D D0		STA	GRACTL
-```` `` `` ``	;
-
-
+                  	;			CONFIGURE PIA
+                  	;
+     A1A1 A9 04   		LDA	#$04
+     A1A3 8D 02 D3		STA	PACTL		; TURN ON JOYSTICK
+                  	;
+                  	;
+                  	;
+                  	;
+                  	;		CONFIGURE CTIA
+                  	;
+     A1A6 A9 11   		LDA	#$11
+     A1A8 8D 1B D0		STA	PRIOR
+                  	;
+     A1AB A9 03   		LDA	#$03
+     A1AD 8D 1D D0		STA	GRACTL
+                  	;
+     A1B0 20 BA B3		JSR	LDTABS		; INIT TABLES
+                  	;
+                  	;
+                  	;			INIT DISPLAY LIST
+     A1B3 A2 0A   		LDX	#$0A		; KEY F, FRONT DISPLAY
+     A1B5 20 45 B0		JSR	KEYS15		; INIT FRONT VIEW
+     A1B8 A5 64   		LDA	ATRACT
+     A1BA 29 80   		AND	#$80
+     A1BC A8      		TAY
+     A1BD A2 5F   		LDX	#DISPL3-DISPLY
+     A1BF A9 08   		LDA	#$08
+     A1C1 20 F1 AD		JSR	LDISP		; SHIP ALIVE OR DEAD
+                  	;
+     A1C4 A9 20   		LDA	#$20
+     A1C6 85 71   		STA	WARP		; WARP 5 SPEED
+                  	;
+                  	;
+                  	;			CONFIGURE ANTIC
+                  	;
+     A1C8 A9 80   		LDA	#DISPLY
+     A1CA 8D 02 D4		STA	DLISTL
+     A1CD A9 02   		LDA	#DISPLY/256
+     A1CF 8D 03 D4		STA	DLISTH
+     A1D2 A9 3E   		LDA	#$3E
+     A1D4 8D 00 D4		STA	DMACTL		; DMA ON
+                  	;
+     A1D7 A9 00   		LDA	#PGRAPH-$0300/256
+     A1D9 8D 07 D4		STA	PMBASE			; LD PLAYER / MISSLE BASE
+                  	;
+                  	;
+                  	;
+                  	;
+                  	;		INIT NUMBER OF STARS
+     A1DC A9 10   		LDA	#STLAST
+     A1DE 85 79   		STA	NSTARS
+                  	;
+                  	;
+     A1E0 A6 62   		LDX	MISDIF		; GAME TYPE MESSAGE
+     A1E2 BC 0C BF		LDY	MSENTB,X
+     A1E5 20 23 B2		JSR	LDMESS
+                  	;
+                  	;
+                  	;
+                  	;
