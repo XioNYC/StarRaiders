@@ -1,1 +1,58 @@
-```` A3B9 10 EB ``		BPL	ZROTA2
+     A3B9 10 EB   		BPL	ZROTA2
+     A3BB         	ZROTA1
+                  	;
+                  	;
+     A3BB         	MAIN1
+                  	;		XMOVER
+                  	;		UPDATE ALL XPOS DUE TO FORWARD SHIP MOTION
+                  	;		SUBTRACT SPEED FROM XPOS
+     A3BB A6 79   		LDX	NSTARS		; X=INDEX TO STARS/POBJECT TO UPDATE
+     A3BD         	XMOVE1
+     A3BD E0 05   		CPX	#OBJNUM		; PHOTONS ?
+     A3BF B0 05   		BCS	XMOVE2		; NO.
+     A3C1 BD BC 0C		LDA	GINDEX,X
+     A3C4 F0 19   		BEQ	XMOVE3
+     A3C6         	XMOVE2
+     A3C6 38      		SEC
+     A3C7 BD D3 0A		LDA	XPOSL,X
+     A3CA E5 70   		SBC	SPEED
+     A3CC 9D D3 0A		STA	XPOSL,X
+     A3CF BD 40 0A		LDA	XPOSH,X
+     A3D2 E5 C1   		SBC	HISPED
+     A3D4 9D 40 0A		STA	XPOSH,X
+     A3D7 BD AD 09		LDA	XSIGN,X
+     A3DA E9 00   		SBC	#$00		; CARRY ONLY
+     A3DC 9D AD 09		STA	XSIGN,X
+     A3DF         	XMOVE3
+     A3DF CA      		DEX
+     A3E0 10 DB   		BPL	XMOVE1		; NEXT STAR
+                  	;		ALL DONE
+                  	;
+                  	;
+     
+                  	;		MOTION
+                  	;	OTHER MOTION SUCH AS DUE TO ZYLON SHIP POWER
+                  	;	                                OR PHOTONS
+                  	;	XINCRE,YINCRE,ZINCRE ARE ALL SIGN-MAGNITUDE TYPES
+     A3E2 A6 79   		LDX	NSTARS
+     A3E4         	MOTIN1
+     A3E4 E0 10   		CPX	#STLAST		; REG STARS ?
+     A3E6 D0 02   		BNE	MOTIN9		; NO
+     A3E8 A2 04   		LDX	#OBLAST		; LAST OBJ
+     A3EA         	MOTIN9
+     A3EA 8A      		TXA
+     A3EB         	MOTIN2
+     A3EB A8      		TAY
+     A3EC A9 00   		LDA	#$00
+     A3EE 85 6B   		STA	TEMP1
+     A3F0 B9 66 0B		LDA	XINCRE,Y
+     A3F3 10 09   		BPL	MOTIN3
+     A3F5 49 7F   		EOR	#$7F
+     A3F7 18      		CLC
+     A3F8 69 01   		ADC	#$01
+     A3FA B0 02   		BCS	MOTIN3
+     A3FE         	MOTIN3
+     A3FE 18      		CLC
+     A3FF 79 D3 0A		ADC	XPOSL,Y
+     A402 99 D3 0A		STA	XPOSL,Y
+     A405 B9 40 0A		LDA	XPOSH,Y
