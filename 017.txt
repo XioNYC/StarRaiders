@@ -1,0 +1,60 @@
+                  		;		MAIN PROGRAM
+     A1F3         	MAIN
+                  	;
+                  	;		MAIN FLOW CHART
+                  	;	START
+                  	;		WAIT FOR VBLANK				
+                  	;		CLEAR AND LOAD STARS/OBJECTS		
+                  	;		MOVE ROUTINES				
+                  	;		PLAYER INTERFACE SECTION		GAME ON ONLY
+                  	;		SERVICE SECTION				GAME ON ONLY
+                  	;		HIT DETECT				GAME ON ONLY
+                  	;		SERVICE CONTINUOUS RUNNING ROUTINES
+                  	;	JUMP TO START
+                  	;
+                  	;
+     A1F3 A5 67   		LDA	PROGST
+     A1F5 F0 FC   		BEQ	MAIN			 ; WAIT FOR VBLANK NMI
+     A1F7 A9 00   		LDA	#$00			 ; RESET VBLANK STATUS REGISTER
+     A1F9 85 67   		STA	PROGST
+                  	;
+                  	;
+                  	;
+                  	;
+                  	;
+                  	;		UPDATE MEMORY MAP RAM AND PLAYERS RAM
+                  	;
+                  	;		CLRSTR
+                  	;		CLEAR STAR ROUTINE
+     A1FB A5 7A   		LDA	CNSTAR		; THIS FLAGS SAYS OLDPS NOT DEFINED IF=00
+     A1FD F0 20   		BEQ	CLRSR2
+     A1FF A2 04   		LDX	#OBLAST		; LAST LOCATION OF OBJECT IN RAM
+     A201         	CLRSR1
+     A201 E8      		INX
+     A202 BC 5B 0C		LDY	OLDVER,X
+     A205 B9 00 08		LDA	VCONL,Y
+     A208 85 68   		STA	PNTR
+     A20A B9 64 08		LDA	VCONH,Y
+     A20D 85 69   		STA	PNTR+1
+     A20F BC 8C 0C		LDY	OLDHOR,X
+     A212 BD BD 0C		LDA	OLDBYT,X
+     A215 91 68   		STA	(PNTR),Y	; BYTE RESTORED
+     A217 E4 7A   		CPX	CNSTAR
+     S219 90 E6   		BCC	CLRSR1
+     A21B A9 00   		LDA	#$00
+     A21D 85 7A   		STA	CNSTAR		; STARS CLEARED
+     A21F         	CLRSR2
+                  	;
+                  	;
+                  	;		STOSTR
+                  	;
+                  	;	STORE STAR IN RAM MAP ROUTINE
+                  	;
+     A21F A5 C0   		LDA	HFLAG		; IN HYPER JUMP  ?
+     A221 30 2D   		BMI	STOSR1			; YES , NO STORE.
+                  	;
+                  	;
+                  	;
+     A223 A6 79   		LDX	NSTARS	; LAST BYTE OF STAR RAM TO STORE
+     A225 86 7A   		STX	CNSTAR		; STARS POINTERS DEFINED OK TO CLEAR NOW
+     A227         	STOSR2
