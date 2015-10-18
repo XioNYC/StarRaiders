@@ -1,6 +1,6 @@
                 	;	*******************************************************
    0067         	PAGE0
-   0067         	PRGCST		; WAIT FOR VBLANK= 00
+   0067         	PRGOST		; WAIT FOR VBLANK= 00
                 		*=*+1
                 		**********************  TEMP REG RAM  **********************
    0068         	PNTR			; 2 BYTE MISC.  TEMPORARY REG POINTER
