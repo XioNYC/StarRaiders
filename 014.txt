@@ -1,62 +1,61 @@
-STAR RAIDERS.	VERSION 25.1	STARDATE-26-JUL-79
-```` ```` `` `` ``	;
-```` ```` `` `` ``	;		INIT SECTION
-```` ```` `` `` ``	;
-```` A14A `` `` ``	INIT
-```` A14A A9 00 ``		LDA	#$00
-```` A14C 8D 0F D2		STA	SKCTL
-```` A14F 85 66 ``		STA	TIMOUT		; RESET TIMEOUT
-```` A151 85 66 ``		STA	MISDIF		; MISSIONDIFFICULTY
-```` A153 85 63 ``		STA	RESET		; ONE SHOT CONSOL
-```` A155 A9 03 ``		LDA	#$03
-```` A157 8D 0F D2		STA	SKCTL		; TURN POKEY ON
-```` ```` `` `` ``	;
-```` A15A `` `` ``	INIT3		; GAME SELECT, RESTART POINT  ****************************
-```` A15A A0 24 ``		LDY	#SENATA-SENTAB
-```` ```` `` `` ``	;
-```` A15C `` `` ``	INIT4		; ATTRACT MODE RESTART POINT  **************************
-```` A15C A0 2F ``		LDA	#$FF		; GAME OVER
-```` ```` `` `` ``	;
-```` A15E `` `` ``	INIT1		; GAME START RESTART POINT  ************************
-```` A15E 84 65 ``		STY	REPMSG
-```` A160 85 64 ``		STA	ATRACT
-```` ```` `` `` ``	;	CLEAR I/O
-```` A162 A9 00 ``		LDA	#$00
-```` A164 AA `` ``		TAX
-```` A165 `` `` ``	INIT2
-```` A165 9D 00 D0		STA	CTIA,X
-```` A168 9D 00 D4		STA	ANTIC,X
-```` A16B E0 0F ``		CPX	#$0F		; DONT RESET POKEY
-```` A16D B0 03 ``		BCS	INIT5
-```` A16F 9D 00 D2		STA	POKEY,X
-```` A172 `` `` ``	INIT5
-```` A172 9D 00 D3		STA	PIA,X
-```` A175 9D `` ``		.BYTE	$9D		; STA ABS,X
-```` A176 67 00 ``		.WORD	PAGE0		; STA PAGE0,X  (ABSOLUTE)
-```` A178 E8 `` ``		INX
-```` A179 D0 EA ``		BNE INIT2
-```` ```` `` `` ``	;			I/O CLEARED
-```` ```` `` `` ``	;
-```` ```` `` `` ``	;
-```` A17B CA `` ``		DEX		; X=FF
-```` A17C 9A `` ``		TXS		; LOAD STACK PNTR
-```` A17D DB `` ``		CLD
-```` ```` `` `` ``	;
-```` A17E A9 02 ``		LDA	#RAMMAP/256
-```` A180 20 0F AE		JSR	CLRMP1		; CLEAR ALL RAM
-```` ```` `` `` ``	;		LD VECTOR RAM
-```` A183 A9 51 ``		LDA	#IRQVEC
-```` A185 8D 16 02		STA	VIMIRQ
-```` A188 A9 A7 ``		LDA	#IRQVEC/256
-```` A18A 8D 17 02		STA	VIMIRQ+1
-```` A18D A9 D1 ``		LDA	#VBNMI
-```` A18F 8D 22 02		STA	VVBLKI
-```` A192 A9 18 ``		LDA	#DISNMI
-```` A194 8D 00 02		STA	VDSLST
-```` A197 A9 A6 ``		LDA	#VBNMI/256
-```` A199 8D 23 02		STA	VVBLKI+1
-```` A19C A9 A7 ``		LDA	#DISNMI/256
-```` A19E 8D 01 02		STA	VDSLST+1
-```` ```` `` `` ``	;
-```` ```` `` `` ``	;
+                  	;
+                  	;		INIT SECTION
+                  	;
+     A14A         	INIT
+     A14A A9 00   		LDA	#$00
+     A14C 8D 0F D2		STA	SKCTL
+     A14F 85 66   		STA	TIMOUT		; RESET TIMEOUT
+     A151 85 66   		STA	MISDIF		; MISSIONDIFFICULTY
+     A153 85 63   		STA	RESET		; ONE SHOT CONSOL
+     A155 A9 03   		LDA	#$03
+     A157 8D 0F D2		STA	SKCTL		; TURN POKEY ON
+                  	;
+     A15A         	INIT3		; GAME SELECT, RESTART POINT  ****************************
+     A15A A0 24   		LDY	#SENATA-SENTAB
+                  	;
+     A15C         	INIT4		; ATTRACT MODE RESTART POINT  **************************
+     A15C A9 FF   		LDA	#$FF		; GAME OVER
+                  	;
+     A15E         	INIT1		; GAME START RESTART POINT  ************************
+     A15E 84 65   		STY	REPMSG
+     A160 85 64   		STA	ATRACT
+                  	;	CLEAR I/O
+     A162 A9 00   		LDA	#$00
+     A164 AA      		TAX
+     A165         	INIT2
+     A165 9D 00 D0		STA	CTIA,X
+     A168 9D 00 D4		STA	ANTIC,X
+     A16B E0 0F   		CPX	#$0F		; DONT RESET POKEY
+     A16D B0 03   		BCS	INIT5
+     A16F 9D 00 D2		STA	POKEY,X
+     A172         	INIT5
+     A172 9D 00 D3		STA	PIA,X
+     A175 9D      		.BYTE	$9D		; STA ABS,X
+     A176 67 00   		.WORD	PAGE0		; STA PAGE0,X  (ABSOLUTE)
+     A178 E8      		INX
+     A179 D0 EA   		BNE INIT2
+                  	;			I/O CLEARED
+                  	;
+                  	;
+     A17B CA      		DEX		; X=FF
+     A17C 9A      		TXS		; LOAD STACK PNTR
+     A17D DB      		CLD
+                  	;
+     A17E A9 02   		LDA	#RAMMAP/256
+     A180 20 0F AE		JSR	CLRMP1		; CLEAR ALL RAM
+                  	;		LD VECTOR RAM
+     A183 A9 51   		LDA	#IRQVEC
+     A185 8D 16 02		STA	VIMIRQ
+     A188 A9 A7   		LDA	#IRQVEC/256
+     A18A 8D 17 02		STA	VIMIRQ+1
+     A18D A9 D1   		LDA	#VBNMI
+     A18F 8D 22 02		STA	VVBLKI
+     A192 A9 18   		LDA	#DISNMI
+     A194 8D 00 02		STA	VDSLST
+     A197 A9 A6   		LDA	#VBNMI/256
+     A199 8D 23 02		STA	VVBLKI+1
+     A19C A9 A7   		LDA	#DISNMI/256
+     A19E 8D 01 02		STA	VDSLST+1
+                  	;
+                  	;
 
