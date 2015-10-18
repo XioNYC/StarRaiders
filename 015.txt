@@ -1,0 +1,18 @@
+```` `` `` ``	;			CONFIGURE PIA
+```` `` `` ``	;
+A1A1 A9 04 ``		LDA	#$04
+A1A3 8D 02 D3		STA	PACTL		; TURN ON JOYSTICK
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;		CONFIGURE CTIA
+```` `` `` ``	;
+A1A6 A9 11 ``		LDA	#$11
+A1A8 8D 1B D0		STA	PRIOR
+```` `` `` ``	;
+A1AB A9 03 ``		LDA	#$03
+A1AD 8D 1D D0		STA	GRACTL
+```` `` `` ``	;
+
+
