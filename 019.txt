@@ -1,0 +1,4 @@
+             	;
+A227 BD F9 0B		LDA	VPOS,X
+A22A 9D 5B 0C		STA	OLDVER,X
+A22D A8 `` ``		TAY
