@@ -1,60 +1,60 @@
-             	;
-             	;	ADDRESS SPACE
-             	;
-             	;
-             	;	COLLEEN MNEMONICS
-             	;
-D200         	POKEY	=	$D200
-D200         	POT0	=	POKEY+0
-D201         	POT1	=	POKEY+1
-D202         	POT2	=	POKEY+2
-D203         	POT3	=	POKEY+3
-D204         	POT4	=	POKEY+4
-D205         	POT5	=	POKEY+5
-D206         	POT6	=	POKEY+6
-D207         	POT7	=	POKEY+7
-D208         	ALLPOT	=	POKEY+8
-D209         	KBCODE	=	POKEY+9
-D20A         	RANDOM	=	POKEY+10
-D20D         	SERIN	=	POKEY+13
-D20E         	IRQST	=	POKEY+14
-D20F         	SKSTAT	=	POKEY+15
-D200         	AUDF1	=	POKEY+0
-D201         	AUDC1	=	POKEY+1
-D202         	AUDF2	=	POKEY+2
-D203         	AUDC2	=	POKEY+3
-D204         	AUDF3	=	POKEY+4
-D205         	AUDC3	=	POKEY+5
-D206         	AUDF4	=	POKEY+6
-D207         	AUDC4	=	POKEY+7
-D208         	AUDCTL	=	POKEY+8
-D209         	STIMER	=	POKEY+9
-D20A         	SKRES	=	POKET+10
-D20B         	POTGO	=	POKEY+11
-D20D         	SEROUT	=	POKEY+13
-D20E         	IRQEN	=	POKEY+14
-D20F         	SKCTL	=	POKEY+15
-             	;
-D000         	CTIA	=	$D000
-D000         	HPOSP0	=	CTIA+0
-D001         	HPOSP1	=	CTIA+1
-D002         	HPOSP2	=	CTIA+2
-D003         	HPOSP3	=	CTIA+3
-D004         	HPOSM0	=	CTIA+4
-D005         	HPOSM1	=	CTIA+5
-D006         	HPOSM2	=	CTIA+6
-D007         	HPOSM3	=	CTIA+7
-D008         	SIZEP0	=	CTIA+8
-D009         	SIZEP1	=	CTIA+9
-D00A         	SIZEP2	=	CTIA+10
-D00B         	SIZEP3	=	CTIA+11
-D00C         	SIZEM	=	CTIA+12
-D00D         	GRAFP0	=	CTIA+13
-D00E         	GRAFP1	=	CTIA+14
-D00F         	GRAFP2	=	CTIA+15
-D010         	GRAFP3	=	CTIA+16
-D011         	GRAFM	=	CTIA+17
-D012         	COLPM0	=	CTIA+18
-D013         	COLPM1	=	CTIA+19
-D014         	COLPM2	=	CTIA+20
-D015         	COLPM3	=	CTIA+21
+                	;
+                	;	ADDRESS SPACE
+                	;
+                	;
+                	;	COLLEEN MNEMONICS
+                	;
+   D200         	POKEY	=	$D200
+   D200         	POT0	=	POKEY+0
+   D201         	POT1	=	POKEY+1
+   D202         	POT2	=	POKEY+2
+   D203         	POT3	=	POKEY+3
+   D204         	POT4	=	POKEY+4
+   D205         	POT5	=	POKEY+5
+   D206         	POT6	=	POKEY+6
+   D207         	POT7	=	POKEY+7
+   D208         	ALLPOT	=	POKEY+8
+   D209         	KBCODE	=	POKEY+9
+   D20A         	RANDOM	=	POKEY+10
+   D20D         	SERIN	=	POKEY+13
+   D20E         	IRQST	=	POKEY+14
+   D20F         	SKSTAT	=	POKEY+15
+   D200         	AUDF1	=	POKEY+0
+   D201         	AUDC1	=	POKEY+1
+   D202         	AUDF2	=	POKEY+2
+   D203         	AUDC2	=	POKEY+3
+   D204         	AUDF3	=	POKEY+4
+   D205         	AUDC3	=	POKEY+5
+   D206         	AUDF4	=	POKEY+6
+   D207         	AUDC4	=	POKEY+7
+   D208         	AUDCTL	=	POKEY+8
+   D209         	STIMER	=	POKEY+9
+   D20A         	SKRES	=	POKET+10
+   D20B         	POTGO	=	POKEY+11
+   D20D         	SEROUT	=	POKEY+13
+   D20E         	IRQEN	=	POKEY+14
+   D20F         	SKCTL	=	POKEY+15
+                	;
+   D000         	CTIA	=	$D000
+   D000         	HPOSP0	=	CTIA+0
+   D001         	HPOSP1	=	CTIA+1
+   D002         	HPOSP2	=	CTIA+2
+   D003         	HPOSP3	=	CTIA+3
+   D004         	HPOSM0	=	CTIA+4
+   D005         	HPOSM1	=	CTIA+5
+   D006         	HPOSM2	=	CTIA+6
+   D007         	HPOSM3	=	CTIA+7
+   D008         	SIZEP0	=	CTIA+8
+   D009         	SIZEP1	=	CTIA+9
+   D00A         	SIZEP2	=	CTIA+10
+   D00B         	SIZEP3	=	CTIA+11
+   D00C         	SIZEM	=	CTIA+12
+   D00D         	GRAFP0	=	CTIA+13
+   D00E         	GRAFP1	=	CTIA+14
+   D00F         	GRAFP2	=	CTIA+15
+   D010         	GRAFP3	=	CTIA+16
+   D011         	GRAFM	=	CTIA+17
+   D012         	COLPM0	=	CTIA+18
+   D013         	COLPM1	=	CTIA+19
+   D014         	COLPM2	=	CTIA+20
+   D015         	COLPM3	=	CTIA+21

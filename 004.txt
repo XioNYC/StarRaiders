@@ -1,60 +1,60 @@
-             		*=*+1
-00A5         	VDRAW		; VERT POS OF DRAW CURSOR
-             		*=*+1
-00A6         	HDRAW		; HOR POS OF DRAW CURSOR
-             		*=*+1
-             	;	*********************************************************
-             	;	******************  THINK RAM  **************************
-00A7         	ZYTOGG		; WHICH ZYLON
-             		*=*+1
-00A8         	SEQEN			; SEQUENCER PNTR RAM
-             		*=*+2
-00AA         	SEQTIM			; SEQUENCER TIMEOUT RAM
-             		*=*+2
-00AC         	XINDES			; DESIRED XINCRE
-             		*=*+2
-00AE         	YINDES			; DESIRED YINCRE
-             		*=*+2
-00B0         	ZINDES			; DESIRED ZINCRE
-             		*=*+2
-00B2         	XINPRS		;  PRESENT POINTER TO ZYWARP
-             		*=*+6
-00B8         	BSTRAF		; STRAF BACK 0,OR 1
-             		*=*+2
-00BA         	ROTTIM		; ROTATION TIMEOUT
-             		*=*+4
-00BE         	PHEXWT			; PHOTON EXPLOSION WAIT
-             		*=*+1
-00BF         	ATTARG	; WHICH ZYLON FIRED
-             		*=*+1
-             	;	************************************************************
-             	;	*************************  HYPERWARP RAM  *********************
-00C0         	HFLAG		; HYPERWARP ENGAGED FLAG, 00,FF, OR 7F
-             		*=*+1
-00C1         	HISPED		; HI BYTE SPEED, 0 OR 2=HWARP
-             		*=*+1
-00C2         	HTIMER			; HWARP TIMER
-             		*=*+1
-00C3         	HPNTR		; POINTS TO WHICH LINE STARS TO LOAD
-             		*=*+1
-00C4         	HSTEER		; OLD HWAR CURSOR HPOS
-             		*=*+1
-00C5         	VSTEER			; OLD HWARP CURSOR VPO
-             		*=*+1
-00C6         	STERMK			; STEER MASK
-             		*=*+1
-00C7         	JMPMSK	; INIT TARGETS IN NEW QUAD, MAX DISTANCE FROM SHIP
-             		*=*+1
-             	;	*************************************************************
-             	;	*******************  KEYS, JOYSTICK RAM *********************
-00C8         	HORJOY			; 0=NO HORIZ, 01=RIGHT, FF=LEFT
-             		*=*+1
-00C9         	VERJOY			; 0=NO VERT, 01=DOWN, FF=UP
-             		*=*+1
-00CA         	THEKEY		; THE KEY IN KBCODE
-             		*=*+1
-00CB         	RATING		; YOUR RATING
-             		*=*+2
-00CD         	ENDRAT		; FINAL RATING
-             		*=*+1
-00CE         	ENDCLS		; FINAL CLASS
+                		*=*+1
+   00A5         	VDRAW		; VERT POS OF DRAW CURSOR
+                		*=*+1
+   00A6         	HDRAW		; HOR POS OF DRAW CURSOR
+                		*=*+1
+                	;	*********************************************************
+                	;	******************  THINK RAM  **************************
+   00A7         	ZYTOGG		; WHICH ZYLON
+                		*=*+1
+   00A8         	SEQEN			; SEQUENCER PNTR RAM
+                		*=*+2
+   00AA         	SEQTIM			; SEQUENCER TIMEOUT RAM
+                		*=*+2
+   00AC         	XINDES			; DESIRED XINCRE
+                		*=*+2
+   00AE         	YINDES			; DESIRED YINCRE
+                		*=*+2
+   00B0         	ZINDES			; DESIRED ZINCRE
+                		*=*+2
+   00B2         	XINPRS		;  PRESENT POINTER TO ZYWARP
+                		*=*+6
+   00B8         	BSTRAF		; STRAF BACK 0,OR 1
+                		*=*+2
+   00BA         	ROTTIM		; ROTATION TIMEOUT
+                		*=*+4
+   00BE         	PHEXWT			; PHOTON EXPLOSION WAIT
+                		*=*+1
+   00BF         	ATTARG	; WHICH ZYLON FIRED
+                		*=*+1
+                	;	************************************************************
+                	;	*************************  HYPERWARP RAM  *********************
+   00C0         	HFLAG		; HYPERWARP ENGAGED FLAG, 00,FF, OR 7F
+                		*=*+1
+   00C1         	HISPED		; HI BYTE SPEED, 0 OR 2=HWARP
+                		*=*+1
+   00C2         	HTIMER			; HWARP TIMER
+                		*=*+1
+   00C3         	HPNTR		; POINTS TO WHICH LINE STARS TO LOAD
+                		*=*+1
+   00C4         	HSTEER		; OLD HWAR CURSOR HPOS
+                		*=*+1
+   00C5         	VSTEER			; OLD HWARP CURSOR VPO
+                		*=*+1
+   00C6         	STERMK			; STEER MASK
+                		*=*+1
+   00C7         	JMPMSK	; INIT TARGETS IN NEW QUAD, MAX DISTANCE FROM SHIP
+                		*=*+1
+                	;	*************************************************************
+                	;	*******************  KEYS, JOYSTICK RAM *********************
+   00C8         	HORJOY			; 0=NO HORIZ, 01=RIGHT, FF=LEFT
+                		*=*+1
+   00C9         	VERJOY			; 0=NO VERT, 01=DOWN, FF=UP
+                		*=*+1
+   00CA         	THEKEY		; THE KEY IN KBCODE
+                		*=*+1
+   00CB         	RATING		; YOUR RATING
+                		*=*+2
+   00CD         	ENDRAT		; FINAL RATING
+                		*=*+1
+   00CE         	ENDCLS		; FINAL CLASS
