@@ -1,0 +1,4 @@
+STAR RAIDERS.	VERSION 25.1	STARDATE-26-JUL-79
+```` ```` `` `` ``	;
+```` A0F8 `` `` ``	SESCAN
+```` A0F8 00 00 6C		 .BYTE   0,0
