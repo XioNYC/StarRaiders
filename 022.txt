@@ -1,2 +1,60 @@
-STAR RAIDERS,	VERSION 25.1	STARDATE 26-JUL-79
-```` A36E 69 02 ``		ADC	#$02
+     A36E 69 02   		ADC	#$02
+     A370 8D 06 D0		STA	HPOSP0+6
+     A373 69 02   		ADC	#$02
+     A375 8D 05 D0		STA	HPOSP0+5
+     A378 69 02   		ADC	#$02
+     A37A 8D 04 D0		STA	HPOSP0+4
+                  	
+                  	;
+                  	;		END UPDATE MEMORY MAP RAM AND PLAYERS RAM
+                  	;
+                  	;
+                  	;
+                  	;
+                  	;	STARS/OBJECTS MOVE ROUTINES
+     A37D 24 D0   		BIT	DISFLG
+     A37F 30 3A   		BMI	MAINI		; NO ROTATE IN GALACTIC CHART
+                  	;
+                  	;		YROTAT
+                  	;		ROTATE ALL LEFT AND RIGHT
+     A381 A5 C8   		LDA	HORJOY		; HORIZ JOYSTICK ?
+     A383 F0 19   		BEG	YROTA1		; NO
+     A385 85 6D   		STA	TEMP3
+     A387 A4 79   		LDY	NSTARS		; LAST BYTE OF STARS
+     A389         	YROTA2
+     A389 84 6E   		STY	TEMP4		; TEMP STORE
+     A38B 18      		CLC
+     A38C 9B      		TYA
+     A38D AA      		TAX
+     A38E 69 31   		ADC	#RAMNUM		; YPOS
+     A390 A8      		TAY
+     A391 20 9B B6		JSR	ROHELP
+     A394 98      		TYA
+     A395 AA      		TAX
+     A396 A4 6E   		LDY	TEMP4
+     A398 20 9B B6		JSR	ROHELP
+     A39B 88      		DEY
+     A39C 10 EB   		BPL	YROTA2
+     A39E         	YROTA1
+                  	;
+                  	;
+                  	;
+                  	;		ZROTAT
+                  	;		ROTATE ALL UP AND DOWN
+     A39E A5 C9   		LDA	VERJOY		; VERT JOYSTICK ?
+     A3A0 F0 19   		BEQ	ZROTA1		; NO
+     A3A2 85 6D   		STA	TEMP3
+     A3A4 A4 79   		LDY	NSTARS
+     A3A6         	ZROTA2
+     A3A8 84 6E   		STY	TEMP4
+     A3A8 18      		CLC
+     A3A9 98      		TYA
+     A3AA AA      		TAX
+     A3AB 69 62   		ADC	#RAMNUM*2		; ZOPS
+     A3AD A8      		TAY
+     A3AE 20 9B B6		JSR	ROHELP
+     A3B1 98      		TYA
+     A3B2 AA      		TAX
+     A3B3 A4 6E   		LDY	TEMP4
+     A3B5 20 9B B6		JSR	ROHELP
+     A3B8 88      		DEY
