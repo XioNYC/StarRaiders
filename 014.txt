@@ -1,0 +1,9 @@
+STAR RAIDERS.	VERSION 25.1	STARDATE-26-JUL-79
+```` ```` `` `` ``	;
+```` ```` `` `` ``	;		INIT SECTION
+```` ```` `` `` ``	;
+```` A14A `` `` ``	INIT
+```` A14A A9 00 ``		LDA	#$00
+```` A14C 8D 0F D2		STA	SKCTL
+```` A14F 85 66 ``		STA	TIMOUT		; RESET TIMEOUT
+```` A151 85 66 ``		STA	MISDIF		; MISSIONDIFFICULTY
