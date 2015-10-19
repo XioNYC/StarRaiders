@@ -1,1 +1,60 @@
-```` A458 C4 D0 ``	CPY	DISFLG
+     A458 C4 D0   		CPY	DISFLG
+     A45A F0 4B   		BEQ	CALCV5
+                  	;
+                  	;	UPDATE VPOS
+                  	;
+     A45C BD 0F 0A		LDA	ZSIGN,X		; 2'S COMPLE ZOPS?
+     A45F D0 12   		BNE	CALCV8		; NO
+                  	;			2'S COMPLEMENT
+     A461 38      		SEC
+     A462 A9 00   		LDA	#$00
+     A464 FD 35 0B		SBC	ZPOSL,X
+     A467 85 6A   		STA	TEMP
+     A469 A9 00   		LDA	#$00
+     A46B FD A2 0A		SBC	ZPOSH,X
+     A46E 85 6B   		STA	TEMP1
+     A470 4C 7D A4		JMP	CALCV9
+     A473         	CALCV8
+     A473 BD 35 0B		LDA	ZPOSL,X
+     A476 85 6A   		STA	TEMP		; STORE IN TOP REG
+     A478 BD A2 0A		LDA	ZPOSH,X
+     A47B 85 6B   		STA	TEMP1
+     A47D         	CALCV9
+     A47D 20 21 AA		JSR	DIVIDE		; DIVIDE ZPOS BY XPOS
+     A480 20 1E B7		JSR	STVPOS		; STOE VPO
+                  	;
+                  	;			UPDATE HORIZ POS
+                  	;
+                  	;
+     A483 BD DE 09		LDA	YSIGN,X		; 2'S COMPLE YPOS ?
+     A486 D0 12   		BNE	CALCV3		; NO.
+                  	;		2'S COMPLEMENT
+     A488 38      		SEC
+     A489 A9 00   		LDA	#$00
+     A48B FD 04 0B		SBC	YPOSL,X
+     A48E 85 6A   		STA	TEMP		; STORE IN TOP(NUMERATOR)REG
+     A490 A9 00   		LDA	#$00
+     A492 FD 71 0A		SBC	YPOSL,X
+     A495 85 6B   		STA	TEMP1
+     A497 4A A4 A4		JMP	CALCV4
+     A49A         	CALCV3
+     A49A BD 04 0B		LDA	YPOSL,X		; SOTRE IN TOP REG
+     A49D 85 6A   		STA	TEMP
+     A49F BD 71 0A		LDA	YPOSK,X
+     A4A2 85 6B   		STA	TEMP1
+     A4A4         	CALCV4
+     A4A4 20 21 AA		JSR	DIVIDE		; DIVIDE YPOS BY XPOS
+     A4A7         	CALCV5
+     A4A7 20 FB B6		JSR	SHTPOS		;	STORE HPOS
+                  	;
+     A4AA CA      		DEX
+     A4AB 10 A6   		BPL	CALCV1		; NEXT STAR
+                  	;		ALL DONE
+     A4AD         	CALC14
+                  	;
+                  	;
+
+     A4AD 20 62 B1		JSR	CSERVE		; SERVICE GALACTIC CHART
+                  	;
+                  	;
+                  	;	SSERVE
