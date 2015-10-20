@@ -1,1 +1,61 @@
-```` a635 `` `` ``	aserv2
+     A635         	ASERV2
+                  	;
+
+     A635 20 E6 AC		JSR	BSERVE		; SERVICE STARBASE
+     A638 20 79 AA		JSR	THINK		; SERVICE ZYLON BRAIL
+                  	;		HITSHP
+                  	;		RAIDER HIT PHOTON HIT DETECT
+     A63B A5 7B   		LDA	BASFLG		; STARBASE ?
+     A63D D0 5C   		BNE	HITSH1		; YES
+     A63F A5 EB   		LDA	STFLAG+2
+     A641 F0 58   		BEQ	HITSH1
+     A643 AC 42 0A		LDY	XPOSH+2
+     A646 C8      		INY
+     A647 C0 02   		CPY	#$02
+     A649 B0 50   		BCS	HITSH1
+     A64B AC 73 0A		LDY	YPOSH+2
+     A64E C8      		INY
+     A64F C0 02   		CPY	#$02
+     A651 B0 48   		BCS	HITSH1
+     A653 AC A4 0A		LDY	ZPOSH+2
+     A656 C8      		INY
+     A657 C0 02   		CPY	#$02
+     A659 B0 40   		BCS	HITSH1
+                  		;			A HIT !!
+     A65B 20 E1 AE		JSR	DAMCTL
+     A65E A0 02   		LDY	#$02
+     A660 20 6B AC		JSR	EXPLOS
+     A663 A2 7F   		LDX	#$7F
+     A665 A5 81   		LDA	SPABAK		; DEAD ?
+     A667 D0 1E   		BNE	HITSH2		; NO
+     A669 A2 0A   		LDX	#$0A		; FRONT
+     A66B 20 45 B0		JSR	KEYS15
+     A66E A0 23   		LDY	#SENDST-SENTAB
+     A670 A2 08   		LDX	#$08		; DESTROYED
+     A672 20 0A B1		JSR	CRATE
+     A675 A2 5F   		LDX	#DISPL3-DISPLY
+     A677 A0 80   		LDY	#$80
+     A679 A9 08   		LDA	#$08
+     A67B 20 F1 AD		JSR	LDISP
+     A67E 20 0D AE		JSR	CLRMAP
+     A681 A2 40   		LDX	#$40		; ITS ALL OVER
+     A683 86 E3   		STX	BIGEXP
+     A685 A2 FF   		LDX	#$FF		; HIT ME DEAD
+     A687         	HITSH2
+     A687 86 8A   		STX	HITME
+     A689 86 8A   		LDA	#$00
+     A68B 85 EB   		STA	STFLAG+2
+     A68D A9 02   		LDA	#$02
+     A68F 85 BE   		STA	PHEXWT
+                  	;
+     A691 A2 01   		LDX	#$01
+     A693 20 6F B8		JSR	PANDS6
+     A696 A2 0A   		LDX	#NOITB1-NOISTB
+     A698 20 A8 AE		JSR	NOISE
+     A69B         	HITSH1
+
+                  	;		END GAME ON ROUTINES
+
+     A69B         	MAIN3
+                  	;
+                  	;
