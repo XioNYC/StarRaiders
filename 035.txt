@@ -1,0 +1,59 @@
+                  	;			SUBROUTINES,
+                  	;
+                  	;
+                  	;
+     A765         	LDINS6		; LOAD UP THE LINE
+     A765 99 A4 00		STA	NUMPTS,Y
+     A768 E8      		INX
+     A769 88      		DEY
+     A76A 10 0E   		BPL	LDINS4
+     A76C 20 82 A7		JSR	DRAWER
+     A76F         	LDINST
+                  	;		LOAD INSET	RESERVE BYTE=$FE
+     			;	X= INITIAL START OF PNTR IN INSTAB
+     A76F A9 05   		LDA	#$05
+     A771 85 A2   		STA	TARPTR		; DEFINE TARGET POINTER
+     A773 2C 95 09		BIT	DAMAGE+3		; COMPUTER
+     A776 70 09   		BVS	LDINS2
+     A778         	LDINS1
+     A778 A0 02   		LDY	#$02
+     A77A         	LDINS4
+     A77A BD F9 BA		LDA	INSTAB,X
+     A77D C9 FE   		CMP	#$FE		; ALL DONE
+     A77F D0 E4   		BNE	LDINS6		; NO
+     A781         	LDINS2
+     A781 60      		RTS
+                  	;
+                  	;
+     A782         	DRAWER			; DRAW THE LINE
+     A782 A9 55   		LDA	#$55
+     A784   	     	DRAWR3		; ENTRY POINT FROM UPINST  ************************
+     A784 85 6B   		STA	TEMP1
+     A786 A5 A4   		LDA	NUMPTS
+     A788 85 6E   		STA	TEMP4
+     A78A 29 7F   		AND	#$7F
+     A78C 85 A4   		STA	NUMPTS
+     A78E         	DRAWR1
+     A78E A4 A5   		LDY	VDRAW
+     A790 B9 00 08		LDA	VCONL,Y
+     A793 85 68   		STA	PNTR
+     A795 B9 64 08		LDA	VCONH,Y
+     A798 85 69   		STA	PNTR+1
+     A79A A5 A6   		LDA	HDRAW
+     A79C 4A      		LSR	A
+     A79D 4A      		LSR	A
+     A79E 85 6A   		STA	TEMP
+     A7A0 A5 A6   		LDA	HDRAW
+     A7A2 29 03   		AND	#$03
+     A7A4 A8      		TAY
+     A7A5 B9 B0 BA		LDA	MASK,Y
+     A7A8 25 6B   		AND	TEMP1
+     A7AA A4 6A   		LDY	TEMP
+     A7AC 11 68   		ORA	(PNTR),Y
+     A7AE 91 68   		STA	(PNTR),Y
+     A7B0 24 6E   		BIT	TEMP4
+     A7B2 10 04   		BPL	DRAWR4
+     A7B4 E6 A5   		INC	VDRAW
+     A7B6 D0 02   		BNE	DRAWR5		; JUMP, VDRAW CANNOT CROSS 0 !!
+     A7B8         	DRAWR4
+     A7B8 E6 A6   		INC	HDRAW
