@@ -1,0 +1,60 @@
+     A814 BC 0F 0A		LDA	ZSIGN,X
+     A817 D0 08   		BNE	UPINS6
+     A819 C9 05   		CMP	#$05
+     A81B 90 0A   		BCC	UPINS7
+     A81D A9 04   		LDA	#$04
+     A81F 10 06   		BPL	UPINS7		; JUMP
+     A821         	UPINS6
+     A821 C9 FA   		CMP	#$FA
+     A823 B0 02   		BCS	UPINS7
+     A825 A9 FA   		LDA	#$FA
+     A827         	UPINS7
+     A827 18      		CLC
+     A828 69 4D   		ADC	#77
+     A82A 85 A1   		STA	VTARGT
+     A82C A9 00   		LDA	#$00
+     A82E 85 A2   		STA	TARPTR
+     A830         	UPINS3
+                  	;		CLEAR INSET
+     A830 A9 36   		LDA	#INSET
+     A832 85 68   		STA	PNTR
+     A834 A9 1B   		LDA	#INSET/256
+     A836 85 69   		STA	PNTR+1
+     A838 A2 0E   		LDX	#14
+     A83A         	UPIN12
+     A38A A0 06   		LDY	#$06
+     A83C         	UPIN13
+     A83C B1 68   		LDA	(PNTR),Y
+     A83E 29 55   		AND	#$55
+     A840 91 68   		STA	(PNTR),Y
+     A842 88      		DEY
+     A843 10 F7   		BPL	UPIN13
+     A845 18      		CLC
+     A846 A5 68   		LDA	PNTR
+     A848 69 28   		ADC	#40
+     A84A 85 68   		STA	PNTR
+     A84C 90 02   		BCC	UPIN14
+     A84E E6 69   		INC	PNTR+1
+     A850         	UPIN14
+     A850 CA      		DEX
+     A851 1 E7   		BPL	UPIN12
+                  	;		DONE CLEAR INSET
+     A853 AE 5C 09		LDX	DCSTOR
+     A856 C8      		INY		; Y=0
+     A857 A5 88   		LDA	LOKWAT
+     A859 F0 04   		BEQ	UPIN11
+     A85B C6 88   		DEC	LOKWAT
+     A85D D0 39   		BNE	UPINS1
+     A85F         	UPIN11
+     A85F A5 A0   		LDA	HTARGT
+     A861 C9 81   		CMP	#129
+     A863 90 33   		BCC	UPINS1
+     A865 C9 85   		CMP	#133
+     A867 B0 2F   		BCS	UPINS1
+     A869 A9 AA   		LDA	#$AA
+     A86B 8D FE 1B		STA	ICON2
+     A86E 8D 04 1C		STA	ICON2+6
+     A871 A5 A1   		LDA	VTARGT
+     A873 C9 4B   		CMP	#75
+     A875 90 21   		BCC	UPINS1
+     A877 C9 4F   		CMP	#79
