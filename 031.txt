@@ -1,0 +1,39 @@
+                   	;		CONTINOUS RUNNING ROUTINES
+                   	;		CONSRV
+                   	;		SERVICE CONSOL ROUTINE
+     A69B A4 63   		LDY	RESET
+     A69D AD 1F D0		LDA	CONSOL
+     A6A0 49 FF   		EOR	#$FF		; POSITIVE LOGIC
+     A6A2 29 03   		AND	#$03
+     A6A4 85 63   		STA	RESET
+     A6A6 F0 1A   		BEQ	CONSR2
+     A6A8 88       		DEY
+     A6A9 10 17   		BPL	CONSR2
+     A6Ab 85 66   		STA	TIMOUT		; RESET TIMOUT
+     A6AD C9 02   		CMP	#$02
+     A6AF B0 06   		BCS	CONSR3		; GAME SELECT
+     A6B1 A9 00   		LDA	#$00
+     A6B3 A8      		TAY
+     A6B4 4C 5E A1		JMP	INIT1		; GAME START
+     A6B7         	CONSR3
+     A6B7 E6 62   		INC	MISDIF
+     A6B9 A5 62   		LDA	MISDIF
+     A6BB 29 03   		AND	#$03
+     A6BD 85 62   		STA	MISDIF
+     A6BF 4C 5A A1		JMP	INIT3
+     AC62         	CONSR2
+                  	;
+                  	;
+
+     A6C2 20 04 B8		JSR	PASDIN		; SERVICE PANEL DISPLAY
+     A6C5 20 9B A8		JSR	HSERVE		; SERVICE HYPERWARP JUMP
+     A6C8 20 16 B2		JSR	MSERVE		; SERVICE MESSAGE
+     A6CB 20 E4 B4		JSR	TIMERS		; EVALUATE ALL TIMERS , TIMEOUTS, ETC.
+                  	;		END CONTINOUS RUNNING ROUTINES
+                  	;
+                  	;
+                  	;
+     A6CE 4C F3 A1		JMP	MAIN		; END VBLANK ROUTINE, WAIT FOR NEW VBLANK
+                  	;
+                  	;
+                  	;
