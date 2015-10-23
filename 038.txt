@@ -1,0 +1,24 @@
+A879 B0 1D ``		BCS	UPINS1
+A87B A9 AA ``		LDA	#$AA
+A87D 8D 9E 1C		STA	ICON2+160
+A880 8D A4 1C		STA	ICON2+166
+A883 BD 40 0A		LDA	XPOSH,X
+A886 C9 0C ``		CMP	#$0C
+A888 B0 0E ``		BCS	UPINS1
+A88A A0 A0 ``		LDY	#$A0
+A88C 8C 40 1D		STY	ICON1
+A88F 8C 68 1D		STY	ICON1+40
+A892 8C 42 1D		STY	ICON1+2
+A895 8C 6A 1D		STY	ICON1+42
+A898 `` `` ``	UPINS1
+A989 84 A3 ``		STY	LOKFLG
+A89A 60 `` ``		RTS
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+A89B `` `` ``	HSERVE
+```` `` `` ``	;		HYPERWARD SERVICE ROUTINE
+
