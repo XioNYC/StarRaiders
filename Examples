@@ -2,15 +2,15 @@ ADDR␠AA␠BB␠CC␉;␉Comment
 ADDR␠AA␠BB␠CC␉␉OPS␉ARG(s)
 ADDR␠AA␠BB␠CC␉LABEL␉OPS␉ARG(s)
 ADDR␠AA␠BB␠CC␉LABEL
----- -- -- --	------	---	--->>
-A980         	HABORT
-             	;	HYPERWARP ABORT ROUTINE
-A980 A2 01   		LDX	#$01
-A982 20 6F B8		JSR	PANDS6
-A985 A0 17   		LDY	#SENHWA-SENTAB		; ABORT
-A987         	HABOR2		; ENTRY POINT HWARP COMPLETE  ***********************
-A987 A9 00   		LDA	#$00
-A989 85 71   		STA	WARP
-A98B 85 C0   		STA	HFLAG
-A98D         	HABOR1		; ENTRY POINT BEGIN JUMP  **************************
----- -- -- --	------	---	--->>
+----␠--␠--␠--␉	------␉---␉	--->>
+A980␠␠␠␠␠␠␠␠␠␉	HABORT
+␠␠␠␠␠␠␠␠␠␠␠␠␠␉	;␉	HYPERWARP␠ABORT␠ROUTINE
+A980␠A2␠01␠␠␠␉	␉	LDX␉	#$01
+A982␠20␠6F␠B8␉	␉	JSR␉	PANDS6
+A985␠A0␠17␠␠␠␉	␉	LDY␉	#SENHWA-SENTAB␉␉	;␠ABORT
+A987␠␠␠␠␠␠␠␠␠␉	HABOR2␉␉	;␠ENTRY␠POINT␠HWARP␠COMPLETE␠␠***********************
+A987␠A9␠00␠␠␠␉	␉	LDA␉	#$00
+A989␠85␠71␠␠␠␉	␉	STA␉	WARP
+A98B␠85␠C0␠␠␠␉	␉	STA␉	HFLAG
+A98D␠␠␠␠␠␠␠␠␠␉	HABOR1	␉	;␠ENTRY␠POINT␠BEGIN␠JUMP␠␠**************************
+----␠--␠--␠--␉	------␉---␉	--->>
