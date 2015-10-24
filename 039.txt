@@ -1,0 +1,14 @@
+     A8E5 8D FC 0B		STA	VPOS+3
+     A8E8         	HSERV9
+     A8C8 C9 10   		CMP	#$10
+     A8EA B0 14   		BCS	HSERV4
+     A8EC         	HSERV7
+     A8EC AD 0A D2		LDA	RANDOM
+     A8EF 09 10   		ORA	#$10
+     A8F1 25 C6   		AND	STERMK
+     A8F3 8D 9A 0B		STA	YINCRE+3
+     A8F6 AD 0A D2		LDA	RANDOM
+     A8F9 09 10   		ORA	#$10
+     A8FB 25 C6   		AND	STERMK
+     A8FD 8D CB 0B		STA	ZINCRE+3
+     A900         	HSERV4
