@@ -12,3 +12,49 @@
      A8FB 25 C6   		AND	STERMK
      A8FD 8D CB 0B		STA	ZINCRE+3
      A900         	HSERV4
+     A900 60      		RTS
+     A901   	     	HSERV5
+     A901 98      		TYA		; IN JUMP ?
+     A902 30 11   		BMI	HSERV8		; YES
+                  	;		BEGIN JUMP
+     A904 A9 FF   		LDA	#$FF
+     A906 85 C0   		STA	HFLAG
+     A908 A2 00   		LDX	#CH4TB1-CH4TAB
+     A90A 20 A6 B3		JSR	NOTINT
+     A90D 20 A7 B1		JSR	CSERV8		; JUMP ENERGY
+     A910 A0 1B   		LDY	#SENHSP-SENTAB
+     A912 4C 8D A9		JMP	HABOR1
+     A915         	HSERV8		; IN JUMP
+     A915 C6 91   		DEC	HYPENG		; ALL DONE ?
+     A917 F0 05   		BEQ	HSER10		; YES
+     A919 A2 02   		LDX	#$02		; DEC ENERGY
+     A91B 4C 6F B8		JMP	PANDS6
+     A91E         	HSER10
+                  	;		HWARP COMPLETE
+     A91E A0 19   		LDY	#SENHWC-SENTAB
+     A920 20 87 A9		JSR	HABOR2
+     A923 A5 8F   		LDA	HYHPOS
+     A925 85 8D   		STA	GHPOS
+     A927 A5 8E   		LDA	HYVPOS
+     A929 85 8C   		STA	GVPOS
+     A92B 4A      		LSR	A
+     A92C 29 07   		AND	#$07
+     A92E AA      		TAX
+     A92F BD B3 BF		LDA	JMASK,X
+     A932 85 C7   		STA	JMPMSK
+     A934 A4 92   		LDY	HYPGAD
+     A936 84 90   		STY	GUADRT
+     A938 A9 00   		LDA	#$00
+     A93A 85 7B   		STA	BASFLG
+     A93C BE C9 08		LDX	CHTRAM,Y
+     A93F 10 2E   		BPL	HSERV2
+     A941 A9 FF   		LDA	#$FF		; STARBASE STUFF
+     A943 85 7B   		STA	BASFLG
+     A945 A0 00   		LDY	#$00
+     A947         	HSERV3
+     A947 A9 00   		LDA	#$00
+     A949 99 68 0B		STA	XINCRE+2,Y
+     A94C A9 01   		LDA	#$01
+     A94E 99 AF 09		STA	XSIGN+2,Y
+     A951 AD 0A D2		LDA	RANDOM
+     A954 25 C7   		AND	JMPMSK
