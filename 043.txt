@@ -9,11 +9,11 @@
                   	;		CRUISER PHOTON CONVERGENCE
      AA7F A5 86   		LDA	LOKLOC
      AA81 F0 30   		BEQ	THINK38
-     AA83 A6 89   		LDX	LOKTAB
+     AA83 A6 89   		LDX	LOKTAR
      AA85 38      		SEC
      AA86 BD F9 0B		LDA	VPOS,X
      AA89 ED FC 0B		SBC	VPOS+3
-     AA8C 90 02   		BCC	THINK37
+     AA8C 90 02   		BCC	THIN37
      AA8E A9 00   		LDA	#$00
      AA90         	THIN37
      AA90 20 CA AE		JSR	POHELP
@@ -39,7 +39,7 @@
      AAB7 10 27   		BPL	THIN44
      AAB9 8A      		TXA
      AABA 4A      		LSR	A
-     AABB A8      		TAY
+     AABB AB      		TAY
      AABC B9 C8 00		LDA	HORJOY,Y
      AABF A4 D0   		LDY	DISFLG
      AAC1 F0 05   		BEQ	THIN40
@@ -57,4 +57,4 @@
      AAD3 A9 0F   		LDA	#$0F
      AAD5         	THIN42
      AAD5 95 B4   		STA	XINPRS+2,X
-     AAD7 C9 0B   		CMP	#$08
+     AAD7 C9 08   		CMP	#$08
