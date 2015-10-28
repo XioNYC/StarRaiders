@@ -1,1 +1,60 @@
-(mistydemeo is contributing this page)
+                  	;
+                  	;
+                  	;
+     AC6B         	EXPLOS
+                  	;		INIT EXPLOSION
+                  	;		Y CONTAINS INDEX OF ZYLON HIT
+     AC6B A9 80   		LDA	#$80		; 2 SECONDS
+     AC6D 85 73   		STA	ETIMER
+     AC6F A2 30   		LDX	#RMLAST
+     AC71 B6 79   		STX	NSTARS		; LAST STAR FOR EXPLOSION
+     AC73         	EXPLS1
+     AC73 AD 0A D2		LDA	RANDOM
+     AC76 29 0F   		AND	#$0F
+     AC78 79 2A 0C		ADC	HPOS,Y
+     AC7B E9 30   		SBC	#$30
+     AC7D 9D 2A 0C		STA	HPOS,X
+     AC80 AD 0A D2		LDA	RANDOM
+     AC83 29 0F   		AND	#$0F
+     AC85 79 F9 0B		ADC	VPOS,Y
+     AC88 4A      		LSR	A
+     AC89 E9 10   		SBC	#$10
+     AC8B 9D F9 0B		STA	VPOS,X
+     AC8E 20 AF AC		JSR	EXHELP
+     AC91 AD 0A D2		LDA	RANDOM
+     AC94 29 87   		AND	#$87
+     AC96 9D 66 0B		STA	XINCRE,X
+     AC99 AD 0A D2		LDA	RANDOM
+     AC9C 29 87   		AND	#$87
+     AC9E 9D 97 0B		STA	YINCRE,X
+     ACA1 AD 0A D2		LDA	RANDOM
+     ACA4 29 87   		AND	#$87
+     ACA6 9D C8 0B		STA	ZINCRE,X
+     ACA9 CA      		DEX
+     ACAA E0 10   		CPX	#STLAST
+     ACAC D0 C5   		BNE	EXPLS1
+     ACAE 60      		RTS
+                  	;
+                  	;
+     ACAF         	EXHELP
+                  		;	EXPLOSION HELPER
+     ACAF B9 AD 09		LDA	XSIGN,Y
+     ACB2 9D AD 09		STA	XSIGN,X
+     ACB5 B9 40 0A		LDA	XPOSH,Y
+     ACB8 9D 40 0A		LDA	XPOSH,X
+     ACBB B9 D3 0A		LDA	XPOSL,Y
+     ACBE 9D D3 0A		STA	XPOSL,X
+     ACC1         	EXHLP1		; ENTRY POINT FROM HLINES	*************************
+     ACC1 B9 DE 09		LDA	XSIGN,Y
+     ACC4 9D DE 09		STA	XSIGN,X
+     ACC7 B9 71 0A		LDA	XPOSH,Y
+     ACCA 9D 71 0A		STA	XPOSH,X
+     ACCD B9 0F 0A		LDA	ZSIGN,Y
+     ACC0 9D 0F 0A		STA	ZSIGN,X
+                  	;
+     ACD3 B9 A2 0A		LDA	ZPOSH,Y
+     ACD6 9D A2 0A		STA	ZPOSH,X
+     ACD9 B9 04 0B		LDA	YPOSL,Y
+     ACDC 9D 04 0B		STA	YPOSL,X
+     ACDF B9 35 0B		LDA	ZPOSL,Y
+     ACE2 9D 35 0B		STA	ZPOSL,X
