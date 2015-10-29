@@ -1,0 +1,60 @@
+     AF39 20 A6 B3		JSR	NOTINT
+     AF3C         	DAMCT1
+     AF3C 60      		RTS
+                  	;
+                  	;
+     AF3D         	HITZYL
+                  	;		PHOTON HIT ZYLON CHECK
+     AF3D A2 02   		LDX	#$02		; 2 PLAY PHOTONS
+     AF3F         	HITZY2
+     AF3F CA      		DEX
+     AF40 10 01   		BPL	HITZY1
+     AF42 60      		RTS
+     AF43 BD BF 0C	HITZY1	LDA	GINDEX+3,X		; PHOTON ?
+     AF46 D0 F7   		BNE	HITZY2			; NO
+     AF48 B5 EC   		LDA	STFLAG+3,X		; PHOTON ON ?
+     AF4A F0 F3   		BEQ	HITZY2		; NO
+     AF4C B5 82   		LDA	PHITS+0,X		; ANY HIT ?
+     AF4E 29 07   		AND	#$07		; LOOK AT 0,1 ONLY
+     AF50 F0 ED   		BEQ	HITZY2		; NO HIT
+     AF52 4A      		LSR	A		; 0 OR 1 ONLY
+     AF53 C9 03   		CMP	#$03
+     AF55 D0 01   		BNE	HITZY9
+     AF57 4A      		LSR	A
+     AF58         	HITZY9
+     AF58 A8      		TAY			; OBJECT INDEX IN Y
+     AF59 B9 E9 00		LDA	STFLAG,Y		; SHIP ON ?
+     AF5C F0 E1   		BEQ	HITZY2			; NO
+     AF5E A5 D0   		LDA	DISFLG
+     AF60 F0 02   		BEQ	HITZY8
+     AF62 A9 FF   		LDA	#$FF
+     AF64         	HITZY8
+     AF64 85 6C   		STA	TEMP2
+     AF66 59 40 0A		EOR	XPOSH,Y
+     AF69 C9 10   		CMP	#$10
+     AF6B 90 02   		BCC	HITZY3
+     AF6D A9 0F   		LDA	#$0F
+     AF6F         	HITZY3
+     AF6F 4A      		LSR	A
+     AF70 84 6B   		STY	TEMP1
+     AF72 A8      		TAY
+     AF73 A5 6C   		LDA	TEMP2
+     AF75 5D 43 0A		EOR	XPOSH+3,X
+     AF78 D9 75 BF		CMP	PHPOST,Y		; TOP BOUND
+     AF7B B0 C2   		BCS	HITZY2
+     AF7D D9 7D BF		CMP	PHPOSB,Y		; BOTTOM BOUND
+     AF80 90 BD   		BCC	HITZY2
+     AF82 A4 6B   		LDY	TEMP1
+                  	;		A HIT  !!!
+     AF84 38      		SEC
+     AF85 A9 FF   		LDA	#$FF
+     AF87 F5 EC   		SBC	STFLAG+3,X
+     AF89 85 E2   		STA	EXPDEL		; AUDIO
+     AF8B C9 0F   		CMP	#15
+     AF8D 90 05   		BCC	HITZ11
+     AF8F B9 8C 0C		LDA	GINDEX,Y
+     AF92 C9 80   		CMP	#$80
+     AF94         	HITZ11
+     AF94 A9 00   		LDA	#$00
+     AF96 85 88   		STA	LOKWAT
+     AF98 95 EC   		STA	STFLAG+3,X		; PHOTON OFF
