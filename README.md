@@ -15,7 +15,7 @@ Even shorter version?  Because you want to.  And you know you want to.
 
 How
 ---
-Look at the text files in the master branch.  Each one corresponds to a page of the source code.  Find out what page is missing, head over to the [source code](https://archive.org/details/AtariStarRaidersSourceCode), and start typing.  Like I said, it's so simple even a politician can do it.  
+Look at the text files in the master branch.  Each one corresponds to a page of source code that has been completed.  Next, look in the "Works in Progress" branch.  These text files indicate pages that are being typed in.  Find out what page is missing from both branches, then head over to the [source code](https://archive.org/details/AtariStarRaidersSourceCode), and start typing.  Like I said, it's so simple even a politician can do it.  
 
 That said, there is one thing which disqualifies your typical politican: you must be *faithful* and *true*.  This project isn't about revisionism, improving existing code, or inflating your ego: it's about preserving existing, historic, and significant code - warts and all.  Your task (should you choose to accept it) is to type into a file what a printer printed on a piece of paper.  No embellishments, no commentaries, no improvements, no explanations: just the facs (facsimilie, that is).
 
@@ -45,7 +45,7 @@ Now, unlike the examples I've cited, the differences in source code styles are i
 
 How *Not*
 ---------
-If you find a blank file and it's not your doing, don't touch it.  If you start working on a page, finish it.  If you want kudos, earn it.  If you want to brag, GitHub's metadata whozitswhatsits will be brutally honest about what you did[n't] do.  If you do sloppy work, you'll be banned.  If you're responsible, you'll reap the privileges.  And if you take cranberries and stew them like applesauce they taste much more like prunes than rhubarb does.
+If you find a blank file and it's not your doing, don't touch it.  If you start working on a page, finish it.  If you want kudos, earn it.  If you want to brag, GitHub's metadata whozitswhatsits will be brutally honest about what you did[n't] do.  If you do sloppy work, you'll get the boot.  If you're responsible, you'll reap the privileges.  And if you take cranberries and stew them like applesauce they taste much more like prunes than rhubarb does.
 
 Final Thoughts
 --------------
@@ -56,7 +56,9 @@ And, even though it's at the top of every page, you do not have to type `STAR RA
 Cast
 =================
  * xıoɴʏᴄ (a/k/a `XioNYC`)
- * `edburns`
+ * Ed Burns (a/k/a `edburns`)
  * `jzatarski` 
  * Kevin Savetz (a/k/a `savetz`) who has made this work ~~possible~~ necessary
+ * Henry Ammermann (a/k/a `hintss`)
+ * Misty De Meo (a/k/a `mistydemeo`)
  * Typists Like You.
