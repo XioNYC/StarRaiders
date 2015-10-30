@@ -1,0 +1,61 @@
+     AE66 8A      		TXA
+     AE67 9D E1 09		STA	YSIGN+3,X		; NEW YSIGN
+     AE6A BD 73 BF		LDA	PHOYPS,X		; NEW YPOSH
+     AE6D 9D 74 0A		STA	YPOSH+3,X
+     AE70 A9 FF   		LDA	#$FF
+     AE72 95 EC   		STA	STFLAG+3,X		; INIT PHOTON TIME
+     AE74 9D A5 0A		STA	ZPOSH+3,X
+     AE77 A9 00   		LDA	#$00
+     AE79 9D 8F 0C		STA	GINDEX+3,X		; INIT PHOTON GRAPHIC
+     AE7C 9D 43 0A		STA	XPOSH+3,X
+     AE7F 9D 07 0B		STA	YPOSL+3,X
+     AE82 9D 12 0A		STA	ZSIGN+3,X
+     AE85 9D 38 0B		STA	ZPOSL+3,X
+     AE88 A9 01   		LDA	#$01
+     AE8A 9D B0 09		STA	XSIGN+3,X
+     AE8D 9D D9 0A		STA	XPOSL+3,X
+     AE90 A5 D0   		LDA	DISFLG
+     AE92 4A      		LSR	A
+     AE93 6A      		ROR	A
+     AE94 09 66   		ORA	#$66
+     AE96 9D 69 0B		STA	XINCRE+3,X
+     AE99 A9 00   		LDA	#$00
+     AE9B 9D 9A 0B		STA	YINCRE+3,X
+     AE9E 9D CB 0B		STA	ZINCRE+3,X
+     AEA1 A2 02   		LDX	#$02
+     AEA3 20 6F B8		JSR	PANDS6			; PHOTON ENERGY
+     AEA6 A2 00   		LDX	#$00
+                  	;
+                  	;		FALL THROUGH TO NOISE  ************************
+                  	;
+     AEA8         	NOISE
+                  	;		NOISE INIT, X=NOISTB PNTR
+     AEA8 8A      		TXA		; PHOTONS
+     AEA9 D0 06   		BNE	NOISE1		; NO
+                  		;	PHOTONS HAVE LOWER PRIORITY THAN EXPLOSIONS
+     
+     AEAB A5 E1   		LDA	AUDTIM
+     AEAD C9 18   		CMP	#$18
+     AEAF B0 18   		BCS	NOISE2
+     AEB1         	NOISE1
+     AEB1 A0 07   		LDY	#$07
+     AEB3         	NOISE3
+     AEB3 BD 20 BF		LDA	NOISTB,X
+     AEB6 99 DA 00		STA	PHOREP,Y
+     AEB9 E8      		INX
+     AEBA 88      		DEY
+     AEBB 10 FB   		BPL	NOISE3
+     AEBD BD 20 BF		LDA	NOISTB,X
+     AEC0 8D 08 D2		STA	AUDCTL
+     AEC3 BD 21 BF		LDA	NOISTB+1,X
+     AEC6 8D 04 D2		STA	AUDF3
+     AEC9         	NOISE2
+     AEC9 60      		RTS
+
+                  	;
+                  	;
+     AECA         	POHELP
+                  	;		PHOTON HELPER
+     AECA A0 80   		LDY	#$80
+     AECC B0 04   		BCS	POHLP1
+     AECE 49 FF   		EOR	#$FF

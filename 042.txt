@@ -1,0 +1,60 @@
+                  	;
+                  	;
+     AA21         	DIVIDE
+                  	;	A = (TOP/BOTTOM)X80
+                  	;
+     AA21 A9 00   		LDA	#$00		;CLEAR THE RESULT
+     AA23 85 6D   		STA	TEMP3
+     AA25 A9 07   		LDA	#$07		; NUMBER OF SHIFTS
+     AA27 85 6E   		STA	TEMP4
+                  	;			SHIFT 0 INTO THE MSBIT
+     AA29 46 6B   		LSR	TEMP1		; TOP NUMBER
+     AA2B 66 6A   		ROR	TEMP
+     AA2D A5 D0   		LDA	DISFLG		; FRONT OR BACK  ?
+     2A2F D0 0F   		BNE	DIVID1		; BACK
+     AA31 BD 40 0A		LDA	XPOSH,X		; BOTTOM NUMBER
+     AA34 4A      		LSR	A
+     AA35 85 69   		STA	PNTR+1
+     AA37 BD D3 0A		LDA	XPOSL,X
+     AA3A 6A      		ROR	A
+     AA3B 85 68   		STA	PNTR
+     AA3D 4C 52 AA		JMP	DIVID2
+     AA40         	DIVID1
+     AA40 38      		SEC
+     AA41 A9 00   		LDA	#$00
+     AA43 FD D3 0A		SBC	XPOSL,X
+     AA46 85 68   		STA	PNTR
+     AA48 A9 00   		LDA	#$00
+     AA4A FD 40 0A		SBC	XPOSH,X
+     AA4D A4      		LSR	A
+     AA4E 85 69   		STA	PNTR+1
+     AA50 66 68   		ROR	PNTR
+                  	;
+     AA52         	DIVID2
+     AA52 06 6D   		ASL	TEMP3		; SHIFT RESULT
+     AA54 38      		SEC	; SUBTRACT BOTTOM FROM TOP
+     AA55 A5 6A   		LDA	TEMP
+     AA57 E5 68   		SBC	PNTR
+     AA59 A8      		TAY
+     AA5A A5 6B   		LDA	TEMP1
+     AA5C E5 69   		SBC	PNTR+1
+     AA5E 90 06   		BCC	DIVID3		; BOTTOM GREATER THAN TOP
+                  	;		TOP LARGER
+     AA60 85 6B   		STA	TEMP1		; STORE REMAINDER
+     AA62 84 6A   		STY	TEMP
+     AA64 E6 6D   		INC	TEMP3		; ADD 1 TO RESULT
+     AA66         	DIVID3
+     AA66 06 6A   		ASL	TEMP		; SHIFT TOP
+     AA68 26 6B   		ROL	TEMP1
+     AA6A 90 03   		BCC	DIVID4
+                  	;		IF TOP IS GREATER THN BOTTOM THEN OVERFLOW
+     AA6C A9 FF   		LDA	#$FF		; MAX VALUE TO RESULT
+     AA6E 60      		RTS
+     AA6F         	DIDIV4
+     AA6F C6 6E   		DEC	TEMP4		; NEXT BIT
+     AA71 10 DF   		BPL	DIVID2
+     AA73 A4 6D   		LDY	TEMP3		; RESULT IN Y
+     AA75 B9 E9 0D		LDA	PTAB,Y		; MULTIPLY BY 80  (PTAB)
+     AA78         	DIVID5		; ENTRY POINT FROM THINK  ******************
+     AA78 60      		RTS
+                  	;

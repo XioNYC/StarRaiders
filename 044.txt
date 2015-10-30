@@ -1,0 +1,60 @@
+     AAD9 90 02   		BCC	THIN43
+     AADB 49 0F   		EOR	#$0F
+     AADD         	THIN43
+     AADD 0A      		ASL	A
+     AADE 95 BA   		STA	ROTTIM,X
+     AAE0         	THIN44
+     AAE0 CA      		DEX
+     AAE1 10 D2   		BPL	THIN39
+                  	;
+     AAE3 AD 8E 0C		LDA	GINDEX+2
+     AAE6 D0 1B   		BNE	THINK2		; NOT A PHOTON
+                  	;		PHOTON CONVERGENCE
+     AAE8 A4 62   		LDY	MISDIF		; DIFFICULTY
+     AAEA B9 85 BF		LDA	PHODIF,Y
+     AAED AE A4 0A		LDX	ZPOSH+2
+     AAF0 10 02   		BPL	THINK3
+     AAF2 29 7F   		AND	#$7F
+     AAF4         	THINK3
+     AAF4 8D CA 08		STA	ZINCRE+2
+     AAF7 09 80   		ORA	#$80
+     AAF9 AE 73 0A		LDX	YPOSH+2
+     AAFC 10 02   		BPL	THINK4
+     AAFE 29 7F   		AND	#$7F
+     AB00         	THINK4
+     AB00 8D 99 0B		STA	YINCRE+2
+     AB03         	THINK2
+     AB03 A5 76   		LDA	BINTIM
+     AB05 29 03   		AND	#$03
+     AB07 F0 2E   		BEQ	THINK5
+     AB09         	THINK1
+     AB09 A5 E6   		LDA	GRAPH+2
+     AB0B F0 04   		BEQ	THIN20		; NOT ON
+     AB0D A5 EB   		LDA	STFLAG+2
+     AB0F D0 25   		BNE	THIN14
+     AB11         	THIN20
+                  		;		METORITE
+     AB11 AD 0A D2		LDA	RANDOM
+     AB14 C9 04   		CMP	#$04
+     AB16 B0 1E   		BCS	THIN14
+     AB18 A9 60   		LDA	#$60
+     AB1A 8D BE 0C		STA	GINDEX+2
+     AB1D A2 02   		LDX	#$02
+     AB1F 20 64 B7		JSR	NEWSTR		; DEFINE LIKE A STAR
+     AB22 A9 3C   		LDA	#60
+     AB24 85 EB   		STA	STFLAG+2
+     AB26 A9 88   		LDA	#$88
+     AB28 8D 68 0B		STA	XINCRE+2
+     AB2B A9 00   		LDA	#$00
+     AB2D 8D 2C 0C		STA	HPOS+2		; METEROR FLASH
+     AB30 8D 99 0B		STA	YINCRE+2
+     AB33 8D CA 0B		STA	ZINCRE+2
+     AB36         	THIN14
+     AB36 60      		RTS
+     AB37         	THINK5
+     AB37 A5 A7   		LDA	ZYTOGG
+     AB39 49 01   		EOR	#$01
+     AB3B 85 87   		STA	ZYTOGG
+     AB3D AA      		TAX		; WHICH ZYLON TO THINK
+     AB3E B5 E9   		LDA	STFLAG,X		; ALREADY ON?
+     AB40 D0 42   		BNE	THINK6		; YES

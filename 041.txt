@@ -1,0 +1,58 @@
+                  	;		DRW HWARP LINES
+     A9B4 C6 C2   		DEC	HTIMER
+     A9B6 10 68   		BPL	HLINE1
+     A9B8 A9 10   		LDA	#$01
+     A9BA 85 C1   		STA	HISPED
+     A9BC A9 30   		LDA	#RMLAST		; HWARP STARS ON
+     A9BE 85 79   		STA	NSTARS
+     A9C0 A9 03   		LDA	#$03
+     A9C2 85 C2   		STA	HTIMER
+                  	;			RESET LINES
+     A9C4 A6 C3   		LDX	HPNTR
+     A9C6         	HLINE2
+     A9C6 A9 12   		LDA	#$12		; XINIT
+     A9C8 85 69   		STA	PNTR+1
+     A9CA AD 0A D2		LDA	RANDOM		; INIT Y,Z
+     A9CD 29 03   		AND	#$03
+     A9CF A8      		TAY
+     A9D0 B9 3A BB		LDA	YINIT,Y
+     A9D3 9D 71 0A		STA	YPOSH,X
+     A9D6 B9 3E BB		LDA	ZINIT,Y
+     A9D9 9D A2 0A		STA	ZPOSH,X
+     A9DC 20 BE B7		JSR	NEWST4		; WHICH QUADRANT
+     A9DF 8A      		TXA
+     A9E0 A8      		TAY			; X GOES TO Y
+     A9E1 A9 05   		LDA	#$05
+     A9E3 85 6E   		STA	TEMP4
+     A9E5         	HLINE4
+                  	;
+     A9E5 18      		CLC
+     A9E6 A5 68   		LDA	PNTR
+     A9E8 69 50   		ADC	#$50		; XINCRE
+     A9EA 85 68   		STA	PNTR
+     A9EC 9D D3 0A		STA	XPOSL,X
+     A9EF A5 69   		LDA	PNTR+1
+     A9F1 69 00   		ADC	#$00
+     A9F3 85 69   		STA	PNTR+1
+     A9F5 9D 40 0A		STA	XPOSH,X
+     A9F8 A9 00   		LDA	#$00
+     A9FA 9D 66 0B		STA	XINCRE,X
+     A9FD 9D 97 0B		STA	YINCRE,X
+     AA00 9D C8 0B		STA	ZINCRE,X
+                  	;
+     AA03 A9 01   		LDA	#$01
+     AA05 9D AD 09		STA	XSIGN,X		; AND THAT FIXES THAT
+     AA08 A9 63   		LDA	#$99		; OFF-SCREEN
+     AA0A 9D F9 0B		STA	VPOS,X
+     AA0D 9D 2A 0C		STA	HPOS,X
+     AA10 20 C1 AC		JSR	EXHLP1		; DEFINE Y,Z
+     AA13 CA      		DEX
+     AA14 E0 11   		CPX	#STLAST+1
+     AA16 B0 02   		BCS	HLINE3
+     AA18 A2 30   		LDX	#RMLAST
+     AA1A         	HLINE3
+     AA1A C6 6E   		DEC	TEMP4
+     AA1C 10 C7   		BPL	HLINE4
+     AA1E 86 C3   		STX	HPNTR
+     AA20         	HLINE1
+     AA20 60      		RTS

@@ -1,0 +1,60 @@
+                  	;
+                  	;
+                  	;
+     AA79         	THINK
+                  	;		COMPUTER ATTACK SUBROUTINE
+     AA79 A5 C0   		LDA	HFLAG
+     AA7B 05 7B   		ORA	BASFLG
+     AA7D D0 F9   		BNE	DIVID5		; BRANCH TO RTS
+                  	;		CRUISER PHOTON CONVERGENCE
+     AA7F A5 86   		LDA	LOKLOC
+     AA81 F0 30   		BEQ	THIN38
+     AA83 A6 89   		LDX	LOKTAR
+     AA85 38      		SEC
+     AA86 BD F9 0B		LDA	VPOS,X
+     AA89 ED FC 0B		SBC	VPOS+3
+     AA8C 90 02   		BCC	THIN37
+     AA8E A9 00   		LDA	#$00
+     AA90         	THIN37
+     AA90 20 CA AE		JSR	POHELP
+     AA93 8D CB 0B		STA	ZINCRE+3
+     AA96 8D CC 0B		STA	ZINCRE+4
+     AA99 38      		SEC
+     AA9A AD 2D 0C		LDA	HPOS+3
+     AA9D FD 2A 0C		SBC	HPOS,X
+     AAA0 20 CA AE		JSR	POHELP
+     AAA3 8D 9A 0B		STA	YINCRE+3
+     AAA6 38      		SEC
+     AAA7 AD 2E 0C		LDA	HPOS+4
+     AAAA FD 2A 0C		SBC	HPOS,X
+     AAAD 20 CA AE		JSR	POHELP
+     AAB0 8D 9B 0B		STA	YINCRE+4
+                  	;
+     AAB3         	THIN38
+                  	;
+                  	;		HELPER FOR THINK
+     AAB3 A2 03   		LDX	#$03
+     AAB5         	THIN39
+     AAB5 D6 BA   		DEC	ROTTIM,X
+     AAB7 10 27   		BPL	THIN44
+     AAB9 8A      		TXA
+     AABA 4A      		LSR	A
+     AABB AB      		TAY
+     AABC B9 C8 00		LDA	HORJOY,Y
+     AABF A4 D0   		LDY	DISFLG
+     AAC1 F0 05   		BEQ	THIN40
+     AAC3 49 FF   		EOR	#$FF
+     AAC5 18      		CLC
+     AAC6 69 01   		ADC	#$01
+     AAC8         	THIN40
+     AAC8 18      		CLC
+     AAC9 75 B4   		ADC	XINPRS+2,X
+     AACB 10 02   		BPL	THIN41
+     AACD A9 00   		LDA	#$00
+     AACF         	THIN41
+     AACF C9 10   		CMP	#$10
+     AAD1 90 02   		BCC	THIN42
+     AAD3 A9 0F   		LDA	#$0F
+     AAD5         	THIN42
+     AAD5 95 B4   		STA	XINPRS+2,X
+     AAD7 C9 08   		CMP	#$08

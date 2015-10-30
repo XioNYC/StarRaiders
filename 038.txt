@@ -1,0 +1,60 @@
+      A879 B0 1D   		BCS	UPINS1
+      A87B A9 AA   		LDA	#$AA
+      A87D 8D 9E 1C		STA	ICON2+160
+      A880 8D A4 1C		STA	ICON2+166
+      A883 BD 40 0A		LDA	XPOSH,X
+      A886 C9 0C   		CMP	#$0C
+      A888 B0 0E   		BCS	UPINS1
+      A88A A0 A0   		LDY	#$A0
+      A88C 8C 40 1D		STY	ICON1
+      A88F 8C 68 1D		STY	ICON1+40
+      A892 8C 42 1D		STY	ICON1+2
+      A895 8C 6A 1D		STY	ICON1+42
+      A898         	UPINS1
+      A989 84 A3   		STY	LOKFLG
+      A89A 60      		RTS
+                   	;
+                   	;
+                   	;
+                   	;
+                   	;
+                   	;
+      A89B         	HSERVE
+                   	;		HYPERWARP SERVICE ROUTINE
+      A89B A4 C0   		LDY	HFLAG		; HWAPR ?
+      A89D F0 61   		BEQ	HSERV4		; NO
+      A89F A5 70   		LDA	SEEPD
+      A8A1 C9 FE   		CMP	#$FE		; UP TO SPEED ?
+      A8A3 B0 5C   		BCS	HSERV5		; YES
+      A8A5 C9 80   		CMP	#$80		; DO LINES ?
+      A8A7 90 03   		BCC	HSERV6		; NO
+      A8A9 29 B4 A9		JSR	HLINES
+      A8AC         	HSERV6
+                   	;		STEERING STUFF
+      A8AC 90 03   		LDA	#$03
+      a8ae 8D 5C 09		STA	DCSTOR
+      A8B1 A9 90   		LDA	#$90
+      A8B3 8D 8F 0C		STA	GINDEX+3
+      A8B6 85 EC   		STA	STFLAG+3
+      A8B8 A9 1F   		LDA	#$1F
+      A8BA 8D 43 0A		STA	XPOSH+3
+      A8BD 38      		SEC
+      A8BE AD FC 0B		LDA	VPOS+3
+      A8C1 E9 77   		SBC	#VOBCEN-3
+      A8C3 18      		CLC
+      A8C4 65 C5   		ADC	VSTEER
+      A8C6 29 7F   		AND	#$7F
+      A8C8 85 8E   		STA	HYVPOS
+      A8CA 38      		SEC
+      A8CB AD 2D 0C		LDA	HPOS+3
+      A8CE E9 7D   		SBC	#HOBCEN
+      A8D0 18      		CLC
+      A8D1 65 C4   		ADC	HSTEER
+      A8D3 29 7F   		AND	#$7F
+      A8D5 85 8F   		STA	HYHPOS
+      A8D7 A5 62   		LDA	MISDIF
+      A8D9 F0 11   		BEQ	HSERV7
+      A8DB AD 0A D2		LDA	RANDOM
+      A8DE A4 D0   		LDY	DISFLG
+      A8E0 F0 06   		BEQ	HSERV9
+      A8E2 8D 2D 0C		STA	HPOS+3

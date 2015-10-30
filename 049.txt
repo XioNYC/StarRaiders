@@ -1,0 +1,60 @@
+     ACE5         	EXHLP2		; ENTRY POINT FROM BSERVE  **********************
+     ACE5 60      		RTS
+                  	;
+                  	;
+                  	;
+                  	;
+     ACE6         	BSERVE
+                  	;		STARBASE SERVICE ROUTINE
+     ACE6 A5 7B   		LDA	BASFLG
+     ACE8 F0 FB   		BEQ	EXHLP2		; BRANCH TO RTS
+     ACEA A5 D0   		LDA	DISFLG
+     ACEC D0 05   		BNE	BSERV9
+     ACEE A9 14   		LDA	#$14		; PRIORITY FOR FRONT VIEW OF STARBASE
+     ACF0 8D 1B D0		STA	PRIOR
+     ACF3         	BSERV9
+     ACF3 A9 02   		LDA	#$02
+     ACF5 8D 5C 09		STA	DCSTOR
+                  	;
+     ACF8 A9 30   		LDA	#$30
+     ACFA 8D 8E 0C		STA	GINDEX+2
+     ACFD A9 20   		LDA	#$20
+     ACFF 8D 8D 0C		STA	GINDEX+1
+     AD02 A9 40   		LDA	#$40
+     AD04 8D 8C 0C		STA	GINDEX+0
+     AD07 A9 FF   		LDA	#$FF
+                  	;
+     AD09 A6 90   		LDX	QUADRT
+     AD0B BC C9 0B		LDY	CHTRAM,X
+     AD0E 30 02   		BMI	BSER13
+     AD10 A9 00   		LDA	#$00
+     AD12         	BSER13
+     AD12 85 E9   		STA	STFLAG+0
+     AD14 85 EA   		STA	STFLAG+1
+     AD16 85 5B   		STA	STFLAG+2
+     AD18 85 7B   		STA	BASFLG
+     AD1A 30 0A   		BMI	BSERV1
+     AD1C A0 02   		LDY	#$02
+     AD1E 20 6B AC		JSR	EXPLOS
+     AD21 A2 0A   		LDX	#NOITB1-NOISTB
+     AD23 4B A8 AE		JMP	NOISE
+     AD26         	BSERV1
+                  		;		TOO CLOSE ?
+     AD26 AD 42 0A		LDA	XPOSH+2
+     AD29 D0 0A   		BNE	BSER14
+     AD2B AD D5 0A		LDA	XPOSL+2
+     AD2E C9 20   		CMP	#$20
+     AD30 B0 03   		BCS	BSER14
+     AD32 EE D5 0A		INC	XPOSL+2
+     AD35         	BSER14
+                  	;		ORBIT  ?
+     AD35 AD 2C 0C		LDA	HPOS+2
+     AD38 38      		SEC
+     AD39 E9 78   		SBC	#$78
+     AD3B C9 10   		CMP	#$10
+     AD3D B0 22   		BCS	BSERV8
+     AD3F AD F8 0B		LDA	VPOS+2
+     AD42 38      		SEC
+     AD43 E9 68   		SBC	#$68
+     AD45 C9 10   		CMP	#$10
+     AD47 B0 18   		BCS	BSERV8
