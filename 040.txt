@@ -52,7 +52,7 @@
      A9AA 85 ED   		STA	STFLAG+4
      A9AC 85 75   		STA	BSEQTM
      A9AE 8D 5C 09		STA	DCSTOR
-     A9B1 4C 23 B2		JUMP	LDMESS
+     A9B1 4C 23 B2		JMP	LDMESS
                   	;
                   	;
                   	;
