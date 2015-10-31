@@ -1,1 +1,38 @@
-
+b128 05 62   		ora	misdif		; mission diff game result
+b12a aa      		tax
+b12b bd dd be		lda	diftab,x
+b12e 1b      		clc
+b12f 65 cb   		adc	rating
+b131 aa      		tax
+b132 a9 00   		lda	#$00
+b134 85 c9   		sta	verjoy
+b136 85 c8   		sta	horjoy
+b13a 65 cc   		adc	rating+1
+b13c 4a      		lsr	a
+b13d 8a      		txa
+b13e 6a      		ror	a
+b13f 4a      		lsr	a
+b140 4a      		lsr	a
+b141 4a      		lsr	a
+b142 c9 13   		cmp	#$13
+b144 90 04   		bcc	crate2
+b146 a9 12   		lda	#$12
+b148 a2 0f   		ldx	#$0f
+b14a         	crate2
+b14a 85 cd   		sta	endrat
+b14c a8      		tay
+b14d 8a      		txa
+b14e c0 00   		cpy	#$00
+b150 f0 0b   		beq	crate4
+b152 c0 0b   		cpy	#$0b
+b154 90 04   		bcc	crate5
+b156 c0 0f   		cpy	#$0f
+b158 90 03   		bcc	crate4
+b15a         	crate5
+b15a 4a      		lsr	a
+b15b 49 08   		eor	#$08
+b15d         	crate4
+b15d 29 0f   		and	#$0f
+b15f 85 ce   		sta	endcls
+b161         	crate3
+b161 60      		rts
