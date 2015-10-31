@@ -1,1 +1,16 @@
 b0cf a5 8f ``		lda	hyhpos
+b0d1 85 c4 ``		sta	hsteer
+b0d3 a5 8e ``		lda	hyvpos
+b0d5 85 c5 ``		sta	vsteer
+b0d7 a5 62 ``		lda	misdif
+b0d9 f0 0b ``		beq	keys24
+b0db a5 91 ``		lda	hypeng
+b0dd 2a `` ``		rol	a
+b0de 2a `` ``		rol	a
+b0df 2a `` ``		rol	a
+b0e0 29 03 ``		and	#$03
+b0e2 a8 `` ``		tay
+b0e3 b9 d7 be		lda	stertb,y		; difficulty
+b0e6 `` `` ``	keys24
+b0e6 85 c6 ``		sta	stermk
+```` `` `` ``	;		end stuff
