@@ -16,8 +16,8 @@ Even shorter version?  Because you want to.  And you know you want to.
 How
 ---
  1. Look at the text files in the master branch.  Each one corresponds to a page of the source code that has been typed in.<br />These pages are _done_: don't re-do them.
- 2. Look at the text files in the work-in-progress branch.  Each one corresponds to a page of the source code that is being typed in.<br />These pages are being done by others: don't re-do them.
- 3. Find out what page is next to be typed in.  Create a corresponding file in the work-in-progress branch.<br />This will indicate to others that *you* are typing in the page.  They, in turn, won't re-do your work.
+ 2. Look at the text files in the work-in-progress subdirectory.  Each one corresponds to a page of the source code that is being typed in.<br />These pages are _being done_ by others: don't re-do them.
+ 3. Find out what page is next to be typed in.  Create a corresponding file in the work-in-progress subdirectory.<br />This will indicate to others that *you* are typing in the page.  They, in turn, won't re-do your work.
  4. Head over to the [source code](https://archive.org/details/AtariStarRaidersSourceCode), and start typing.<br />Like I said, it's so simple even a politician can do it.  
 
 That said, there is one thing which disqualifies your typical politican: you must be *faithful* and *true*.  This project isn't about revisionism, improving existing code, or inflating your ego: it's about preserving existing, historic, and significant code - warts and all.  Your task (should you choose to accept it) is to type into a file what a printer printed on a piece of paper.  No embellishments, no commentaries, no improvements, no explanations: just the facs (facsimilie, that is).
