@@ -1,1 +1,59 @@
-
+b483 ca `` ``		dex
+b484 10 bb ``		bpl	ldtab3
+```` `` `` ``	;		load horiz wall of chart
+b486 a2 b4 ``		ldx	#180
+b488 `` `` ``	ldtab5
+b488 a9 0a ``		lda	#$0a
+b48a 9d 34 0d		sta	chtdis-1,x
+b48d ca `` ``		dex
+b48e d0 f8 ``		bne	ldtab5
+b490 a2 0f ``		ldx	#$0f		; ld horiz line
+b492 `` `` ``	ldtab6
+b492 a9 18 ``		lda	#$18
+b494 9d 37 0d		sta	chtdis+2,x
+b497 ca `` ``		dex
+b498 10 f8 ``		bpl	ldtab6
+```` `` `` ``	;
+b49a a9 1a ``		lda	#$1a		; fill in the dot on the chart
+b49c 8d 47 0d		sta	chtdis+18
+```` `` `` ``	;
+b49f a9 00 ``		lda	#$00
+b4a1 8d 11 09		sta	chtram+72
+b4a4 a9 48 ``		lda	#72
+b4a6 85 90 ``		sta	quadrt
+b4a8 a9 43 ``		lda	#67
+b4aa 85 8d ``		sta	ghpos
+b4ac 85 8f ``		sta	hyhpos
+b4ae a9 47 ``		lda	#$47
+b4b0 85 8e ``		sta	hyvpos
+b4b2 85 8c ``		sta	gvpos
+b4b4 a9 ea ``		lda	#$ea
+b4b6 8d e8 0f		sta	bcdcon+255		; infiinity sign
+```` `` `` ``	;
+```` `` `` ``	;		fall through to ldgalt
+```` `` `` ``	;
+b4b9 `` `` ``	ldgalt
+```` `` `` ``	;
+```` `` `` ``	;		ld up the galactic chart
+```` `` `` ``	;		transfer chtram to chtdis
+```` `` `` ``	;
+b4b9 a0 00 ``		ldy	#$00		; chtdis pntr
+b4bb 84 6a ``		sty	temp		; chtram pntr
+b4bd `` `` ``	ldgal1
+b4bd a6 6a ``		ldx	temp
+b4bf bd c9 08		lda	chtram,x		; whats in quad
+b4c2 10 02 ``		bpl	ldgal2		; no
+b4c4 a9 05 ``		lda	#$05		; starbase default
+b4c6 aa `` ``		tax
+b4c7 bd d1 be		lda	chtabl,x		; code for chtdis
+b4ca 99 4b 0d		sta	chtdis+22,y
+b4cd c8 `` ``		iny
+b4ce e6 6a ``		inc	temp
+b4d0 a5 6a ``		lda	temp
+b4d2 29 0f ``		and	#$0f		; end of line ?
+b4d4 d0 e7 ``		bne	ldgal1		; no
+b4d6 a9 19 ``		lda	#$19		; vert line
+b4d8 99 4b 0d		sta	chtdis+22,y
+b4db c8 `` ``		iny
+b4dc c8 `` ``		iny
+b4dd c8 `` ``		iny		; advance to next line
