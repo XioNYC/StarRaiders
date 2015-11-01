@@ -1,1 +1,60 @@
-
+b230 a9 00 ``		lda	#$00
+b232 85 6b ``		sta	temp1		; clear display pointer
+b234 `` `` ``	ldmes3
+b234 9d 1f 0d		sta	mesage,x
+b237 ca `` ``		dex
+b238 10 fa ``		bpl	ldmes3
+b23a `` `` ``	ldmes4		; message loop point
+b23a a6 d1 ``		ldx	senptr		; new word pntr
+b23c e6 d1 ``		inc	senptr		; advance to next word
+b23e d0 09 ``		bne	ldmes5
+```` `` `` ``	;		message done
+b240 a2 0f ``		ldx	#displ2-disply
+b242 a0 80 ``		ldy	#$80
+b244 a9 07 ``		lda	#$07
+b246 4c f1 ad		jmp	ldisp		; restore display list
+b249 `` `` ``	ldmes5
+b249 bd aa bb		lda	sentab,x		; a =new word
+b24c c9 fc ``		cmp	#$fc		; class ?
+b24e d0 0f ``		bne	ldmes6		; no
+b250 a4 ce ``		ldy	endcls
+b252 b9 fc be		lda	clastb,y	; value 1-5, in dma ascii
+b255 a6 6b ``		ldx	temp1		; where to store
+b257 9d 1f 0d		sta	mesage,x
+b25a a9 3c ``		lda	#60		; end of line
+b25c 85 cf ``		sta	mestim		; wait 1 second
+b25e 60 `` ``		rts
+b25f `` `` ``	ldmes6
+b25f c9 fd ``		cmp	#$fd		; rank ?
+b261 d0 05 ``		bne	ldms12		; no
+b263 a4 cd ``		ldy	endrat
+b265 b9 e9 be		lda	ranktab,y		; rank word
+b268 `` `` ``	ldms12
+b268 85 6c ``		sta	temp2		; store for bits 7,6
+b26a 29 3f ``		and	#$3f
+b26c 85 6a ``		sta	temp		; word loc in #wrdtab
+b26e a9 2a ``		lda	#wrdtab-1
+b270 85 68 ``		sta	pntr
+b272 a9 bc ``		lda	#wrdtab-1/256
+b274 85 69 ``		sta	pntr+1		; where to start search
+b276 `` `` ``	ldmes7
+b276 e6 68 ``		inc	pntr		; advance word pointer
+b278 d0 02 ``		bne	ldmes8
+b27a e6 69 ``		inc	pntr+1
+b27c `` `` ``	ldmes8
+b27c a0 00 ``		ldy	#$00
+b27e b1 68 ``		lda	(pntr),y
+b280 10 f4 ``		bpl	ldmes7		; not start of a word
+b282 c6 6a ``		dec	temp		; is it the right word?
+b284 d0 f0 ``		bne	ldmes7		; no
+b286 `` `` ``	ldmes9
+b286 29 3f ``		and	#$3f		; remove any flag bits
+b288 49 a0 ``		eor	#$a0		; playfield and dma ascii
+b28a a6 6b ``		ldx	temp1		; display pointer
+b28c e6 6b ``		inc	temp1		; advance display pointer
+b28e 9d 1f 0d		sta	mesage,x
+b291 c8 `` ``		iny			; next letter
+b292 b1 68 ``		lda	(pntr),y	; a=letter
+b294 10 f0 ``		bpl	ldmes9
+b296 e6 6b ``		inc	temp1		; a space
+```` `` `` ``	;		end of word found

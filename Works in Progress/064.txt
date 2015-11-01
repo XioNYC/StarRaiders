@@ -1,0 +1,60 @@
+b298 a9 3c ``		lda	#60		; wait 1 second
+b29a 24 6c ``		bit	temp2		; what to do next
+b29c 10 04 ``		bpl	ldms11		; not end of line
+b29e 50 08 ``		bvc	ldms10		; end of line only
+b2a0 a9 fe ``		lda	#fe		; wait 4 second, end of sentence
+b2a2 `` `` ``	ldms11
+b2a2 50 96 ``		bvc	ldmes4		; continue with line
+b2a4 a0 ff ``		ldy	#$ff		; end of sentence
+b2a6 84 d1 ``		sty	senptr
+b2a8 `` `` ``	ldms10
+b228 85 cf ``		sta	mestim		; store wait
+b2aa 60 `` ``		rts
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+b2ab `` `` ``	audio
+```` `` `` ``	;		audio service routine
+```` `` `` ``	;
+```` `` `` ``	;		ch4 note section
+b2ab a5 d6 ``		lda	nprior
+b2ad f0 37 ``		beq	audio1
+b2af c6 d8 ``		dec	ndurtm		; timing out ?
+b2b1 10 33 ``		bpl	audio1		; yes
+b2b3 a5 d9 ``		lda	notvol
+b2b5 f0 0a ``		beq	audio2		; next note
+b2b7 a5 d5 ``		lda	sdurat		; space between note
+b2b9 30 06 ``		bmi	audio2
+b2bb 85 d8 ``		sta	ndurtim
+b2bd a0 00 ``		ldy	#$00
+b2bf f0 20 ``		beq	audio3		; jump
+b2c1 `` `` ``	audio2
+b2c1 a5 d4 ``		lda	ndurat
+b2c3 85 d8 ``		sta	ndurtm
+b2c5 a6 d2 ``		ldx	notseq
+b2c7 e6 d2 ``		inc	notseq
+b2c9 bd 5c bf		lda	nottab,x
+b2cc 8d 06 d2		sta	audf4
+b2cf a0 a8 ``		ldy	#$a8
+b2d1 c9 ff ``		cmp	#$ff
+b2d3 d0 0c ``		bne	audio3
+b2d5 a5 d7 ``		lda	repptr
+b2d7 85 d2 ``		sta	notseq
+b2d9 c6 d3 ``		dec	repseq
+b2db 10 e4 ``		bpl	audio2
+b2dd a0 00 ``		ldy	#$00
+b2df 84 d6 ``		sty	nprior
+b2e1 `` `` ``	audio3
+b2e1 8c 07 d2		sty	audc4
+b2e4 84 d9 ``		sty	notvol
+b2e6 `` `` ``	audio1
+b2e6 a5 e2 ``		lda	expdel		; zylon hit service
+b2e8 f0 09 ``		beq	aud11
+b2ea c6 e2 ``		dec	expdel
+b2ec d0 05 ``		bne	aud11
+b2ee a2 14 ``		ldx	#noitb2-noistb
+b2f0 20 a8 ae		jsr	noise
+b2f3 `` `` ``	aud11
+b2fe a6 70 ``		ldx	speed
