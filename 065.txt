@@ -1,0 +1,60 @@
+     B2F5 8A      		TXA
+     B2F6 4A      		LSR	A
+     B2F7 4A      		LSR	A
+     B2F8 4A      		LSR	A
+     B2F9 4A      		LSR	A
+     B2FA 4A      		LSR	A
+     B2FB C5 E1   		CMP	AUDTIM
+     B2FD 90 2C   		BCC	AUDIO
+     B2FF A9 00   		LDA	#$00
+     B301 85 E1   		STA	AUDTIM
+                  	;			ENGINES
+     B303 E8      		INX
+     B304 8A      		TAX
+     B305 49 FF   		EOR	#$FF
+     B307 8D 04 D2		STA	AUDF3
+     B30A AA      		TAX
+     B30B 0A      		ASL	A
+     B30C 0A      		ASL	A
+     B30D 0A      		ASL	A
+     B30E 0A      		ASL	A
+     B30F 0A      		ASL	A
+     B310 8D 00 D2		STA	AUDF1
+     B313 8A      		TXA
+     B314 4A      		LSR	A
+     B315 4A      		LSR	A
+     B316 4A      		LSR	A
+     B317 8D 02 D2		STA	AUDF2
+     B31A 4A      		LSR	A
+     B31B 49 8F   		EOR	#$8F
+     B31D 8D 03 D2		STA	AUDC2
+     B320 29 87   		AND	#$87
+     B322 8D 05 D2		STA	AUDC3
+     B325 A9 70   		LDA	#$70
+     B327 8D 08 D2		STA	AUDCTL
+     B32A 60      		RTS
+     B32B         	AUD10
+     B32B A5 DB   		LDA	AUDEXP		; EXPLOSION SERVICE
+     B32D F0 08   		BEQ	AUDIO4
+     B32F C6 DB   		DEC	AUDEXP
+     B331 D0 04   		BNE	AUDIO4
+     B333 A9 8F   		LDA	#$8F
+     B335 85 DC   		STA	ATYPE2
+     B337         	AUDIO4
+     B337 A6 DA   		LDX	PHOREP
+     B339 F0 1C   		BEQ	AUDIO5
+     B33B C6 DA   		DEC	PHREP
+     B33D D0 0A   		BNE	AUD12
+     B33F A9 AF   		LDA	#$AF
+     B341 85 DC   		STA	ATYPE2
+     B343 A9 02   		LDA	#$02
+     B345 85 DE   		STA	AFREQ1
+     B347 85 DF   		STA	AFREQ2
+     B349         	AUDI12
+     B349 BD EA BF		LDA	PHOTB2-1,X
+     B34C 85 DD   		STA	ATYPE3
+     B34E BD F2 BF		LDA	PHOTB4-1,X
+     B351 8D 04 D2		STA	AUDF3
+     B354 8D 09 D2		STA	STIMER
+     B357         	AUDIO5
+     B357 A5 E3   		LDA	BIGEXP		; FINAL EXPLOS SERVICE

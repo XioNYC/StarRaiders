@@ -1,0 +1,60 @@
+                  	;
+     B413 A2 00   		LDX	#$00
+     B415 86 68   		STX	PNTR
+     B417 A9 10   		LDA	#MEMMAP/256
+     B419 85 69   		STA	PNTR+1
+     B41B         	LDTAB2
+     B41B 18      		CLC
+     B41C A5 68   		LDA	PNTR
+     B41E 9D 00 08		STA	VCONL,X
+     B421 69 28   		ADC	#SCVCON
+     B423 85 68   		STA	PNTR
+     B425 A5 69   		LDA	PNTR+1
+     B427 9D 64 08		STA	VCONH,X
+     B42A 69 00   		ADC	#$00
+     B42C 85 69   		STA	PNTR+1
+     B42E BD 42 BB		LDA	STINIT,X
+     B431 9D 49 09		STA	DISCTL,X
+     B434 E8      		INX
+     B435 E0 64   		CPX	#100
+     B437 90 E2   		BCC	LDTAB2
+     B439 CA      		DEX		; X=99, DONT JUMP IMMEDIATELY
+     B43A 86 78   		STX	JMPTIM
+                  	;
+     B43C A2 03   		LDX	#$03
+     B43E 8E 11 09		STX	CHTRAM+72	; NOTHING IN SHIPS INIT QUAD
+     B441         	LDTAB3
+     B441 BD A6 BB		LDA	CHRTAB,X
+     B444 85 6A   		STA	TEMP
+     B446 A4 62   		LDY	MISDIF
+     B448 C8      		INY
+     B449 C8      		INY
+     B44A 84 6B   		STY	TEMP 1
+     B44C         	LDTAB4
+     B44C AD 0A D2		LDA	RANDOM
+     A44F 29 7F   		AND	#$7F
+     B451 A8      		TAY
+     B452 B9 C9 08		LDA	CHTRAM,Y
+     B455 D0 F5   		BNE	LDTAB4
+     B457 A5 6A   		LDA	TEMP
+                  		;		STARBASES NOT ON EDGES
+     B459 10 21   		BPL	LDTAB7
+     B45B C0 10   		CPY	#$10
+     B45D 90 ED   		BCC	LDTAB4
+     B45F C0 70   		CPY	#$70
+     B461 B0 E9   		BCS	LDTAB4
+     B463 98      		TYA
+     B464 29 0F   		AND	#$0F
+     B466 F0 E4   		BEQ	LDTAB4
+     B468 C9 0F   		CMP	#$0F
+     B46A F0 E0   		BEQ	LDTAB4
+     B46C B9 C8 08		LDA	CHTRAM-1,Y
+     B46F 19 CA 08		ORA	CHTRAM+1,Y
+     B472 19 D9 08		ORA	CHTRAM+16,Y
+     B475 19 B9 08		ORA	CHTRAM-16,Y
+     B478 D0 D2   		BNE	LDTAB4
+     B47A A5 6A   		LDA	TEMP
+     B47C         	LDTAB7
+     B47C 99 C9 08		STA	CHTRAM,Y
+     B47F C6 6B   		DEC	TEMP1
+     B481 10 C9   		BPL	LDTAB4

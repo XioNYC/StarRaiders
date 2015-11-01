@@ -1,0 +1,60 @@
+     B17A A5 BF   		LDA	HYHPOS
+     B17C 65 C8   		ADC	HORJOY
+     B17E 29 7F   		AND	#$7F
+     B180 85 8F   		STA	HYHPOS
+     B182 18      		CLC
+     B183 69 3D   		ADC	#HORCHT		; OFFSET TO POSITION ON SCREEN
+     B185 8D 2E 0C		STA	HPOS+4		; PLAYER FOUR IS CURSOR
+     B188 18      		CLC			; UPDATE VERT CURSOR POSITION
+     B189 A5 8E   		LDA	HYVPOS
+     B18B 65 C9   		ADC	VERJOY
+     B18D 29 7F   		AND	#$7F
+     B18F 85 8E   		STA	HYVPOS
+     B191 18      		CLC			; OFF SET TO POSITION ON SCREEN
+     B192 69 3F   		ADC	#VERCHT
+     B194 8D FD 0B		STA	VPOS+4
+                  	;				SHIP POS TO OBJ3
+     B197 A5 8C   		LDA	GVPOS
+     B199 18      		CLC
+     B19A 69 3F   		ADC	#VERCHT
+     B19C 8D FC 08		STA	VPOS+3
+     B19F A5 8D   		LDA	GHPOS
+     B1A1 18      		CLC
+     B1A2 69 3D   		ADC	#HORCHT
+     B1A4 8D 2D 0C		STA	HPOS+3
+                  	;		CLACULATE CURSORS QUADRANT
+                  	;
+     B1A7         	CSERV8		; ENTRY POINT FOR CALCULATING NEW ENERGY AND QUADRANT  ******
+     B1A7 A5 8F   		LDA	HYHPOS		; HPOS
+     B1A9 4A      		LSR	A
+     B1AA 4A      		LSR	A
+     B1AB 4A      		LSR	A
+     B1AC 85 6A   		STA	TEMP		;TEMP STORE H COMP
+     B1AE A5 8E   		LDA	HYVPOS		; VPOS
+     B1B0 29 70   		AND	#$70		; VCOMP
+     B1B2 05 6A   		ORA	TEMP		; ADD HCOMP
+     B1B4 85 92   		STA	HYPQAD		; QUADRANT CALCULATED
+                  	;			CALCULATE NUMBER OF ZYLONS IN TARGET
+     B1B6 AA      		TAX
+     B1B7 BD C9 08		LDA	CHTRAM,X		; WHATS IN QUAD
+     B1BA 10 02   		BPL	CSERV2		; STARBASE ?
+     B1BC A9 00   		LDA	#$00		; YES
+     B1BE         	CSERV2
+     B1BE 09 90   		ORA	#$90		; COLOR AND ASCII CODE
+     B1C0 2C 97 09		BIT	DAMAGE+5
+     B1C3 70 03   		BVS	CSER11
+     B1C5 8D 8D 09		STA	DTARG		; DISPLAY NUMBER OF ZYLONS
+     B1C8         	CSER11
+                  	;		CALCULATE WARP ENERGY
+     B1C8 38      		SEC
+     B1C9 A5 8F   		LDA	HYHPOS
+     B1CB E5 8D   		SBC	GHPOS
+     B1CD B0 04   		BCS	CSERV3
+     B1CF 49 FF   		EOR	#$FF
+     B1D1 69 01   		ADC	#$01
+     B1D3         	CSERV3
+     B1D3 85 AA   		STA	TEMP
+                  	;
+     B1D5 38      		SEC
+     B1D6 A5 8E   		LDA	HYVPOS
+     B1D8 E5 8C   		SBC	GVPOS

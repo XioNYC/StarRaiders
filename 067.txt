@@ -1,0 +1,60 @@
+                  	;
+                  	;
+                  	;
+                  	;
+                  	;
+     B3BA         	LDTABS
+                  	;		INIT PTAB,BCDCON,VCONL,VCONH,DISCTL,CHTRAM
+                  	;
+     B3BA A2 59   		LDX	#89
+     B3BC         	LDTB10
+     B3BC A9 0D   		LDA	#$0D
+     B3BE 9D 85 02		STA	DISPLY+5,X
+     B3C1 E0 0A   		CPX	#$0A
+     B3BC B0 05   		BCS	LDTAB8
+                  	;		LD PF COLORS
+     B3C5 BD A9 BF		LDA	CLITAB,X
+     B3C8 95 F2   		STA	COLRAM+4,X
+     B3CA         	LDTAB8
+     B3CA CA      		DEX
+     B3CB 10 EF   		BPL	LDTB10
+     B3CD A9 70   		LDA	#$70
+     B3CF 8D 80 02		STA	DISPLY+0
+     B3D2 8D 81 02		STA	DISPLY+1
+     B3D5 A9 41   		LDA	#$41
+     B3D7 8D E7 02		STA	DISPLY+103
+     B3DA A9 80   		LDA	#DISPLY
+     B3DC 8D E8 02		STA	DISPLY+104
+     B3DF A9 02   		LDA	#DISPLY/256
+     B3E1 8D E9 02		STA	DISPLY+105
+                  	;
+                  	;
+                  	;
+                  	;
+                  	;
+     B3E4 A2 00   		LDX	#$00
+     B3E6 86 68   		STX	PNTR
+     B3E8 86 69   		STX	PNTR+1
+     B3EA 86 6A   		STX	TEMP
+     B3EC 86 6B   		STX	TEMP1
+     B3EE         	LDTAB1
+     B3EE 18      		CLC
+     B3EF A5 68   		LDA	PNTR
+     B3F1 69 51   		ADC	#SCPTAB
+     B3F3 85 68   		STA	PNTR
+     B3F5 A5 69   		LDA	PNTR+1
+     B3F7 9D E9 0D		STA	PTAB,X
+     B3FA 69 00   		ADC	#$00
+     B3FC 85 69   		STA	PNTR+1
+     B3FE 18      		CLC
+     B3FF A5 6A   		LDA	TEMP
+     B401 69 6A   		ADC	#SCBCD
+     B403 85 6B   		STA	TEMP
+     B405 A5 6B   		LDA	TEMP1
+     B407 9D E9 0E		STA	BCDCON,X
+     B40A F8      		SED
+     B40B 69 00   		ADC	#$00
+     B40D D8      		CLD
+     B40E 85 6B   		STA	TEMP1
+     B410 E8      		INX
+     B411 D0 DB   		BNE	LDTAB1

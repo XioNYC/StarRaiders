@@ -1,0 +1,60 @@
+     B4DE C8      		INY
+     B4DF C0 A0   		CPY	#160		; ALL DONE ?
+     B4E1 90 DA   		BCC	LDGAL1		; NO
+     B4E3 60      		RTS
+                  	;
+                  	;
+                  	;
+                  	;
+     B4E4         	TIMERS
+                  	;		SERVICE TIMERS, STARDATE AND ZYLON JUMP
+                  	;	UPDATE TIMEX, USED FOR STAR INTENSITY MULTIPLEX
+                  	;
+     B4E4 E6 76   		INC	BINTIM		; UPDATE BINARY TIMER
+     B4E6 A2 90   		LDX	#DIMBLU
+     B4E8 A5 76   		LDA	BINTIM
+     B4EA 10 09   		BPL	TIME46
+     B4EC AC 55 09		LDY	DENERG+0
+     B4EF C0 80   		CPY	#$80
+     B4F1 D0 02   		BNE	TIME46
+     B4F3 A2 44   		LDX	#RED
+     B4F5         	TIME46
+     B4F5 29 03   		AND	#$03
+     B4F7 85 72   		STA	TIMERX
+     B4F9 D0 1F   		BNE	TIME33
+                  	;	SHIELDS SECTION
+     B4FB A4 7D   		LDY	SHENER
+     B4FD F0 17   		BEQ	TIME31
+     B4FF A0 A0   		LDY	#DBLUE
+     B501 2C 94 09		BIT	DAMAGE+2
+     B504 10 0B   		BPL	TIME47
+     B506 70 07   		BVS	TIME32
+     B508 AD 0A D2		LDA	RANDOM
+     B50B C9 C8   		CMP	#200
+     B50D 90 07   		BCC	TIME31
+     B50F         	TIME32
+     B50F A0 00   		LDY	#$00
+     B511         	TIME47
+     B511 98      		TYA
+     B512 D0 02   		BNE	TIME31
+     B514 A2 26   		LDX	#YELLOW
+     B516         	TIME31
+     B516 84 81   		STY	SPABAK
+     B518 86 FB   		STX	COLRAM+13
+     B51A         	TIME33
+                  	;		END UPDATE TIMERX
+                  	;
+                  	;		PHOTON TIMEOUT
+     B51A A2 02   		LDX	#402
+     B51C         	TIMER6
+     B51C BD 8E 0C		LDA	GINDEX+2,X		; PHOTON ?
+     B51F D0 06   		BNE	TIMER7
+     B521 B5 EB   		LDA	STFLAG+2,X		; PHOTON TIMEOUT ?
+     B523 F0 02   		BEQ	TIMER7		; YES
+     B525 D6 EB   		DEC	STFLAG+2,X		; DEC PHOTON TIMER
+     B527         	TIMER7
+     B527 CA      		DEX
+     B528 10 F2   		BPL	TIMER6
+                  	;
+                  	;		EXPLOSION TIMEOUT
+                  	;

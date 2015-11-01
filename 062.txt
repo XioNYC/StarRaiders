@@ -1,0 +1,60 @@
+     B1DA B0 04   		BCS	CSERV4
+     B1DC 49 FF   		EOR	#$FF
+     B1DE 69 01   		ADC	#$01
+     B1E0         	CSERV4
+     B1E0 4A      		LSR	A
+     B1E1 18      		CLC
+     B1E2 65 6A   		ADC	TEMP
+     B1E4 A8      		TAY
+     B1E5 4A      		LSR	A
+     B1E6 4A      		LSR	A
+     B1E7 4A      		LSR	A
+     B1E8 AA      		TAX
+     B1E9 98      		TYA
+     B1EA 29 03   		AND	#$03
+     B1EC 18      		CLC
+     B1ED 7D DD DA		ADC	ENGTAB,X
+                  	;
+     B1F0 85 91   		STA	HYPENG
+     B1F2 A8      		TAY
+     B1F3 A9 10   		LDA	#$10
+     B1F5 8D 7D 09		STA	DWENER+0
+     B1F8 8D 7E 09		STA	DWENER+1
+     B1FB 8D 7F 09		STA	DWENER+2
+     B1FE         	CSERV6
+     B1FE A2 02   		LDX	#$02
+     B200         	CSERV5
+     B200 FE 7D 09		INC	DWENER,X
+     B203 BD 7D 09		LDA	DWENER,X
+     B206 C9 1A   		CMP	#$1A
+     B208 90 08   		BCC	CSERV7
+     B20A A9 10   		LDA	#$10
+     B20C 9D 7D 09		STA	DWENER,X
+     B20F CA      		DEX
+     B210 10 EE   		BPL	CSERV5
+     B212         	CSERV7
+     B212 88      		DEY
+     B213 D0 E9   		BNE	CSERV6
+     B215 60      		RTS
+                  	;
+                  	;
+                  	;
+     B216         	MSERVE
+                  	;		SERVICE MESSAGE
+     B216 A5 D1   		LDA	SENPTR		; MESSAGE ON ?
+     B218 F0 05   		BEQ	LDMS14		; NO
+     B21A C6 CF   		DEC	MESTIM		; TIMED OUT ?
+     B21C F0 10   		BEQ	LDMES1		; YES
+     B21E         	LDMES2
+     B21E 60      		RTS
+     B21F         	LDMES14
+     B21F A4 65   		LDY	REPMSG		; REPEAT THE MESSAGE ?
+     B221 F0 FB   		BEQ	LDMES2		; NO
+     B223         	LDMESS		; ENTRY POINT TO INIT MESSAGE  **********************
+     B223 84 D1   		STY	SENPTR
+     B225 A0 23   		LDY	#LISTB6-LISTAB
+     B227 A2 0F   		LDX	#DISPL2-DISPLY
+     B229 A9 07   		LDA	#$07
+     B22B 20 F1 AD		JSR	LDISP		; REVISE DISPLAY LIST FOR MESSAGE
+     B22E         	LDMES1
+     B22E A2 13   		LDX	#19		; CLEAR MESSAGE RAM
