@@ -1,1 +1,60 @@
-
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+b3ba `` `` ``	ldtabs
+```` `` `` ``	;		init ptab,bcdcon,vconl,vconh,disctl,chtram
+```` `` `` ``	;
+b3ba a2 59 ``		ldx	#89
+b3bc `` `` ``	ldtb10
+b3bc a9 0d ``		lda	#$0d
+b3be 9d 85 02		sta	disply+5,x
+b3c1 e0 0a ``		cpx	#$0a
+b3bc b0 05 ``		bcs	ldtab8
+```` `` `` ``	;		ld pf colors
+b3c5 bd a9 bf		lda	clitab,x
+b3c8 95 f2 ``		sta	colram+4,x
+b3ca `` `` ``	ldtab8
+b3ca ca `` ``		dex
+b3cb 10 ef ``		bpl	ldtb10
+b3cd a9 70 ``		lda	#$70
+b3cf 8d 80 02		sta	disply+0
+b3d2 8d 81 02		sta	disply+1
+b3d5 a9 41 ``		lda	#$41
+b3d7 8d e7 02		sta	disply+103
+b3da a9 80 ``		lda	#disply
+b3dc 8d e8 02		sta	disply+104
+b3df a9 02 ``		lda	#disply/256
+b3e1 8d e9 02		sta	disply+105
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+```` `` `` ``	;
+b3e4 a2 00 ``		ldx	#$00
+b3e6 86 68 ``		stx	pntr
+b3e8 86 69 ``		stx	pntr+1
+b3ea 86 6a ``		stx	temp
+b3ec 86 6b ``		stx	temp1
+b3ee `` `` ``	ldtab1
+b3ee 18 `` ``		clc
+b3ef a5 68 ``		lda	pntr
+b3f1 69 51 ``		adc	#scptab
+b3f3 85 68 ``		sta	pntr
+b3f5 a5 69 ``		lda	pntr+1
+b3f7 9d e9 0d		sta	ptab,x
+b3fa 69 00 ``		adc	#$00
+b3fc 85 69 ``		sta	pntr+1
+b3fe 18 `` ``		clc
+b3ff a5 6a ``		lda	temp
+b401 69 6a ``		adc	#scbcd
+b403 85 6b ``		sta	temp
+b405 a5 6b ``		lda	temp1
+b407 9d e9 0e		sta	bcdcon,x
+b40a f8 `` ``		sed
+b40b 69 00 ``		adc	#$00
+b40d d8 `` ``		cld
+b40e 85 6b ``		sta	temp1
+b410 e8 `` ``		inx
+b411 d0 db ``		bne	ldtab1
