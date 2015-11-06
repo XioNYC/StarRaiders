@@ -1,0 +1,60 @@
+        B5EA            TIME18               ; MAIN LOOP
+        B5EA EB                 INX
+        B5ED 10 20              BPL     TIME40
+                        ;               END ZYLON JUMP ROUTINE
+        BSED A2 00              LDX     #$00
+        B5EF            TIME20
+        B5EF BD C9 08           LDA     CHTRAM, X
+        B5F2 29 DF              AND     #$DF
+        B5F4 9D C9 08           STA     CHTRAM, X
+        B5F7 EB                 INX
+        B5F8 10 F5              BPL     TIME20
+        B5FA 2C 97 09           BIT     DAMAGE+5
+        B5FD 70 1D              BVS     TIME44
+        B4FF A2 00              LDX     #$00            ; ANY STARBASES SURROUNDED ?
+        B601            TIME21
+        B601 BD C9 08           LDA     CHTRAM, X
+        B604 10 13              BPL     TIME19
+        B606 20 F1 B7           JSR     TIMHLP
+        B609 F0 OE              BEG     TIME19
+                        ;               STAR    BASE SURROUNDED
+        B60B A9 63              LDA     #99
+        B60D 85 78              STA     JMPTIM          ; 99 CENTONS BEFORE DESTROY
+        B60F A0 13              LDY     #SENSUR-SENTAB
+        B611 20 23 B2           JSR     LDMESS
+        B614 A2 1B              LDX     #CH4TB5-CH4TAB
+        B616 4C A6 B3           JMP     NOTINT
+        B619            TIME19
+        B619 EB                 INX
+        B61A 10 E5              BPL     TIME21
+        B61C            TIME44
+        B61C 60                 RTS
+        B61D            TIME40
+        B61D BC C9 08           LDY     CHTRAM, X
+        B620 C0 DA              CPY     #$0A            ; STARBASE , OR ALREADY CALCULATED
+        B622 B0 C6              BCS     TIME18
+        B624 AD 0A D2           LDA     RANDOM
+        B627 D9 BB BF           CMP     JMPWHN, Y
+        B62A B0 BE              BCS     TIME18
+        B62C E4 90              CPX     GUADRT
+        B62E F0 BA              BEQ     TIME18
+                        ;               CALCULATE GRADIENT
+        B630 A0 08              LDY     #$08
+        B632            TIME27
+        B632 18                 CLC
+        B633 8A                 TXA
+        B634 79 CO BF           ADC     JMPTAB, Y
+        B637 85 6A              STA     TEMP
+        B639 29 0F              AND     #$OF
+        B63B 38                 SEC
+        B63C E5 94              SBC     KILOCH
+        B63E B0 04              BCS     TIME26
+        B640 49 FF              EDR     #$FF
+        B641 69 01              ADC     #$01
+        B644            TIME26
+        B644 85 6B              STA     TEMP1
+        B646 A5 6A              LDA     TEMP
+        B648 4A                 LSR     A
+        B649 4A                 LSR     A
+        B64A 4A                 LSR     A
+        B64B 4A                 LSR     A
