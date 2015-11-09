@@ -1,0 +1,50 @@
+B8A1 A2 04                       LDX     #$04
+B8A3 20 0A B1                    JSR     CRATE
+B8A6                     PANDS9
+B8A6                     PANDS5
+B8A6 60                          RTS
+                         ;
+                         ;
+                         ;
+B8A7                     TWOCOM
+                         ;               TWOS OMPLEMENT AND CONVERT TO B CD HELPER ROUTINE
+                         ;       A=OFFSET(X,Y,Z), Y=WHERE TO STORE
+B8A7 18                          CLC
+B8A8 6D 5C 09                    ADC     DCSTOR          ; WHICH OBJ TRACKING
+B8AB AA                          TAX
+B8AC A9 10                       LDA     #$10            ; + SIGN
+B8AE 85 6A                       STA     TEMP
+B8B0 BD AD 09                    LDA     XSIGN,X         ; SIGN OF OBJ
+B8B3 4A                          LSR     A
+B8B4 BD 40 0A                    LDA     XPOSH,X
+B8B7 B0 04                       BCS     TWOCM1
+                         ;               NEGATIVE VALUE, TWOS COMPLEMENT
+B8B9 49 FF                       EOR     #$FF
+B8BB C6 6A                       DEC     TEMP            ; - SIGN
+B8BD                     TWOCM1
+B8BD AA                          TAX
+B8BE A5 6A                       LDA     TEMP
+B8C0 99 49 09                    STA     DISCTL+0,Y              ; STORE SIGN
+                         ;
+                         ;               NO INFINITY FOR THETA OR PHI
+B8C3 98                          TYA
+B8C4 29 10                       AND     #$10            ; THETA OR PHI ?
+B8C6 F0 05                       BEG     TWOCM3          ; NO
+B8C8 E0 FF                       CPX     #$FF            ; INFINITY ?
+B8CA D0 01                       BNE     TWOCM3          ; NO
+B8CC CA                          DEX                     ; X=FE, NOT FF
+                         ;
+                         ;
+B8CD                     TWOCM3                  ; ENTRY POINT TO LOAD ONLY **************
+                         ;
+B8CD BD E9 0E                    LDA     BCDCON,X                ; BCD CONVERT
+B8D0 AA                          TAX
+B8D1 29 0F                       AND     #$0F
+B8D3 99 4B 09                    STA     DISCTL+2,Y              ; LOW BYTE STORED
+B8D6 8A                          TXA
+B8D7 4A                          LSR     A
+B8D8 4A                          LSR     A
+B8D9 4A                          LSR     A
+B8DA 4A                          LSR     A
+B8DB 99 4A 09                    STA     DISCTL+1,Y              ; HIGHT BYTE STORED
+B8DE 60                          RTS
