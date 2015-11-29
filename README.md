@@ -24,13 +24,13 @@ That said, there is one thing which disqualifies your typical politican: you mus
 
 Most of the source code is in one of the following formats:
 ```
-                 	;
-                 	;	COMMENT
-    AAAA         	LABEL
-    AAAA BB      	LABEL	OP
-    AAAA BB CC   	LABEL	OP	ARG
-    AAAA BB CC DD	LABEL	OP	ARG
-    AAAA BB CC DD	LABEL	OP	ARG	; COMMENT
+             	;
+             	;	COMMENT
+AAAA         	LABEL
+AAAA BB      	LABEL	OP
+AAAA BB CC   	LABEL	OP	ARG
+AAAA BB CC DD	LABEL	OP	ARG
+AAAA BB CC DD	LABEL	OP	ARG	; COMMENT
 ```
 ...and so on.  The exact number of combinations I leave to the reader as homework in combinatiorials (No, the answer is not in the back of the textbook).  In these examples, `AAAA` represents a two-byte address; `BB`, `CC`, and `DD` represent one byte of operands, arguments, and/or memory contents; an optional `LABEL`; `OP` and `ARG` which are the assembler instructions; and `COMMENT`, which, if present, must be copied verbatim ad literatim.
 
@@ -42,9 +42,9 @@ Now, unlike the examples I've cited, the differences in source code styles are i
 
  1. There are eight spaces per tab.
  2. Each line begins with thirteen characters followed by a tab.
- 3. If you don't know how to set your tabs then don't use tabs at all - just use spaces.
+ 3. If you don't know how to set your tabs then please take this nicely: don't type this in.  (Manual re-entabbing is not pleasant.)
 
-(If 8 spaces per tab is against your religion, tough: it's against my religion, too, so you have no excuse.  `Space` it `XOR` `Tab` with 8.  Capisce?)
+(If 8 spaces per tab is against your religion, tough: it's against my religion, too, so you have no excuse.)
 
 How *Not*
 ---------
@@ -64,4 +64,5 @@ Cast
  * Kevin Savetz (a/k/a `savetz`) who has made this work ~~possible~~ necessary
  * Henry Ammermann (a/k/a `hintss`)
  * Misty De Meo (a/k/a `mistydemeo`)
+ * `zhuowei`
  * Typists Like You.
