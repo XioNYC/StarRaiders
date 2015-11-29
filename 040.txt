@@ -1,60 +1,60 @@
-     A956 99 42 0A		STA	XPOSH+2,Y
-     A959 98      		TYA
-     A95A 18      		CLC
-     A95B 69 31   		ADC	#RAMNUM
-     A95D A8      		TAY
-     A95E C9 93   		CMP	#RAMNUM*3
-     A960 90 E5   		BCC	HSERV3
-     A962 AD 42 0A		LDA	XPOSH+2
-     A965 09 71   		ORA	#$71
-     A967 8D 42 0A		STA	XPOSH+2
-     A96A A2 02   		LDX	#$02
-     A96C 4C BE B7		JMP	NEWST4
-     A96F         	HSERV2
-     A96F F0 0E   		BEQ	HSERV1
-     A971 A9 FF   		LDA	#$FF		; RED ALERT
-     A973 85 8B   		STA	REDFLG
-     A975 A2 06   		LDX	#CH4TB2-CH4TAB
-     A977 20 A6 B3		JSR	NOTINT
-     A97A A0 75   		LDY	#SENRED-SENTAB
-     A97C 20 23 B2		JSR	LDMESS
-     A97F         	HSERV1
-     A97F 60      		RTS
-                  	;
-                  	;
-                  	;
-                  	;
-     A980         	HABORT
-                  	;	HYPERWARP ABORT ROUTINE
-     A980 A2 01   		LDX	#$01
-     A982 20 6F B8		JSR	PANDS6
-     A985 A0 17   		LDY	#SENHWA-SENTAB		; ABORT
-     A987         	HABOR2		; ENTRY POINT HWARP COMPLETE  ***********************
-     A987 A9 00   		LDA	#$00
-     A989 85 71   		STA	WARP
-     A98B 85 C0   		STA	HFLAG
-     A98D         	HABOR1		; ENTRY POINT BEGIN JUMP  **************************
-     A98D A9 10   		LDA	#STLAST
-     A98F 85 79   		STA	NSTARS
-     A991 A9 00   		LDA	#$00
-     A993 85 C1   		STA	HISPED
-     A995 85 73   		STA	ETIMER		; KEEP PROGRAM FROM GOING SOUTH
-     A997 85 8A   		STA	HITME		; CLEAR THE OTHER EXPLOS BUG
-     A999 8D 8F 0C		STA	GINDEX+3
-     A99C 85 80   		STA	WPENER
-     A99E C0 17   		CPY	#SENHWA-SENTAB
-     A9A0 F0 04   		BEQ	HABOR3
-     A9A2 85 E9   		STA	STFLAG+0
-     A9A4 85 EA   		STA	STFLAG+1
-     A9A6         	HABOR3
-     A9A6 85 EB   		STA	STFLAG+2
-     A9A8 85 EC   		STA	STFLAG+3
-     A9AA 85 ED   		STA	STFLAG+4
-     A9AC 85 75   		STA	BSEQTM
-     A9AE 8D 5C 09		STA	DCSTOR
-     A9B1 4C 23 B2		JMP	LDMESS
-                  	;
-                  	;
-                  	;
-                  	;
-     A9B4         	HLINES
+A956 99 42 0A		STA	XPOSH+2,Y
+A959 98      		TYA
+A95A 18      		CLC
+A95B 69 31   		ADC	#RAMNUM
+A95D A8      		TAY
+A95E C9 93   		CMP	#RAMNUM*3
+A960 90 E5   		BCC	HSERV3
+A962 AD 42 0A		LDA	XPOSH+2
+A965 09 71   		ORA	#$71
+A967 8D 42 0A		STA	XPOSH+2
+A96A A2 02   		LDX	#$02
+A96C 4C BE B7		JMP	NEWST4
+A96F         	HSERV2
+A96F F0 0E   		BEQ	HSERV1
+A971 A9 FF   		LDA	#$FF		; RED ALERT
+A973 85 8B   		STA	REDFLG
+A975 A2 06   		LDX	#CH4TB2-CH4TAB
+A977 20 A6 B3		JSR	NOTINT
+A97A A0 75   		LDY	#SENRED-SENTAB
+A97C 20 23 B2		JSR	LDMESS
+A97F         	HSERV1
+A97F 60      		RTS
+             	;
+             	;
+             	;
+             	;
+A980         	HABORT
+             	;	HYPERWARP ABORT ROUTINE
+A980 A2 01   		LDX	#$01
+A982 20 6F B8		JSR	PANDS6
+A985 A0 17   		LDY	#SENHWA-SENTAB		; ABORT
+A987         	HABOR2		; ENTRY POINT HWARP COMPLETE  ***********************
+A987 A9 00   		LDA	#$00
+A989 85 71   		STA	WARP
+A98B 85 C0   		STA	HFLAG
+A98D         	HABOR1		; ENTRY POINT BEGIN JUMP  **************************
+A98D A9 10   		LDA	#STLAST
+A98F 85 79   		STA	NSTARS
+A991 A9 00   		LDA	#$00
+A993 85 C1   		STA	HISPED
+A995 85 73   		STA	ETIMER		; KEEP PROGRAM FROM GOING SOUTH
+A997 85 8A   		STA	HITME		; CLEAR THE OTHER EXPLOS BUG
+A999 8D 8F 0C		STA	GINDEX+3
+A99C 85 80   		STA	WPENER
+A99E C0 17   		CPY	#SENHWA-SENTAB
+A9A0 F0 04   		BEQ	HABOR3
+A9A2 85 E9   		STA	STFLAG+0
+A9A4 85 EA   		STA	STFLAG+1
+A9A6         	HABOR3
+A9A6 85 EB   		STA	STFLAG+2
+A9A8 85 EC   		STA	STFLAG+3
+A9AA 85 ED   		STA	STFLAG+4
+A9AC 85 75   		STA	BSEQTM
+A9AE 8D 5C 09		STA	DCSTOR
+A9B1 4C 23 B2		JMP	LDMESS
+             	;
+             	;
+             	;
+             	;
+A9B4         	HLINES

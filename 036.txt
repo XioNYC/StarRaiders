@@ -1,58 +1,58 @@
-     A7BA C6 A4   		DEC	NUMPTS		; POINTS ALL DRAWN ?
-     A7BC D0 D0   		BNE	DRAWR1
-     A7BE         	DRAWR2
-     A7BE 60      		RTS
-                  	;
-                  	;
-                  	;
-                  	;
-     A7BF         UPINST
-                  	;		UPDATE  INSET
-                  	;
-                  	;		FIRE CONTROL
-     A7BF AE 5C 09		LDX	DCSTOR		; WHICH OBJECT
-     A7C2 A4 A2   		LDY	TARPTR
-     A7C4 C0 05   		CPY	#$05
-     A7C6 B0 24   		BCS	UPINST2
-                  	;		LD TARGET DISPLAY
-     A7C8 A5 A0   		LDA	HTARGT
-     A7CA 85 A6   		STA	HDRAW
-     A7CC B9 6E BF		LDA	ZYTARG,Y
-     A7CF         	UPINS8
-     A7CF 0A      		ASL	A
-     A7D0 85 C6   		STA	TEMP2
-     A7D2 90 0D   		BCC	UPINST9
-     A7D4 A9 81   		LDA	#$81
-     A7D6 85 A4   		STA	NUMPTS
-     A7D8 A5 A1   		LDA	VTARGT
-     A7DA 85 A5   		STA	VDRAW
-     A7DC A9 AA   		LDA	#$AA
-     A7DE 20 84 A7		JSR	DRAWR3
-     A7E1         	UPINS9
-     A7E1 E6 A6   		INC	HDRAW
-     A7E3 A5 6C   		LDA	TEMP2
-     A7E5 D0 E8   		BNE	UPINS8
-     A7E7 E6 A1   		INC	VTARGT
-     A7E9         	UPIN10
-     A7E9 E6 A2   		INC	TARPTR
-     A7EB 60      		RTS
-     A7EC         	UPINS2
-     A7EC C0 0A   		CPY	#$0A
-     A7EE 90 F9   		BCC	UPIN10
-     A7F0 B5 E9   		LDA	STFLAG,X
-     A7F2 F0 3C   		BEQ	UPINS3
-     A7F4 BD 71 0A		LDA	YPOSH,X
-     A7F7 BC DE 09		LDY	YSIGN,X
-     A7FA F0 08   		BEQ	UPINS4
-     A7FC C9 0C   		CMP	#$0C
-     A7FE 90 0A   		BCC	UPINS5
-     A804         	UPINS4
-     A804 C9 F5   		CMP	#$F5
-     A806 B0 02   		BCS	UPINS5
-     A808 A9 F5   		LDA	#$F5
-     A80A         	UPINS5
-     A80A 18      		CLC
-     A80B 69 83   		ADC	#131
-     A80D 85 A0   		STA	HTRGT
-     A80F BD A2 0A		LDA	ZPOSH,X
-     A812 49 FF   		EOR	#$FF
+A7BA C6 A4   		DEC	NUMPTS		; POINTS ALL DRAWN ?
+A7BC D0 D0   		BNE	DRAWR1
+A7BE         	DRAWR2
+A7BE 60      		RTS
+             	;
+             	;
+             	;
+             	;
+A7BF         UPINST
+             	;		UPDATE  INSET
+             	;
+             	;		FIRE CONTROL
+A7BF AE 5C 09		LDX	DCSTOR		; WHICH OBJECT
+A7C2 A4 A2   		LDY	TARPTR
+A7C4 C0 05   		CPY	#$05
+A7C6 B0 24   		BCS	UPINST2
+             	;		LD TARGET DISPLAY
+A7C8 A5 A0   		LDA	HTARGT
+A7CA 85 A6   		STA	HDRAW
+A7CC B9 6E BF		LDA	ZYTARG,Y
+A7CF         	UPINS8
+A7CF 0A      		ASL	A
+A7D0 85 C6   		STA	TEMP2
+A7D2 90 0D   		BCC	UPINST9
+A7D4 A9 81   		LDA	#$81
+A7D6 85 A4   		STA	NUMPTS
+A7D8 A5 A1   		LDA	VTARGT
+A7DA 85 A5   		STA	VDRAW
+A7DC A9 AA   		LDA	#$AA
+A7DE 20 84 A7		JSR	DRAWR3
+A7E1         	UPINS9
+A7E1 E6 A6   		INC	HDRAW
+A7E3 A5 6C   		LDA	TEMP2
+A7E5 D0 E8   		BNE	UPINS8
+A7E7 E6 A1   		INC	VTARGT
+A7E9         	UPIN10
+A7E9 E6 A2   		INC	TARPTR
+A7EB 60      		RTS
+A7EC         	UPINS2
+A7EC C0 0A   		CPY	#$0A
+A7EE 90 F9   		BCC	UPIN10
+A7F0 B5 E9   		LDA	STFLAG,X
+A7F2 F0 3C   		BEQ	UPINS3
+A7F4 BD 71 0A		LDA	YPOSH,X
+A7F7 BC DE 09		LDY	YSIGN,X
+A7FA F0 08   		BEQ	UPINS4
+A7FC C9 0C   		CMP	#$0C
+A7FE 90 0A   		BCC	UPINS5
+A804         	UPINS4
+A804 C9 F5   		CMP	#$F5
+A806 B0 02   		BCS	UPINS5
+A808 A9 F5   		LDA	#$F5
+A80A         	UPINS5
+A80A 18      		CLC
+A80B 69 83   		ADC	#131
+A80D 85 A0   		STA	HTRGT
+A80F BD A2 0A		LDA	ZPOSH,X
+A812 49 FF   		EOR	#$FF

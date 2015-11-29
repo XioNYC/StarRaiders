@@ -1,23 +1,23 @@
-                  	;
-                  	;
-                  	;
-                  	;		IRQ INTERRUPT SERVICE SECTION
-                  	;
-     A751		IRQVEC
-                  	;		PUSH ACCUM REGISTERS
-     A751 48      		PHA
-                  	;			END PUSH
-     A752 A9 00   		LDA	#$00
-     A754 8D 0E D2		STA	IRQEN		; RESET IRQ'S
-     A757 A9 40   		LDA	#IRQMSK
-     A759 8D 0E D2		STA	IRQEN
-     A75C AD 09 D2		LDA	KBCODE
-     A75F 09 C0   		ORA	#$C0
-     A761 85 CA   		STA	THEKEY
-     A763 68      		PLA
-     A764 40      		RTI
-                  	;
-                  	;			END IRQ INTERRUPT SECTION
-                  	;
-                  	;
-                  	;
+             	;
+             	;
+             	;
+             	;		IRQ INTERRUPT SERVICE SECTION
+             	;
+A751		IRQVEC
+             	;		PUSH ACCUM REGISTERS
+A751 48      		PHA
+             	;			END PUSH
+A752 A9 00   		LDA	#$00
+A754 8D 0E D2		STA	IRQEN		; RESET IRQ'S
+A757 A9 40   		LDA	#IRQMSK
+A759 8D 0E D2		STA	IRQEN
+A75C AD 09 D2		LDA	KBCODE
+A75F 09 C0   		ORA	#$C0
+A761 85 CA   		STA	THEKEY
+A763 68      		PLA
+A764 40      		RTI
+             	;
+             	;			END IRQ INTERRUPT SECTION
+             	;
+             	;
+             	;

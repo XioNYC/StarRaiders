@@ -1,10 +1,10 @@
-                  	;
-                  	;		ENABLE INTERRUPTS
-     A1E8 A9 40   		LDA	#IRQMSK
-     A1EA 8D 0E D2		STA	IRQEN
-     A1ED 58      		CLI		; IRQS READY
-     A1EE A9 C0   		LDA	#$C0
-     A1F0 8D 0E D4		STA	NMIEN		; NMIS READY
-                  	;
-                  	;		END INIT
-                  	;
+             	;
+             	;		ENABLE INTERRUPTS
+A1E8 A9 40   		LDA	#IRQMSK
+A1EA 8D 0E D2		STA	IRQEN
+A1ED 58      		CLI		; IRQS READY
+A1EE A9 C0   		LDA	#$C0
+A1F0 8D 0E D4		STA	NMIEN		; NMIS READY
+             	;
+             	;		END INIT
+             	;

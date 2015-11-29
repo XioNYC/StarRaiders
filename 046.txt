@@ -1,60 +1,60 @@
-     ABB1 B5 A8   		LDA	SEQEN,X
-     ABB3         	THIN28
-     ABB3 2C 0A D2		BIT	RANDOM
-     ABB6 10 02   		BPL	THIN31
-     ABB8 49 0F   		EOR	#$0F
-     ABBA         	THIN31
-     ABBA 95 AC   		STA	XINDES,X
-     ABBC E8      		INX
-     ABBD E8      		INX
-     ABBE E0 06   		CPX	#$06
-     ABC0 90 F1   		BCC	THIN28
-     ABC2 A6 A7   		LDX	ZYTOGG		; RESTORE X
-     ABC4         	THIN30
-                  	;
-                  	;		ZYLON STRAFING SECTION
-                  	;
-     ABC4 B5 A8   		LDA	SEQEN,X
-     ABC6 D0 32   		BNE	THIN24
-     ABC8 A4 A7   		LDY	ZYTOGG
-     ABCA         	THIN11
-     ABCA C0 31   		CPY	#RAMNUM
-     ABCC B0 13   		BCS	THIN12
-     ABCE B9 B8 00		LDA	BSTRAF,Y
-     ABD1 4A      		LSR	A
-     ABD2 B9 40 0A		LDA	XPOSH,Y
-     ABD5 B0 06   		BCS	THIN36
-     ABD7 C9 0A   		CMP	#$0A
-     ABD9 90 0E   		BCC	THIN22
-     ABDB B0 04   		BCS	THIN12		; JUMP
-     ABDD         	THIN36
-     ABDD C9 F5   		CMP	#$F5
-     ABDF B0 04   		BCS	THIN33
-     ABE1         	THIN12
-     ABE1 B9 AD 09		LDA	XSIGN,Y
-     ABE4 4A      		LSR	A
-     ABE5         	THIN33
-     ABE5 A9 0F   		LDA	#$0F
-     ABE7 B0 02   		BCS	THIN23
-     ABE9         	THIN22
-     ABE9 A9 00   		LDA	#$00
-     ABEB         	THIN23
-     ABEB 95 AC   		STA	XINDES,X
-     ABED 18      		CLC
-     ABEE 98      		TYA
-     ABEF 69 31   		ADC	#RAMNUM
-     ABF1 A8      		TAY
-     ABF2 E8      		INX
-     ABF3 E8      		INX
-     ABF4 E0 06   		CPX	#$06
-     ABF6 90 D2   		BCC	THIN11
-     ABF8 A6 A7   		LDX	ZYTOGG		; RESTORE X
-     ABFA         	THIN24
-                  	;
-                  	;		ACCELERATION SECTION
-                  	;
-     ABFA A4 A7   		LDY	ZYTOGG
-     ABFC         	THINK8
-     ABFC B5 B2   		LDA	XINPRS,X
-     ABFE D5 AC   		CMP	XINDES,X
-     AC00 F0 08   		BEQ	THINK10
+ABB1 B5 A8   		LDA	SEQEN,X
+ABB3         	THIN28
+ABB3 2C 0A D2		BIT	RANDOM
+ABB6 10 02   		BPL	THIN31
+ABB8 49 0F   		EOR	#$0F
+ABBA         	THIN31
+ABBA 95 AC   		STA	XINDES,X
+ABBC E8      		INX
+ABBD E8      		INX
+ABBE E0 06   		CPX	#$06
+ABC0 90 F1   		BCC	THIN28
+ABC2 A6 A7   		LDX	ZYTOGG		; RESTORE X
+ABC4         	THIN30
+             	;
+             	;		ZYLON STRAFING SECTION
+             	;
+ABC4 B5 A8   		LDA	SEQEN,X
+ABC6 D0 32   		BNE	THIN24
+ABC8 A4 A7   		LDY	ZYTOGG
+ABCA         	THIN11
+ABCA C0 31   		CPY	#RAMNUM
+ABCC B0 13   		BCS	THIN12
+ABCE B9 B8 00		LDA	BSTRAF,Y
+ABD1 4A      		LSR	A
+ABD2 B9 40 0A		LDA	XPOSH,Y
+ABD5 B0 06   		BCS	THIN36
+ABD7 C9 0A   		CMP	#$0A
+ABD9 90 0E   		BCC	THIN22
+ABDB B0 04   		BCS	THIN12		; JUMP
+ABDD         	THIN36
+ABDD C9 F5   		CMP	#$F5
+ABDF B0 04   		BCS	THIN33
+ABE1         	THIN12
+ABE1 B9 AD 09		LDA	XSIGN,Y
+ABE4 4A      		LSR	A
+ABE5         	THIN33
+ABE5 A9 0F   		LDA	#$0F
+ABE7 B0 02   		BCS	THIN23
+ABE9         	THIN22
+ABE9 A9 00   		LDA	#$00
+ABEB         	THIN23
+ABEB 95 AC   		STA	XINDES,X
+ABED 18      		CLC
+ABEE 98      		TYA
+ABEF 69 31   		ADC	#RAMNUM
+ABF1 A8      		TAY
+ABF2 E8      		INX
+ABF3 E8      		INX
+ABF4 E0 06   		CPX	#$06
+ABF6 90 D2   		BCC	THIN11
+ABF8 A6 A7   		LDX	ZYTOGG		; RESTORE X
+ABFA         	THIN24
+             	;
+             	;		ACCELERATION SECTION
+             	;
+ABFA A4 A7   		LDY	ZYTOGG
+ABFC         	THINK8
+ABFC B5 B2   		LDA	XINPRS,X
+ABFE D5 AC   		CMP	XINDES,X
+AC00 F0 08   		BEQ	THINK10

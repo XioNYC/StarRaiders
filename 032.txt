@@ -1,60 +1,60 @@
-                  	;
-                  	;		NMI INTERRUPT SERVICE SECTION
-                  	;
-                  	;
-     A6D1         	VBNMI
-     A6D1 A9 FF   		LDA	#$FF
-     A6D3 85 67   		STA	PROGST			; SET PROGST VBLANK NMI FLAG
-     A6D5 A9 E0   		LDA	#ALPHA/256
-     A6D7 8D 09 D4		STA	CHBASE		; USE STANDARD ALPHA CHARACTERS
-     A6DA A6 F6   		LDX	COLRAM+8		; BAK
-     A6DC AD 0A D2		LDA	RANDOM
-     A6DF 24 8A   		BIT	HTIME
-     A6E1 50 07   		BVC	VBLNK4
-     A6E3 30 04   		BMI	VBLNK1
-     A6E5 29 72   		AND	#$72
-     A6E7 09 40   		ORA	#$40
-     A6E9         	VBLNK1
-     A6E9 AA      		TAX
-     A6EA         	VBNLK4
-     A6EA A5 D0   		LDA	DISFLG
-     A6EC C9 03   		CMP	#$03
-     A6EE 90 02   		BCC	VBLNK2
-     A6F0 A2 A0   		LDX	#DBLUE
-     A6F2         	VBLNK2
-     A6F2 86 F6   		STX	COLRAM+8		; BAK
-                  	;
-     A6F4 A2 08   		LDX	#$08
-     A6F6         	VBLNK3
-     A6F6 B5 EE   		LDA	COLRAM+0,X
-     A6F8 9D 12 D0		STA	COLPM0,X
-     A6FB CA      		DEX
-     A6FC 10 F8   		BPL	VBLNK3
-                  	;
-                  	;
-     A6FE 8D 1E D0		STA	HITCLR		; RESET HITS
-                  	;
-     A701 20 AB B2		JSR	AUDIO		; SERVICE AUDIO
-                  	;
-     A704 E6 77   		INC	BINNMI		; ATRACT MODE STUFF
-     A706 D0 0D   		BNE	VBLNK5
-     A708 A5 66   		LDA	TIMOUT
-     A70A 30 09   		BMI	VBLNK5
-     A70C E6 66   		INC	TIMOUT
-     A70E 10 05   		BPL	VBLNK5
-     A710 10 05   		BPL	VBLNK5
-     A712 A4 5C A1		JMP	INIT4
-     A715         		VBLNK5
-                  	;
-                  	;
-     A715 4C 4B A7		JMP	POPALL
-                  	;
-     A718         	DISNMI
-     A718 48      		PHA		; PUSH ALL REGISTERS FOR OP SYSTEM
-     A719 8A      		TXA
-     A71A 48      		PHA
-     A71B 98      		TYA
-     A71C 48      		PHA
-     A71D A9 E0   		LDA	#ALPHA/256
-     A71F AC 0B D4		LDY	VCOUNT
-     A722 C0 60   		CPY	#$60
+             	;
+             	;		NMI INTERRUPT SERVICE SECTION
+             	;
+             	;
+A6D1         	VBNMI
+A6D1 A9 FF   		LDA	#$FF
+A6D3 85 67   		STA	PROGST			; SET PROGST VBLANK NMI FLAG
+A6D5 A9 E0   		LDA	#ALPHA/256
+A6D7 8D 09 D4		STA	CHBASE		; USE STANDARD ALPHA CHARACTERS
+A6DA A6 F6   		LDX	COLRAM+8		; BAK
+A6DC AD 0A D2		LDA	RANDOM
+A6DF 24 8A   		BIT	HTIME
+A6E1 50 07   		BVC	VBLNK4
+A6E3 30 04   		BMI	VBLNK1
+A6E5 29 72   		AND	#$72
+A6E7 09 40   		ORA	#$40
+A6E9         	VBLNK1
+A6E9 AA      		TAX
+A6EA         	VBNLK4
+A6EA A5 D0   		LDA	DISFLG
+A6EC C9 03   		CMP	#$03
+A6EE 90 02   		BCC	VBLNK2
+A6F0 A2 A0   		LDX	#DBLUE
+A6F2         	VBLNK2
+A6F2 86 F6   		STX	COLRAM+8		; BAK
+             	;
+A6F4 A2 08   		LDX	#$08
+A6F6         	VBLNK3
+A6F6 B5 EE   		LDA	COLRAM+0,X
+A6F8 9D 12 D0		STA	COLPM0,X
+A6FB CA      		DEX
+A6FC 10 F8   		BPL	VBLNK3
+             	;
+             	;
+A6FE 8D 1E D0		STA	HITCLR		; RESET HITS
+             	;
+A701 20 AB B2		JSR	AUDIO		; SERVICE AUDIO
+             	;
+A704 E6 77   		INC	BINNMI		; ATRACT MODE STUFF
+A706 D0 0D   		BNE	VBLNK5
+A708 A5 66   		LDA	TIMOUT
+A70A 30 09   		BMI	VBLNK5
+A70C E6 66   		INC	TIMOUT
+A70E 10 05   		BPL	VBLNK5
+A710 10 05   		BPL	VBLNK5
+A712 A4 5C A1		JMP	INIT4
+A715         		VBLNK5
+             	;
+             	;
+A715 4C 4B A7		JMP	POPALL
+             	;
+A718         	DISNMI
+A718 48      		PHA		; PUSH ALL REGISTERS FOR OP SYSTEM
+A719 8A      		TXA
+A71A 48      		PHA
+A71B 98      		TYA
+A71C 48      		PHA
+A71D A9 E0   		LDA	#ALPHA/256
+A71F AC 0B D4		LDY	VCOUNT
+A722 C0 60   		CPY	#$60

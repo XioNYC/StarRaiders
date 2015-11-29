@@ -1,59 +1,59 @@
-     B128 05 62   		ORA	MISDIF		; MISSION DIFF GAME RESULT
-     B12A AA      		TAX
-     B12B BD DD BE		LDA	DIFTAB,X
-     B12E 1B      		CLC
-     B12F 65 CB   		ADC	RATING
-     B131 AA      		TAX
-     B132 A9 00   		LDA	#$00
-     B134 85 C9   		STA	VERJOY
-     B136 85 C8   		STA	HORJOY
-     B13A 65 CC   		ADC	RATING+1
-     B13C 4A      		LSR	A
-     B13D 8A      		TXA
-     B13E 6A      		ROR	A
-     B13F 4A      		LSR	A
-     B140 4A      		LSR	A
-     B141 4A      		LSR	A
-     B142 C9 13   		CMP	#$13
-     B144 90 04   		BCC	CRATE2
-     B146 A9 12   		LDA	#$12
-     B148 A2 0F   		LDX	#$0F
-     B14A         	CRATE2
-     B14A 85 CD   		STA	ENDRAT
-     B14C A8      		TAY
-     B14D 8A      		TXA
-     B14E C0 00   		CPY	#$00
-     B150 F0 0B   		BEQ	CRATE4
-     B152 C0 0B   		CPY	#$0B
-     B154 90 04   		BCC	CRATE5
-     B156 C0 0F   		CPY	#$0F
-     B158 90 03   		BCC	CRATE4
-     B15A         	CRATE5
-     B15A 4A      		LSR	A
-     B15B 49 08   		EOR	#$08
-     B15D         	CRATE4
-     B15D 29 0F   		AND	#$0F
-     B15F 85 CE   		STA	ENDCLS
-     B161         	CRATE3
-     B161 60      		RTS
+B128 05 62   		ORA	MISDIF		; MISSION DIFF GAME RESULT
+B12A AA      		TAX
+B12B BD DD BE		LDA	DIFTAB,X
+B12E 1B      		CLC
+B12F 65 CB   		ADC	RATING
+B131 AA      		TAX
+B132 A9 00   		LDA	#$00
+B134 85 C9   		STA	VERJOY
+B136 85 C8   		STA	HORJOY
+B13A 65 CC   		ADC	RATING+1
+B13C 4A      		LSR	A
+B13D 8A      		TXA
+B13E 6A      		ROR	A
+B13F 4A      		LSR	A
+B140 4A      		LSR	A
+B141 4A      		LSR	A
+B142 C9 13   		CMP	#$13
+B144 90 04   		BCC	CRATE2
+B146 A9 12   		LDA	#$12
+B148 A2 0F   		LDX	#$0F
+B14A         	CRATE2
+B14A 85 CD   		STA	ENDRAT
+B14C A8      		TAY
+B14D 8A      		TXA
+B14E C0 00   		CPY	#$00
+B150 F0 0B   		BEQ	CRATE4
+B152 C0 0B   		CPY	#$0B
+B154 90 04   		BCC	CRATE5
+B156 C0 0F   		CPY	#$0F
+B158 90 03   		BCC	CRATE4
+B15A         	CRATE5
+B15A 4A      		LSR	A
+B15B 49 08   		EOR	#$08
+B15D         	CRATE4
+B15D 29 0F   		AND	#$0F
+B15F 85 CE   		STA	ENDCLS
+B161         	CRATE3
+B161 60      		RTS
 
-                  	;
-                  	;
-                  	;
-     B162         	CSERVE
-                  	;		SERVICE GALACTIC CHART
-     B162 A5 C0   		LDA	HFLAG		; HWARP ON ?
-     B164 D0 04   		BNE	CSERV9		; YES
-     B166 A5 D0   		LDA	DISFLG		; DOING GALACTIC CHART ?
-     B168 30 01   		BMI	CSERV1		; NO
-     B16A         	CSERV9
-     B16A 60      		RTS
-     B16B         	CSERV1
-     B16B 2C 97 09		BIT	DAMAGE+5		; COMMUNICATIONS
-     B16E 30 03   		BMI	CSER10
-     B170 20 B9 B4		JSR	LDGALT		; LD UP THE CHART
-     B173         	CSER10
-     B173 A5 72   		LDA	TIMERX		; SLOW DOWN CURSOR MOVE
-     B175 29 01   		AND	#$01
-     B177 D0 2E   		BNE	CSERV8
-     B179 18      		CLC		; UPDATE HORIZ CURSOR POS
+             	;
+             	;
+             	;
+B162         	CSERVE
+             	;		SERVICE GALACTIC CHART
+B162 A5 C0   		LDA	HFLAG		; HWARP ON ?
+B164 D0 04   		BNE	CSERV9		; YES
+B166 A5 D0   		LDA	DISFLG		; DOING GALACTIC CHART ?
+B168 30 01   		BMI	CSERV1		; NO
+B16A         	CSERV9
+B16A 60      		RTS
+B16B         	CSERV1
+B16B 2C 97 09		BIT	DAMAGE+5		; COMMUNICATIONS
+B16E 30 03   		BMI	CSER10
+B170 20 B9 B4		JSR	LDGALT		; LD UP THE CHART
+B173         	CSER10
+B173 A5 72   		LDA	TIMERX		; SLOW DOWN CURSOR MOVE
+B175 29 01   		AND	#$01
+B177 D0 2E   		BNE	CSERV8
+B179 18      		CLC		; UPDATE HORIZ CURSOR POS

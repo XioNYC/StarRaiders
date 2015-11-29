@@ -1,0 +1,34 @@
+             	;
+B9DC         	ZYGRF7
+B9DC 10 10   		.BYTE	$10,$10
+B9DE         	GBASER
+B9DE E0 F8 F8		.BYTE	$E0,$F8,$F8,$FE,$57,$FE,$F8,$F8,$C0
+B9E1 FE 57 FE	
+B9E4 F8 F8 C0	
+B9E7         	GBASR3
+B9E7 C0 F0   		.BYTE	$C0,$F0
+B9E9         	GBASR1
+B9E9 C0 F0 F0		.BYTE	$C0,$F0,$F0,$FC,$BE,$FC,$F0,$80,$80
+B9EC FC BE FC	
+B9EF F0 80 80	
+B9F2         	GBASR2
+B9F2 C0 C0 F0		.BYTE	$C0,$C0,$F0,$BC,$F0,$C0
+B9F5 BC F0 C0	
+             	;
+             	;
+             	;
+B9F8         	GBASEL
+B9F8 07 1F 1F		.BYTE	7,$1F,$1F,$7F,$EA,$7F,$1F,$1F,$3
+B9FB 7F EA 7F	
+B9FE 1F 1F 03	
+BA01         	GBASL3
+BA01 03 0F   		.BYTE	3,$F
+BA03         	GBASL1
+BA03 03 0F 0F		.BYTE	3,$F,$F,$3F,$7D,$3F,$F,1,1
+BA06 3F 7D 3F	
+BA09 0F 01 01	
+BA0C         	GBASL2
+BA0C 03 03 0F		.BYTE	3,3,$F,$3D,$F,3
+BA0F 3D 0F 03	
+             	;
+             	;

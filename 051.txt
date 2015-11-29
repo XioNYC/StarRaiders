@@ -1,60 +1,60 @@
-     ADC0 20 A6 B3		JSR	NOTINT
-     ADC3 A0 21   		LDY	#SENETC-SENTAB
-     ADC5 20 23 B2		JSR	LDMESS
-                  	;		CLEAR	DAMAGE
-     ADC8 A2 05   		LDX	#$05
-     ADCA         	BSER12
-     ADCA BD 8B BB		LDA	STINIT+73,X
-     ADCD 9D 92 09		STA	DAMAGE,X
-     ADD0 CA      		DEX
-     ADD1 10 F7   		BPL	BSER12
-                  	;
-                  	;		NEW ENERGY
-     ADD3 A9 89   		LDA	#$89
-     ADD5 A2 03   		LDX	#$03
-     ADD7         	BSER20
-     ADD7 9D 55 09		STA	DENERG+0,X
-     ADDA CA      		DEX
-     ADDB 10 FA   		BPL	BSER20
-     ADDD A9 07   		LDA	#$07
-     ADDF 8D 6A 0B		STA	XINCRE+4
-     ADE2 A9 81   		LDA	#$81
-     ADE4 8D 9B 0B		STA	YINCRE+4
-     ADE7 A9 01   		LDA	#$01
-     ADE9 8D CC 0B		STA	ZINCRE+4
-     ADEC 85 75   		STA	BSEQTIM
-     ADEE 4C 7B B0		JMP	KEYSR7		; RE-LOAD INSET
-                  	;
-                  	;
-                  	;
-                  	;
-     ADF1         	LDISP
-                  	;	LOAD DISPLAY LISTS
-                  	;	A=#OF BYTES TO STORE, X=POSIT IN DSPLY, Y=PNTR IN LISTAB
-     ADF1 78      		SEI		; WE DONT WANT NO INTERUPTS !!
-     ADF2 85 6A   		STA	TEMP
-     ADF4         	LDISP3
-     ADF4 AD 0B D4		LDA	VCOUNT		; CHECK IF ANTIC IS IN SAFE AREA
-     ADF7 C9 7C   		CMP	#DISTOP
-     ADF9 90 F9   		BCC	LDISP3
-     ADFB         	LDISP2
-     ADFB B9 62 BA		LDA	LISTAB,Y
-     ADFE C8      		INY
-     ADFF 10 02   		BPL	LDISP1
-     AE01 A9 0D   		LDA	#$0D
-     AE03         	LDISP1
-     AE03 9D 80 02		STA	DISPLY,X
-     AE06 E8      		INX
-     AE07 C6 6A   		DEC	TEMP
-     AE09 D0 F0   		BNE	LDISP2
-     AE0B 58      		CLI			; IRQS BACK ON  !!
-     AE0C 60      		RTS
-                  	;
-                  	;
-                  	;
-                  	;
-                  	;
-                  	;
-                  	;
-                  	;
-     AE0D         	CLRMAP
+ADC0 20 A6 B3		JSR	NOTINT
+ADC3 A0 21   		LDY	#SENETC-SENTAB
+ADC5 20 23 B2		JSR	LDMESS
+             	;		CLEAR	DAMAGE
+ADC8 A2 05   		LDX	#$05
+ADCA         	BSER12
+ADCA BD 8B BB		LDA	STINIT+73,X
+ADCD 9D 92 09		STA	DAMAGE,X
+ADD0 CA      		DEX
+ADD1 10 F7   		BPL	BSER12
+             	;
+             	;		NEW ENERGY
+ADD3 A9 89   		LDA	#$89
+ADD5 A2 03   		LDX	#$03
+ADD7         	BSER20
+ADD7 9D 55 09		STA	DENERG+0,X
+ADDA CA      		DEX
+ADDB 10 FA   		BPL	BSER20
+ADDD A9 07   		LDA	#$07
+ADDF 8D 6A 0B		STA	XINCRE+4
+ADE2 A9 81   		LDA	#$81
+ADE4 8D 9B 0B		STA	YINCRE+4
+ADE7 A9 01   		LDA	#$01
+ADE9 8D CC 0B		STA	ZINCRE+4
+ADEC 85 75   		STA	BSEQTIM
+ADEE 4C 7B B0		JMP	KEYSR7		; RE-LOAD INSET
+             	;
+             	;
+             	;
+             	;
+ADF1         	LDISP
+             	;	LOAD DISPLAY LISTS
+             	;	A=#OF BYTES TO STORE, X=POSIT IN DSPLY, Y=PNTR IN LISTAB
+ADF1 78      		SEI		; WE DONT WANT NO INTERUPTS !!
+ADF2 85 6A   		STA	TEMP
+ADF4         	LDISP3
+ADF4 AD 0B D4		LDA	VCOUNT		; CHECK IF ANTIC IS IN SAFE AREA
+ADF7 C9 7C   		CMP	#DISTOP
+ADF9 90 F9   		BCC	LDISP3
+ADFB         	LDISP2
+ADFB B9 62 BA		LDA	LISTAB,Y
+ADFE C8      		INY
+ADFF 10 02   		BPL	LDISP1
+AE01 A9 0D   		LDA	#$0D
+AE03         	LDISP1
+AE03 9D 80 02		STA	DISPLY,X
+AE06 E8      		INX
+AE07 C6 6A   		DEC	TEMP
+AE09 D0 F0   		BNE	LDISP2
+AE0B 58      		CLI			; IRQS BACK ON  !!
+AE0C 60      		RTS
+             	;
+             	;
+             	;
+             	;
+             	;
+             	;
+             	;
+             	;
+AE0D         	CLRMAP

@@ -1,33 +1,33 @@
-     A724 F0 02   		BEQ	DISNMI
-     A726 A9 A0   		LDA	#CGRAPH/256
-     A728         	DISNM1
-     A728 8D 09 D4		STA	CHBASE		; USE FUTURE TYPE CHARACTER SET
-                  	;
-     A72B A2 04   		LDX	#$04
-     A72D 8D 0A D4		STA	WSYNC
-     A730         	DISNM2
-     A730 B5 F7   		LDA	COLRAM+9,X
-     A732 9D 16 D0		STA	COLPF0,X
-     A735 CA      		DEX
-     A736 10 FB   		BPL	DISNM2
-                  	;
-                  	;		READ HITS
-     A738 AD 08 D0		LDA	M0PL
-     A73B 0D 09 D0		ORA	M1PL
-     A73E 0D 0A D0		ORA	M2PL
-     A741 0D 0B D0		ORA	M3PL
-     A744 85 83   		STA	PHITS+1		; PHOTON 3 STORED
-     A746 AD 0F D0		LDA	P3PL
-     A749 85 82   		STA	PHITS+0		; PHOTON 2 STORED
-     A748         	POPALL
-     A748 68      		PLA
-     A74C A8      		TAY
-     A74D 68      		PLA
-     A74E AA      		TAX
-     A74F 68      		PLA
-                  	;
-                  	;			END POP
-                  	;
-     A759 40      		RTI
-                  	;
-                  	;
+A724 F0 02   		BEQ	DISNMI
+A726 A9 A0   		LDA	#CGRAPH/256
+A728         	DISNM1
+A728 8D 09 D4		STA	CHBASE		; USE FUTURE TYPE CHARACTER SET
+             	;
+A72B A2 04   		LDX	#$04
+A72D 8D 0A D4		STA	WSYNC
+A730         	DISNM2
+A730 B5 F7   		LDA	COLRAM+9,X
+A732 9D 16 D0		STA	COLPF0,X
+A735 CA      		DEX
+A736 10 FB   		BPL	DISNM2
+             	;
+             	;		READ HITS
+A738 AD 08 D0		LDA	M0PL
+A73B 0D 09 D0		ORA	M1PL
+A73E 0D 0A D0		ORA	M2PL
+A741 0D 0B D0		ORA	M3PL
+A744 85 83   		STA	PHITS+1		; PHOTON 3 STORED
+A746 AD 0F D0		LDA	P3PL
+A749 85 82   		STA	PHITS+0		; PHOTON 2 STORED
+A748         	POPALL
+A748 68      		PLA
+A74C A8      		TAY
+A74D 68      		PLA
+A74E AA      		TAX
+A74F 68      		PLA
+             	;
+             	;			END POP
+             	;
+A759 40      		RTI
+             	;
+             	;

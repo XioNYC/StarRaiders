@@ -1,0 +1,26 @@
+             	;
+             	;
+             	;
+             	;
+B9B1         	ZYGRAF		; GRAFIC OF ZYLON SHIP BASED ON XPOS
+B9B1 00      		.BYTE	0		; BLANK
+B9B2 81 81 81		.BYTE	$81,$81,$81,$81,$BD,$FF,$FF,$BD,$81,$81,$81,$81
+B9B5 81 BD FF	
+B9B8 FF BD 81	
+B9BB 81 81 81	
+B9BE         	ZYGRF1
+B9BE 82 82 BA		.BYTE	$82,$82,$BA,$FE,$FE,$BA,$82,$82
+B9C1 FE FE BA	
+B9C4 82 82   	
+B9C6         	ZYGRF2
+B9C6 42 5A 7E		.BYTE	$42,$5A,$7E,$7E,$5A,$42
+B9C9 7E 5A 42
+B9CC         	ZYGRF3
+B9CC 44 54 7C		.BYTE	$44,$54,$7C,$7C,$54,$44
+B9CF 7C 54 44	
+B9D2         	ZYGRF4
+B9D2 24 3C 3C		.BYTE	$28,$38,$38,$28
+B9D9 24      	
+B9DA         	ZYGRF6
+B9DA 18 18   		.BYTE	$18,$18
+             	;

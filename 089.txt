@@ -1,0 +1,29 @@
+BAB4         	WARPTB		; SELECT WARP ACCEL FROM KEY 0-9
+BAB4 00 01 02		.BYTE	0,$01,$02,$04,$08,$10,$20,$40,$60,$70
+BAB7 04 08 10	
+BABA 20 40 60	
+BABD 70      	
+             	;
+             	;
+BABE         	CODCON		; USED IN KEYSRV SUBROUTINE FOR KEY CONVERT
+BABE F2 DF DE		.BYTE	$F2,$DF,$DE,$DA,$D8,$DD,$DB,$F3,$F5,$F0
+BAC1 DA DB DD	
+BAC4 DB F3 F5	
+BAC7 F0      	
+BAC8 F8 FF C0		.BYTE	$F8,$FF,$C0,$FD,$EF,$FE,$D2,$F9,$E5,$CA
+BACB FD ED FE	
+BACE D2 F9 E5	
+BAD1 CA      	
+BAD2 E7      		.BYTE	$E7
+             	;
+BAD3         	WENTAB			; ENERGY USED PER WARP
+BAD3 00 04 06		.BYTE	0,4,6,8,10,12,14,30,45,60
+BAD6 08 0A 0C	
+BAD9 0E 1E 2D	
+BADC 3C      	
+             	;
+             	;
+             	;
+             	;
+             	;
+             	;

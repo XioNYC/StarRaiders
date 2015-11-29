@@ -1,0 +1,29 @@
+             	;
+BA34         	ROGRF5
+BA34 10 38 28		.BYTE	$10,$38,$28
+             	;
+             	;
+BA37         	KLGRAF
+BA37 18 3C 7E		.BYTE	$18,$3C,$7E,$FF,$18,$18,$FF,$7E,$3C,$18
+BA3A FF 18 18	
+BA3D FF 7E 3C	
+BA40 18      	
+BA41         	KLGRF1
+BA41 10 38 7C		.BYTE	$10,$38,$7C,$FE,$38,$38,$FE,$7C,$38,$10
+BA44 FE 38 38	
+BA47 FE 7C 38	
+BA4A 10      	
+BA4B         	KLGRF2
+BA4B 18 3C 7E		.BYTE	$18,$3C,$7E,$18,$7E,$3C,$18
+BA4E 18 7E 3C	
+BA51 18      	
+BA52         	KLGRF3
+BA52 10 38 7C		.BYTE	$18,$3C,$18,$3C,$18
+BA55 10 7C 38	
+BA5C 3C 18   	
+BA5E         	KLGRF5
+BA5E 10 38 38		.BYTE	$10,$38,$38,$10
+BA61 10      	
+             	;
+             	;
+             	;

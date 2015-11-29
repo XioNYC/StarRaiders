@@ -1,0 +1,21 @@
+             	;
+             	;
+BA12         	ROGRAF
+BA12 18 3C 7E		.BYTE	$18,$3C,$7E,$7E,$DB,$C3,$81,$81,$81
+BA15 7E DB C3	
+BA18 81 81 81	
+BA1B         	ROGRF1
+BA1B 10 38 7C		.BYTE	$10,$38,$7C,$7C,$D6,$C6,$82,$82
+BA1E 7C D6 C6	
+BA21 82 82   	
+BA23         	ROGRF2
+BA23 18 3C 3C		.BYTE	$18,$3C,$3C,$66,$66,$42,$42
+BA26 66 66 42	
+BA29 42      	
+BA2A         	ROGRF3
+BA2A 10 38 38		.BYTE	$10,$38,$38,$6C,$44,$44
+BA2D 6C 44 44	
+BA30         	ROGRF4
+BA30 18 3C 24		.BYTE	$18,$3C,$24,$24
+BA33 24      	
+             	;

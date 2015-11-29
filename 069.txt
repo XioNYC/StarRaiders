@@ -1,60 +1,60 @@
-     B483 CA      		DEX
-     B484 10 BB   		BPL	LDTAB3
-                  	;		LOAD HORIZ WALL OF CHART
-     B486 A2 B4   		LDX	#180
-     B488         	LDTAB5
-     B488 A9 0A   		LDA	#$0A
-     B48A 9D 34 0D		STA	CHTDIS-1,X
-     B48D CA      		DEX
-     B48E D0 F8   		BNE	LDTAB5
-     B490 A2 0F   		LDX	#$0F		; LD HORIZ LINE
-     B492         	LDTAB6
-     B492 A9 18   		LDA	#$18
-     B494 9D 37 0D		STA	CHTDIS+2,X
-     B497 CA      		DEX
-     B498 10 F8   		BPL	LDTAB6
-                  	;
-     B49A A9 1A   		LDA	#$1A		; FILL IN THE DOT ON THE CHART
-     B49C 8D 47 0D		STA	CHTDIS+18
-                  	;
-     B49F A9 00   		LDA	#$00
-     B4A1 8D 11 09		STA	CHTRAM+72
-     B4A4 A9 48   		LDA	#72
-     B4A6 85 90   		STA	QUADRT
-     B4A8 A9 43   		LDA	#67
-     B4AA 85 8D   		STA	GHPOS
-     B4AC 85 8F   		STA	HYHPOS
-     B4AE A9 47   		LDA	#$47
-     B4B0 85 8E   		STA	HYVPOS
-     B4B2 85 8C   		STA	GVPOS
-     B4B4 A9 EA   		LDA	#$EA
-     B4B6 8D E8 0F		STA	BCDCON+255		; INFIINITY SIGN
-                  	;
-                  	;		FALL THROUGH TO LDGALT
-                  	;
-     B4B9         	LDGALT
-                  	;
-                  	;		LD UP THE GALACTIC CHART
-                  	;		TRANSFER CHTRAM TO CHTDIS
-                  	;
-     B4B9 A0 00   		LDY	#$00		; CHTDIS PNTR
-     B4BB 84 6A   		STY	TEMP		; CHTRAM PNTR
-     B4BD         	LDGAL1
-     B4BD A6 6A   		LDX	TEMP
-     B4BF BD C9 08		LDA	CHTRAM,X		; WHATS IN QUAD
-     B4C2 10 02   		BPL	LDGAL2		; NO
-     B4C4 A9 05   		LDA	#$05		; STARBASE DEFAULT
-     B4C6         	LDGAL2
-     B4C6 AA      		TAX
-     B4C7 BD D1 BE		LDA	CHTABL,X		; CODE FOR CHTDIS
-     B4CA 99 4B 0D		STA	CHTDIS+22,Y
-     B4CD C8      		INY
-     B4CE E6 6A   		INC	TEMP
-     B4D0 A5 6A   		LDA	TEMP
-     B4D2 29 0F   		AND	#$0F		; END OF LINE ?
-     B4D4 D0 E7   		BNE	LDGAL1		; NO
-     B4D6 A9 19   		LDA	#$19		; VERT LINE
-     B4D8 99 4B 0D		STA	CHTDIS+22,Y
-     B4DB C8      		INY
-     B4DC C8      		INY
-     B4DD C8      		INY		; ADVANCE TO NEXT LINE
+B483 CA      		DEX
+B484 10 BB   		BPL	LDTAB3
+             	;		LOAD HORIZ WALL OF CHART
+B486 A2 B4   		LDX	#180
+B488         	LDTAB5
+B488 A9 0A   		LDA	#$0A
+B48A 9D 34 0D		STA	CHTDIS-1,X
+B48D CA      		DEX
+B48E D0 F8   		BNE	LDTAB5
+B490 A2 0F   		LDX	#$0F		; LD HORIZ LINE
+B492         	LDTAB6
+B492 A9 18   		LDA	#$18
+B494 9D 37 0D		STA	CHTDIS+2,X
+B497 CA      		DEX
+B498 10 F8   		BPL	LDTAB6
+             	;
+B49A A9 1A   		LDA	#$1A		; FILL IN THE DOT ON THE CHART
+B49C 8D 47 0D		STA	CHTDIS+18
+             	;
+B49F A9 00   		LDA	#$00
+B4A1 8D 11 09		STA	CHTRAM+72
+B4A4 A9 48   		LDA	#72
+B4A6 85 90   		STA	QUADRT
+B4A8 A9 43   		LDA	#67
+B4AA 85 8D   		STA	GHPOS
+B4AC 85 8F   		STA	HYHPOS
+B4AE A9 47   		LDA	#$47
+B4B0 85 8E   		STA	HYVPOS
+B4B2 85 8C   		STA	GVPOS
+B4B4 A9 EA   		LDA	#$EA
+B4B6 8D E8 0F		STA	BCDCON+255		; INFIINITY SIGN
+             	;
+             	;		FALL THROUGH TO LDGALT
+             	;
+B4B9         	LDGALT
+             	;
+             	;		LD UP THE GALACTIC CHART
+             	;		TRANSFER CHTRAM TO CHTDIS
+             	;
+B4B9 A0 00   		LDY	#$00		; CHTDIS PNTR
+B4BB 84 6A   		STY	TEMP		; CHTRAM PNTR
+B4BD         	LDGAL1
+B4BD A6 6A   		LDX	TEMP
+B4BF BD C9 08		LDA	CHTRAM,X		; WHATS IN QUAD
+B4C2 10 02   		BPL	LDGAL2		; NO
+B4C4 A9 05   		LDA	#$05		; STARBASE DEFAULT
+B4C6         	LDGAL2
+B4C6 AA      		TAX
+B4C7 BD D1 BE		LDA	CHTABL,X		; CODE FOR CHTDIS
+B4CA 99 4B 0D		STA	CHTDIS+22,Y
+B4CD C8      		INY
+B4CE E6 6A   		INC	TEMP
+B4D0 A5 6A   		LDA	TEMP
+B4D2 29 0F   		AND	#$0F		; END OF LINE ?
+B4D4 D0 E7   		BNE	LDGAL1		; NO
+B4D6 A9 19   		LDA	#$19		; VERT LINE
+B4D8 99 4B 0D		STA	CHTDIS+22,Y
+B4DB C8      		INY
+B4DC C8      		INY
+B4DD C8      		INY		; ADVANCE TO NEXT LINE

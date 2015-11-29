@@ -1,0 +1,34 @@
+             	;
+BB23         	INSTB1		; HORIZ CROSS HAIRS
+BB23 3E 32 0F		.BYTE	$3E,$32,15,$54,$32,15
+BB26 54 32 0F	
+BB29 FE      		.BYTE	$FE			; ALL DONE
+             	;
+BB2A         	INSTB2			; SECTOR SCAN SHIP
+BB2A 4E 35 82		.BYTE	$4E,$35,$82,$4F,$34,$82,$50,$32,$85,$51,$34,$82,$52,$35,$82
+BB2D 4F 34 82	
+BB30 50 32 85	
+BB33 51 34 82	
+BB36 52 35 82	
+BB39 FF      		.BYTE	$FF			; ALL DONE
+             	;
+             	;
+             	;
+             	;
+             	;
+             	;
+             	;
+BB3A         	YINIT		; HLINES
+BB3A 04 04 03		.BYTE	4,4,3,2
+BB3E 02      	
+BB3E         	ZINIT		; HLINES
+BB3E 02 03 04		.BYTE	2,3,4,4
+BB41 04      	
+             	;
+             	;
+             	;
+             	;
+             	;
+             	;
+             	;
+             	;

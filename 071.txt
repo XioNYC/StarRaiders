@@ -1,60 +1,60 @@
-B52A A5 73                      LDA     ETIMER
-B52C F0 16                      BEQ     TIME10
-B52E C6 73                      DEC     ETIMER
-B530 D0 04                      BNE     TIMER9
-B532 A2 11                      LDX     #STLAST+1               ; 1 FOR FALL THROUGH
-B534 86 79                      STX     NSTARS
-B536                    TIMER9
-B536 C9 70                      CMP     #$70
-B538 B0 04                      BCS     TIME30
-B53A A2 00                      LDX     #$00
-B53C 86 8A                      STX     HITME
-B53E                    TIME30
-B53E C9 18                      CMP     #$18
-B540 B0 02                      BCS     TIME10
-B542 C6 79                      DEC     NSTARS
-B544                    TIME10
-B544 C6 74                      DEC     SECOND
-B546 10 21                      BPL     TIMER1
-B548 A9 28                      LDA     #$28
-B54A 85 74                      STA     SECOND
-B54C A2 04                      LDX     #$04
-B54E                    TIMER2
-B54E FE A3 09                   INC     DSDATE,X
-B551 BD A3 09                   LDA     DSDATE,X
-B554 C9 DA                      CMP     #$DA
-B556 90 0D                      BCC     TIMER3
-B558 A9 D0                      LDA     #$D0
-B55A 9D A3 09                   STA     DSDATE,X
-B55D E0 03                      CPX     #$03
-B55F D0 01                      BNE     TIMER4
-B561 CA                         DEX
-B562                    TIMER4
-B562 CA                         DEX
-B563 10 E9                      BPL     TIMER2
-B565                    TIMER3
-B565 C6 78                      DEC     JMPTIM
-B567 30 01                      BMI     TIMER5
-B569                    TIMER1
-B569 60                         RTS
-B56A                    TIMER5
-B56A A9 31                      LDA     #49
-B56C 85 78                      STA     JMPTIM
-                        ;               RATING DUE TO TIME
-B56E A5 CB                      LDA     RATING
-B570 D0 02                      BNE     TIME61
-B572 C6 CC                      DEC     RATING+1
-B574                    TIME61
-B574 C6 CB                      DEC     RATING
-B576 A6 64                      LDX     ATRACT          ; GAME OVER ?
-B578 D0 EF                      BNE     TIMER1          ; YES
-                        ;               ZYLONS JUMP
-                                ; CHECK ALL STARBASES TO SEE IF DESTROYED
-                                ; X=0 FROM ABOVE
-B57A 86 6A                      STX     TEMP
-B57C                    TIME12
-B57C BD C9 08                   LDA     CHTRAM,X                ; STARBASE ?
-B57F 10 19                      BPL     TIME11                  ; NO
-B581 20 F1 B7                   JSR     TIMHLP
-B584 F0 14                      BEQ     TIME11
-                        ;                       STARBASE DESTROUED
+B52A A5 73   		LDA	ETIMER
+B52C F0 16   		BEQ	TIME10
+B52E C6 73   		DEC	ETIMER
+B530 D0 04   		BNE	TIMER9
+B532 A2 11   		LDX	#STLAST+1		; 1 FOR FALL THROUGH
+B534 86 79   		STX	NSTARS
+B536         	TIMER9
+B536 C9 70   		CMP	#$70
+B538 B0 04   		BCS	TIME30
+B53A A2 00   		LDX	#$00
+B53C 86 8A   		STX	HITME
+B53E         	TIME30
+B53E C9 18   		CMP	#$18
+B540 B0 02   		BCS	TIME10
+B542 C6 79   		DEC	NSTARS
+B544         	TIME10
+B544 C6 74   		DEC	SECOND
+B546 10 21   		BPL	TIMER1
+B548 A9 28   		LDA	#$28
+B54A 85 74   		STA	SECOND
+B54C A2 04   		LDX	#$04
+B54E         	TIMER2
+B54E FE A3 09		INC	DSDATE,X
+B551 BD A3 09		LDA	DSDATE,X
+B554 C9 DA   		CMP	#$DA
+B556 90 0D   		BCC	TIMER3
+B558 A9 D0   		LDA	#$D0
+B55A 9D A3 09			   STA	DSDATE,X
+B55D E0 03   		CPX	#$03
+B55F D0 01   		BNE	TIMER4
+B561 CA      		DEX
+B562         	TIMER4
+B562 CA      		DEX
+B563 10 E9   		BPL	TIMER2
+B565         	TIMER3
+B565 C6 78   		DEC	JMPTIM
+B567 30 01   		BMI	TIMER5
+B569         	TIMER1
+B569 60      		RTS
+B56A         	TIMER5
+B56A A9 31   		LDA	#49
+B56C 85 78   		STA	JMPTIM
+             	;		RATING DUE TO TIME
+B56E A5 CB   		LDA	RATING
+B570 D0 02   		BNE	TIME61
+B572 C6 CC   		DEC	RATING+1
+B574         	TIME61
+B574 C6 CB   		DEC	RATING
+B576 A6 64   		LDX	ATRACT		; GAME OVER ?
+B578 D0 EF   		BNE	TIMER1		; YES
+             	;			ZYLONS JUMP
+             		; CHECK ALL STARBASES TO SEE IF DESTROYED
+             		; X=0 FROM ABOVE
+B57A 86 6A   		STX	TEMP
+B57C         	TIME12
+B57C BD C9 08		LDA	CHTRAM,X		; STARBASE ?
+B57F 10 19   		BPL	TIME11			; NO
+B581 20 F1 B7		JSR	TIMHLP
+B584 F0 14   		BEQ	TIME11
+             	;			STARBASE DESTROUED

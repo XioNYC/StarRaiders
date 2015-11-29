@@ -1,0 +1,26 @@
+             	;
+BDEE C3 4F 4D		.BYTE	$C3,"OMMANDER"
+BDF1 4D 41 4E	
+BDF4 44 45 52	
+BDF7 C4 41 4D		.BYTE	$C4,"AMAGE"
+BDFA 41 47 45	
+BDFD C4 41 4D		.BYTE	$C4,"AMAGED"
+BE00 41 47 45	
+BE03 44      	
+BE04 C3 4F 4E		.BYTE	$C3,"ONTROL"
+BE07 54 52 4F	
+BE0A 4C      	
+BE0B D0 48 4F		.BYTE	$D0,"HOTONS"
+BE0E 54 4F 4E	
+BE11 53      	
+             	;
+BE12 A0      		.BYTE	$A0		; BLANK
+BE13 D3 54 41		.BYTE	$D3,"TAR COMMANDER"
+BE16 52 20 43	
+BE19 4F 4D 4D	
+BE1C 41 4E 44	
+BE1E 45 52   	
+BE21 80      		.BYTE	$80		; END TABLE
+             	;
+             	;
+             	;

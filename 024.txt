@@ -1,59 +1,59 @@
-     A408 65 6B   		ADC	TEMP1
-     A40A 99 40 0A		STA	XPOSH,Y
-     A40D B9 AD 09		LDA	XSIGN,Y
-     A410 65 6B   		ADC	TEMP1
-     A412 99 AD 09		STA	XSIGN,Y
-                  	;
-     A415 98      		TYA
-     A416 18      		CLC
-     A417 69 31   		ADC	#RAMNUM
-     A419 C9 90   		CMP	#RMLAST*3	; ALL DONE ?
-     A41B 90 CE   		BCC	MOTIN2		; NO
-     A41D CA      		DEX
-     A41E 10 C4   		BPL	MOTIN1		; NEXT STAR OR OBJECT
-                  	;
-                  	;
+A408 65 6B   		ADC	TEMP1
+A40A 99 40 0A		STA	XPOSH,Y
+A40D B9 AD 09		LDA	XSIGN,Y
+A410 65 6B   		ADC	TEMP1
+A412 99 AD 09		STA	XSIGN,Y
+             	;
+A415 98      		TYA
+A416 18      		CLC
+A417 69 31   		ADC	#RAMNUM
+A419 C9 90   		CMP	#RMLAST*3	; ALL DONE ?
+A41B 90 CE   		BCC	MOTIN2		; NO
+A41D CA      		DEX
+A41E 10 C4   		BPL	MOTIN1		; NEXT STAR OR OBJECT
+             	;
+             	;
 
-                  	;		BOUNDS
-                  	;
-     A420 A0 04   		LDY	#OBLAST		; ONLY OBJECTS
-     A422         	BOUND1
-     A422 98      		TYA
-     A423 AA      		TAX
-     A424 A9 02   		LDA	#$02
-     A426 85 6A   		STA	TEMP
-     A428         	BOUND3
-     A428 BD AD 09		LDA	XSIGN,X
-     A42B C9 02   		CMP	#$02
-     A42D 90 10   		BCC	BOUND4
-                  	;		OUT OF BOUNDS
-     A42F 0A      		ASL	A
-     A430 A9 00   		LDA	#$00
-     A432 9D AD 09		STA	XSIGN,X
-     A435 B0 05   		BCS	BOUND5
-     A437 FE AD 09		INC	XSIGN,X
-     A43A 49 FF   		EOR	#$FF
-     A43C         	BOUND5
-     A43C 9D 40 0A		STA	XPOSH,X
-     A43F         	BOUND4
-     A43F 8A      		TXA
-     A440 18      		CLC
-     A441 69 31   		ADC	#RAMNUM
-     A443 AA      		TAX
-     A444 C6 6A   		DEC	TEMP
-     A446 10 E0   		BPL	BOUND3
-     A448 88      		DEY
-     A449 10 D7   		BPL	BOUND1		; NEXT STAR
-                  	;
-                  	;
+             	;		BOUNDS
+             	;
+A420 A0 04   		LDY	#OBLAST		; ONLY OBJECTS
+A422         	BOUND1
+A422 98      		TYA
+A423 AA      		TAX
+A424 A9 02   		LDA	#$02
+A426 85 6A   		STA	TEMP
+A428         	BOUND3
+A428 BD AD 09		LDA	XSIGN,X
+A42B C9 02   		CMP	#$02
+A42D 90 10   		BCC	BOUND4
+             	;		OUT OF BOUNDS
+A42F 0A      		ASL	A
+A430 A9 00   		LDA	#$00
+A432 9D AD 09		STA	XSIGN,X
+A435 B0 05   		BCS	BOUND5
+A437 FE AD 09		INC	XSIGN,X
+A43A 49 FF   		EOR	#$FF
+A43C         	BOUND5
+A43C 9D 40 0A		STA	XPOSH,X
+A43F         	BOUND4
+A43F 8A      		TXA
+A440 18      		CLC
+A441 69 31   		ADC	#RAMNUM
+A443 AA      		TAX
+A444 C6 6A   		DEC	TEMP
+A446 10 E0   		BPL	BOUND3
+A448 88      		DEY
+A449 10 D7   		BPL	BOUND1		; NEXT STAR
+             	;
+             	;
 
-                  	;		CALCVH
-                  	;	CALCULATE V,H POS FOR ALL STARS/OBJ
-     A44B A5 D0   		LDA	DISFLG
-     A44D C9 02   		CMP	#$02
-     A44F B0 5C   		BCS	CALC14		; NOT FRONT OR BACK
-                  	;
-     A451 A6 79   		LDX	NSTARS		; X=INDEX OF STARS
-     A453         	CALCV1			;STAR LOOP
-     A453 A9 FF   		LDA	#$FF
-     A455 BC AD 09		LDY	XSIGN,X
+             	;		CALCVH
+             	;	CALCULATE V,H POS FOR ALL STARS/OBJ
+A44B A5 D0   		LDA	DISFLG
+A44D C9 02   		CMP	#$02
+A44F B0 5C   		BCS	CALC14		; NOT FRONT OR BACK
+             	;
+A451 A6 79   		LDX	NSTARS		; X=INDEX OF STARS
+A453         	CALCV1			;STAR LOOP
+A453 A9 FF   		LDA	#$FF
+A455 BC AD 09		LDY	XSIGN,X
