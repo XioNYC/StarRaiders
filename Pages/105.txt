@@ -1,0 +1,47 @@
+             	;
+BF3E         	CH4TAB		; NOTINT,	INIT REPPTR,NPRIOR,SDURAT,NDURAT,REPSEQ,NOTSEQ
+BF3E         	CH4TB1		; HYPERSPACE
+BF3E 02 02 02		.BYTE	2,2,2,3,12,2
+BF41 03 0C 02	
+BF44         	CH4TB2		; RED ALERT
+BF44 04 03 FF		.BYTE	4,3,$FF,$10,7,4
+BF47 10 07 04	
+BF4A         	CH4TB3		; KEYS
+BF4A 07 04 02		.BYTE	7,4,2,2,0,7
+BF4D 02 00 07	
+BF50         	CH4TB4		; DAMAGE
+BF50 0B 05 FF		.BYTE	11,5,$FF,$20,2,11
+BF53 20 02 0B	
+BF56         	CH4TB5		; MESSAGE
+BF56 0E 06 08		.BYTE	14,6,8,$20,0,14
+BF59 20 00 0E	
+             	;
+             	;
+             	;
+BF5C         	NOTTAB		; TABL O NOTES, FF=RESERVED BYTE
+BF5C 10 FF   		.BYTE	$10,$FF			; TRACKING
+BF5E 18 FF   		.BYTE	$18,$FF			; HYPERSPACE
+BF60 40 60 FF		.BYTE	$40,$60,$FF		; RED ALERT
+BF63 10 10 10		.BYTE	$10,$10,$10,$FF		; KEYS
+BF66 FF      	
+BF67 40 20 FF		.BYTE	$40,$20,$FF		; DAMAGE
+BF6A 48 40 51		.BYTE	$48,$40,$51,$FF		; STARFLEET MESSAGE
+BF6D FF      	
+             	;
+             	;
+BF6E         	ZYTARG			; GRAPHIC OF ZYLON TARGET
+BF6E 84 B4 FC		.BYTE	$84,$B4,$FC,$B4,$84
+BF71 B4 84   	
+             	;
+             	;
+             	;
+             	;
+BF73         	PHOYPS		; YPOSH FOR PHOTON
+BF73 FF 01   		.BYTE	$FF,1
+             	;
+BF75         	PHPOST		; BOUNDS IN HITZYL
+BF75 0C 0C 0C		.BYTE	$C,$C,$C,$C,$E,$E,$E,$20
+BF78 0C 0E 0E	
+BF7B 0E 20   	
+             	;
+             	;

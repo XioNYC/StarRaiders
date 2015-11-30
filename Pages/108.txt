@@ -1,0 +1,14 @@
+             	;
+BFEB         	PHOTB2		; AUDIO, ATYPE3
+BFEB 8A 8F 8D		.BYTE	$8A,$8F,$8D,$8B,$89,$87,$85,$83
+BFEE 8B 89 87	
+BFF1 85 83   	
+BFF3         	PHOTB4		; AUDIO, AFREQ3
+BFF3 00 04 01		.BYTE	0,4,1,4,1,4,1,4
+BFF6 04 01 04	
+BFF9 01 04   	
+BFFB         	PHASE5
+             	;
+             	;
+             	;
+             	;

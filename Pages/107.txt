@@ -1,0 +1,45 @@
+             	;
+             	;
+BFA9         	CLITAB		; LDTABS
+BFA9 A6 AA AF		.BYTE	$A6,$AA,$FA,0,0,$B8,$5A,$FC,$5E,$90
+BFAC 00 00 B8	
+BFAF 5A FC 5E	
+BFB2 90      	
+             	;
+             	;
+BFB3         	JMASK		; HWARP SUB, USED FOR INITING TARG POSITIONS
+BFB3 FF FF 3F		.BYTE	$FF,$FF,$3F,$0F,$3F,$7F,$FF,$FF
+BFB6 0F 3F 7F	
+BFB9 FF FF   	
+             	;
+             	;
+BFBB         	JMPWHN		; TIMERS, WHEN EACH ZYLON TYPE SHOULD JUMP
+BFBB 00 FF FF		.BYTE	0,$FF,$FF,$C0,$20
+BFBE C0 20   	
+             	;
+BFC0         	JMPTAB		; TIMERS , JUMP VECTORS FOR ZYLONS
+BFC0 F0 EF FF		.BYTE	$F0,$EF,$FF,15,16,17,1,$F1,0
+BFC3 0F 10 11	
+BFC6 01 F1 00	
+             	;
+BFC9         	PHVECT	; POHELP
+BFC9 00 08 10		.BYTE	0,8,$10,$18,$28,$30,$38,$40
+BFCC 18 28 30	
+BFCF 38 40   	
+             	;
+             	;
+             	;
+BFD1         	COLTAB		; OBJCOL, CHROMA FOR EACH TYPE GRAPHIC
+BFD1 50 00 20		.BYTE	$50,0,$20,$20,$20,0,$A0,0,0,$9F
+BFD4 20 20 00	
+BFD7 A0 00 00	
+BFDA 9F      	
+             	;
+BFDB         	COLINT		; OBJCOL, INTENSITY PER XPOSH
+BFDB 0E 0E 0E		.BYTE	$E,$E,$E,$C,$C,$C,$A,$A,$A,$8,$8,$8,$6,$6,$4,$4
+BFDE 0C 0C 0C	
+BFE1 0A 0A 0A	
+BFE4 08 08 08	
+BFE7 06 06 04	
+BFEA 04      	
+             	;

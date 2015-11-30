@@ -1,0 +1,60 @@
+             		*=*+5
+             	;		NEXT LINE
+             		*=*+8
+098D         	DTARG			; DISP OF TARGETS IN QUAD
+             		*=*+1
+             		*=*+4
+0992         	DAMAGE		; DAMAGE CONTROL RAM, +0=PHOTONS,+1=ENGINES
+             		*=*+6		; +2=SHIELDS,+3=COM,PUTER,+4=SECTOR SCAN
+             				; +5=SUB-SPACE RADIO
+             		*=*+1
+             	;		NEXT LINE
+             		*=*+10
+09A3         	DSDATE			; DISP OF STAR DATE
+             		*=*+5
+             		*=*+5
+09AD         	STRRAM		; RAM FOR STARS , OBJECTS  POSITIONS, ETC.
+09AD         	XSIGN		; SIGN OF XPOS
+             		*=*+RAMNUM
+09DE         	YSIGN
+             		*=*+RAMNUM
+0A0F         	ZSIGN
+             		*=*+RAMNUM
+0A40         	XPOSH		; XPOS IN SPACE HI BYTE
+             		*=*+RAMNUM
+0A71         	YPOSH
+             		*=*+RAMNUM
+0AA2         	ZPOSH
+             		*=*+RAMNUM
+0AD3         	XPOSL		; XPOS IN SPACE LO BYTE
+             		*=*+RAMNUM
+0B04         	YPOSL
+             		*=*+RAMNUM
+0B35         	ZPOSL
+             		*=*+RAMNUM
+0B66         	XINCRE		; OBJECTS X DIRECTION VELOCITY
+             		*=*+RAMNUM
+0B97         	YINCRE
+             		*=*+RAMNUM
+0BC8         	ZINCRE
+             		*=*+RAMNUM
+0BF9         	VPOS		; VERT POS ON SCREEN
+             		*=*+RAMNUM
+0C2A         	HPOS		; HORIZ POS ON SCREEN
+             		*=*+RAMNUM
+0C5B         	OLDVER		; OLD VERT POSIT
+             		*=*+RAMNUM
+0C8C         	GINDEX		; TYPE OF GRAPHIC,		OBJECT
+0C8C         	OLDHOR		; OLD HORIZ POSIT		STARS
+             		*=*+RAMNUM
+0CBD         	OLDNUM		; PREVIOUS NUMBER OF BYTES STORED		OBJECT
+0CBD         	OLDBYT		; OLD BYTE IN RAM MAP				STARS
+             		*=*+RAMNUM
+0CEE         	NUMBYT		; HOW MANY BYTES TO STORE		OBJECT
+0CEE         	STRBYT		; THE BYTE TO STORE		STARS
+             		*=*+RAMNUM
+0D1F         	MESAGE		; DISPLAY OF MESSAGE RAM
+             		*=*+20
+             		*=*+2		; BUFFER ZONE
+             	;
+0D35         	CHTDIS		; CHAR GRAPHICS PNTR FO GALCHT

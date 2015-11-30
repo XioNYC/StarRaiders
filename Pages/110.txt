@@ -1,0 +1,60 @@
+             	;
+             	;
+             	;
+             	;			RAM MAP
+             		*=$280
+0280         	RAMMAP			; MISC RAM STORAGE
+0280         	DISPLY			; DISPLAY LIST RAM
+             		*=*+128		; SEE EQUATES FOR INTERNAL LABELS
+             	;
+0300         	PHASE2
+             	;
+             		*=$300
+0300         	PGRAPH
+0300         	MGRAPH			; MISSLE GRAPHICS RAM
+             		*=*+256
+0400         	PGRAP0
+             		*=*+256
+0500         	PGRAP1
+             		*=*+256
+0600         	PGRAP2
+             		*=*+256
+0700         	PGRAP3
+             		*=*+256
+             	;
+0800         	VCONL		; VERT CONVERT TABLE LO BYTE
+             		*=*+100
+0864         	VCONH		; VERT CONVERT TABLE HI BYTE
+             		*=*+100
+             		*=*+1		; BUFFER BYTE
+08C9         	CHTRAM		; CHART RAM, MOW MANY ZYLONS IN EACH QUAD
+             		*=*+128
+0949         	DISCTL		; DISPLAY OF CONTRAL STATUS PANNEL
+             		*=*+2
+094B         	DVELOC		; DISP OF VELOC
+             		*=*+2
+             		*=*+3
+0950         	DKILL		; DISP OF KILL
+             		*=*+2
+             		*=*+3
+0955         	DENERG		; DISPLAY OF ENERGY
+             		*=*+4
+             		*=*+3
+095C         	DCSTOR		; WHICH OBJ TRACKING
+             		*=*+1
+             	;			NEXT LINE
+             		*=*+3
+0960         	DTHETA		; DISPLAY OF THETA
+             		*=*+3
+             		*=*+3
+0966         	DPHI			; DISPLAY OF PHI
+             		*=*+3
+             		*=*+3
+096C         	DRHO			; DISPLAY OF RHO
+             		*=*+4
+             		*=*+1
+             	;		NEXT LINE
+0971         	DGALAC			; GALACTIC CHART INFO
+             		*=*+12
+097D         	DWENER			; DISPLAY WARP ENERGY
+             		*=*+3

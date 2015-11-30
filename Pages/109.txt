@@ -1,0 +1,10 @@
+             	;
+             	;		CARTRIDGE OPERATING CODES
+             	;
+             		*=$BFFC
+BFFC 00      		.BYTE	0		; CARTRIDGE IN FLAG
+BFFD 80      		.BYTE	$80		; RUN CARTRIDGE IMMEDIATELY
+BFFE 4A A1   		.WORD	INIT		; START ADDR POINTER
+             	;
+C000         	PHASE9
+             	;

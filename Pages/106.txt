@@ -1,0 +1,29 @@
+             	;
+BF7D         	PHPOSB		; BOUNDS IN HITZYL
+BF7D 00 00 00		.BYTE	0,0,0,2,4,6,8,$C
+BF80 02 04 06	
+BF83 08 0C   	
+             	;
+             	;
+             	;
+             	;
+BF85         	PHODIF		; THINK
+BF85 81 84 88		.BYTE	$81,$84,$88,$94
+BF88 94      	
+BF89         	ZYGIND		; THINK
+BF89 80 10 10		.BYTE	$80,$10,$10,$10,$70,$70,$70,$10
+BF8C 10 70 70	
+BF8F 70 10   	
+BF91         	INTSEQ		; THINK
+BF91 04 04 00		.BYTE	4,4,0,0,0,1,0,0
+BF94 00 00 01	
+BF97 00 00   	
+             	;
+BF99         	ZYWARP		; THINK
+BF99 3E 1E 10		.BYTE	$3E,$1E,$10,8,4,2,1,0,0,$81,$82,$84,$88,$90,$9E,$BE
+BF9C 08 04 02	
+BF9F 01 00 00	
+BFA2 81 82 84	
+BFA5 88 90 9E	
+BFA8 BE      	
+             	;
